@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Content:</b>
+  <%= @image_post.content_id %>
+</p>
+
+<p>
+  <b>Image url:</b>
+  <%= @image_post.image_url %>
+</p>
+
+<p>
+  <b>X pixels:</b>
+  <%= @image_post.x_pixels %>
+</p>
+
+<p>
+  <b>Y pixels:</b>
+  <%= @image_post.y_pixels %>
+</p>
+
+
+<%= link_to 'Edit', edit_image_post_path(@image_post) %> |
+<%= link_to 'Back', image_posts_path %>

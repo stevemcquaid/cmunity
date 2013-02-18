@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Content:</b>
+  <%= @event_post.content_id %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%= @event_post.location %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @event_post.description %>
+</p>
+
+<p>
+  <b>Start datetime:</b>
+  <%= @event_post.start_datetime %>
+</p>
+
+<p>
+  <b>End datetime:</b>
+  <%= @event_post.end_datetime %>
+</p>
+
+<p>
+  <b>Is all day:</b>
+  <%= @event_post.is_all_day %>
+</p>
+
+
+<%= link_to 'Edit', edit_event_post_path(@event_post) %> |
+<%= link_to 'Back', event_posts_path %>

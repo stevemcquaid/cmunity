@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @content.title %>
+</p>
+
+<p>
+  <b>Creator:</b>
+  <%= @content.creator_id %>
+</p>
+
+<p>
+  <b>Parent group:</b>
+  <%= @content.parent_group_id %>
+</p>
+
+<p>
+  <b>Is private:</b>
+  <%= @content.is_private %>
+</p>
+
+<p>
+  <b>Date created:</b>
+  <%= @content.date_created %>
+</p>
+
+<p>
+  <b>Date modified:</b>
+  <%= @content.date_modified %>
+</p>
+
+
+<%= link_to 'Edit', edit_content_path(@content) %> |
+<%= link_to 'Back', contents_path %>

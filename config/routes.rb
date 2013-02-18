@@ -1,4 +1,20 @@
 Cmunity::Application.routes.draw do
+  resources :groups
+
+  resources :users
+
+  resources :event_posts
+
+  resources :video_posts
+
+  resources :text_posts
+
+  resources :url_posts
+
+  resources :image_posts
+
+  resources :contents
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

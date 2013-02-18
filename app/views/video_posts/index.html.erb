@@ -1,0 +1,31 @@
+<h1>Listing video_posts</h1>
+
+<table>
+  <tr>
+    <th>Content</th>
+    <th>Video url</th>
+    <th>Length</th>
+    <th>X pixels</th>
+    <th>Y pixels</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @video_posts.each do |video_post| %>
+  <tr>
+    <td><%= video_post.content_id %></td>
+    <td><%= video_post.video_url %></td>
+    <td><%= video_post.length %></td>
+    <td><%= video_post.x_pixels %></td>
+    <td><%= video_post.y_pixels %></td>
+    <td><%= link_to 'Show', video_post %></td>
+    <td><%= link_to 'Edit', edit_video_post_path(video_post) %></td>
+    <td><%= link_to 'Destroy', video_post, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Video post', new_video_post_path %>

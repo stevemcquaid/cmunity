@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Content:</b>
+  <%= @video_post.content_id %>
+</p>
+
+<p>
+  <b>Video url:</b>
+  <%= @video_post.video_url %>
+</p>
+
+<p>
+  <b>Length:</b>
+  <%= @video_post.length %>
+</p>
+
+<p>
+  <b>X pixels:</b>
+  <%= @video_post.x_pixels %>
+</p>
+
+<p>
+  <b>Y pixels:</b>
+  <%= @video_post.y_pixels %>
+</p>
+
+
+<%= link_to 'Edit', edit_video_post_path(@video_post) %> |
+<%= link_to 'Back', video_posts_path %>

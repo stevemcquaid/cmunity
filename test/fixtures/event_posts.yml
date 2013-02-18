@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  content_id: 1
+  location: MyString
+  description: MyString
+  start_datetime: 2013-02-18 00:04:20
+  end_datetime: 2013-02-18 00:04:20
+  is_all_day: false
+
+two:
+  content_id: 1
+  location: MyString
+  description: MyString
+  start_datetime: 2013-02-18 00:04:20
+  end_datetime: 2013-02-18 00:04:20
+  is_all_day: false
