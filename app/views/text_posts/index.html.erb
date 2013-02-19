@@ -1,25 +1,38 @@
-<h1>Listing text_posts</h1>
-
-<table>
-  <tr>
-    <th>Content</th>
-    <th>Text</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @text_posts.each do |text_post| %>
-  <tr>
-    <td><%= text_post.content_id %></td>
-    <td><%= text_post.text %></td>
-    <td><%= link_to 'Show', text_post %></td>
-    <td><%= link_to 'Edit', edit_text_post_path(text_post) %></td>
-    <td><%= link_to 'Destroy', text_post, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
+<%- model_class = TextPost -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:content_id) %></th>
+      <th><%= model_class.human_attribute_name(:text) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @text_posts.each do |text_post| %>
+      <tr>
+        <td><%= link_to text_post.id, text_post_path(text_post) %></td>
+        <td><%= text_post.content_id %></td>
+        <td><%= text_post.text %></td>
+        <td><%=l text_post.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_text_post_path(text_post), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      text_post_path(text_post),
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<br />
-
-<%= link_to 'New Text post', new_text_post_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_text_post_path,
+            :class => 'btn btn-primary' %>
