@@ -7,9 +7,9 @@
   <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
   <dd><%= @content.title %></dd>
   <dt><strong><%= model_class.human_attribute_name(:creator_id) %>:</strong></dt>
-  <dd><%= @content.creator_id %></dd>
+  <dd><%= @content.user.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:parent_group_id) %>:</strong></dt>
-  <dd><%= @content.parent_group_id %></dd>
+  <dd><%= @content.group.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:is_private) %>:</strong></dt>
   <dd><%= @content.is_private %></dd>
   <dt><strong><%= model_class.human_attribute_name(:date_created) %>:</strong></dt>

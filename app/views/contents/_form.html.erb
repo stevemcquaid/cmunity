@@ -8,17 +8,17 @@
   <div class="control-group">
     <%= f.label :creator_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :creator_id, :class => 'number_field' %>
+      <%= f.collection_select :creator_id, User.all, :id, :name %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :parent_group_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :parent_group_id, :class => 'number_field' %>
+      <%= f.collection_select :parent_group_id, Group.all, :id, :name %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :is_private, :class => 'control-label' %>
+    <%= f.label 'Private', :class => 'control-label' %>
     <div class="controls">
       <%= f.check_box :is_private, :class => 'check_box' %>
     </div>

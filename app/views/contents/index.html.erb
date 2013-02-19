@@ -21,9 +21,9 @@
       <tr>
         <td><%= link_to content.id, content_path(content) %></td>
         <td><%= content.title %></td>
-        <td><%= content.creator_id %></td>
-        <td><%= content.parent_group_id %></td>
-        <td><%= content.is_private %></td>
+        <td><%= content.user.name %></td>
+        <td><%= content.group.name %></td>
+        <td><%= content.is_private ? "Private" : "Public" %></td>
         <td><%= content.date_created %></td>
         <td><%= content.date_modified %></td>
         <td><%=l content.created_at %></td>
