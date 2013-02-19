@@ -1,41 +1,44 @@
-<%= form_for(@content) do |f| %>
-  <% if @content.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@content.errors.count, "error") %> prohibited this content from being saved:</h2>
-
-      <ul>
-      <% @content.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= form_for @content, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :title, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :title, :class => 'text_field' %>
     </div>
-  <% end %>
+  </div>
+  <div class="control-group">
+    <%= f.label :creator_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.collection_select :creator_id, User.all, :id, :name %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :parent_group_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.collection_select :parent_group_id, Group.all, :id, :name %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label 'Private', :class => 'control-label' %>
+    <div class="controls">
+      <%= f.check_box :is_private, :class => 'check_box' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :date_created, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.datetime_select :date_created, :class => 'datetime_select' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :date_modified, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.datetime_select :date_modified, :class => 'datetime_select' %>
+    </div>
+  </div>
 
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :creator_id %><br />
-    <%= f.number_field :creator_id %>
-  </div>
-  <div class="field">
-    <%= f.label :parent_group_id %><br />
-    <%= f.number_field :parent_group_id %>
-  </div>
-  <div class="field">
-    <%= f.label :is_private %><br />
-    <%= f.check_box :is_private %>
-  </div>
-  <div class="field">
-    <%= f.label :date_created %><br />
-    <%= f.datetime_select :date_created %>
-  </div>
-  <div class="field">
-    <%= f.label :date_modified %><br />
-    <%= f.datetime_select :date_modified %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                contents_path, :class => 'btn' %>
   </div>
 <% end %>

@@ -1,35 +1,31 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Content -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
 
-<p>
-  <b>Title:</b>
-  <%= @content.title %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
+  <dd><%= @content.title %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:creator_id) %>:</strong></dt>
+  <dd><%= @content.user.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:parent_group_id) %>:</strong></dt>
+  <dd><%= @content.group.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:is_private) %>:</strong></dt>
+  <dd><%= @content.is_private %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:date_created) %>:</strong></dt>
+  <dd><%= @content.date_created %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:date_modified) %>:</strong></dt>
+  <dd><%= @content.date_modified %></dd>
+</dl>
 
-<p>
-  <b>Creator:</b>
-  <%= @content.creator_id %>
-</p>
-
-<p>
-  <b>Parent group:</b>
-  <%= @content.parent_group_id %>
-</p>
-
-<p>
-  <b>Is private:</b>
-  <%= @content.is_private %>
-</p>
-
-<p>
-  <b>Date created:</b>
-  <%= @content.date_created %>
-</p>
-
-<p>
-  <b>Date modified:</b>
-  <%= @content.date_modified %>
-</p>
-
-
-<%= link_to 'Edit', edit_content_path(@content) %> |
-<%= link_to 'Back', contents_path %>
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              contents_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_content_path(@content), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              content_path(@content),
+              :method => 'delete',
+              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :class => 'btn btn-danger' %>
+</div>

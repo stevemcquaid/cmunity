@@ -1,31 +1,44 @@
-<h1>Listing video_posts</h1>
-
-<table>
-  <tr>
-    <th>Content</th>
-    <th>Video url</th>
-    <th>Length</th>
-    <th>X pixels</th>
-    <th>Y pixels</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @video_posts.each do |video_post| %>
-  <tr>
-    <td><%= video_post.content_id %></td>
-    <td><%= video_post.video_url %></td>
-    <td><%= video_post.length %></td>
-    <td><%= video_post.x_pixels %></td>
-    <td><%= video_post.y_pixels %></td>
-    <td><%= link_to 'Show', video_post %></td>
-    <td><%= link_to 'Edit', edit_video_post_path(video_post) %></td>
-    <td><%= link_to 'Destroy', video_post, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
+<%- model_class = VideoPost -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:content_id) %></th>
+      <th><%= model_class.human_attribute_name(:video_url) %></th>
+      <th><%= model_class.human_attribute_name(:length) %></th>
+      <th><%= model_class.human_attribute_name(:x_pixels) %></th>
+      <th><%= model_class.human_attribute_name(:y_pixels) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @video_posts.each do |video_post| %>
+      <tr>
+        <td><%= link_to video_post.id, video_post_path(video_post) %></td>
+        <td><%= video_post.content_id %></td>
+        <td><%= video_post.video_url %></td>
+        <td><%= video_post.length %></td>
+        <td><%= video_post.x_pixels %></td>
+        <td><%= video_post.y_pixels %></td>
+        <td><%=l video_post.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_video_post_path(video_post), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      video_post_path(video_post),
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<br />
-
-<%= link_to 'New Video post', new_video_post_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_video_post_path,
+            :class => 'btn btn-primary' %>

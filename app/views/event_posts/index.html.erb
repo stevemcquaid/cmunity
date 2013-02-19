@@ -1,33 +1,46 @@
-<h1>Listing event_posts</h1>
-
-<table>
-  <tr>
-    <th>Content</th>
-    <th>Location</th>
-    <th>Description</th>
-    <th>Start datetime</th>
-    <th>End datetime</th>
-    <th>Is all day</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @event_posts.each do |event_post| %>
-  <tr>
-    <td><%= event_post.content_id %></td>
-    <td><%= event_post.location %></td>
-    <td><%= event_post.description %></td>
-    <td><%= event_post.start_datetime %></td>
-    <td><%= event_post.end_datetime %></td>
-    <td><%= event_post.is_all_day %></td>
-    <td><%= link_to 'Show', event_post %></td>
-    <td><%= link_to 'Edit', edit_event_post_path(event_post) %></td>
-    <td><%= link_to 'Destroy', event_post, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
+<%- model_class = EventPost -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:content_id) %></th>
+      <th><%= model_class.human_attribute_name(:location) %></th>
+      <th><%= model_class.human_attribute_name(:description) %></th>
+      <th><%= model_class.human_attribute_name(:start_datetime) %></th>
+      <th><%= model_class.human_attribute_name(:end_datetime) %></th>
+      <th><%= model_class.human_attribute_name(:is_all_day) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @event_posts.each do |event_post| %>
+      <tr>
+        <td><%= link_to event_post.id, event_post_path(event_post) %></td>
+        <td><%= event_post.content_id %></td>
+        <td><%= event_post.location %></td>
+        <td><%= event_post.description %></td>
+        <td><%= event_post.start_datetime %></td>
+        <td><%= event_post.end_datetime %></td>
+        <td><%= event_post.is_all_day %></td>
+        <td><%=l event_post.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_event_post_path(event_post), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      event_post_path(event_post),
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<br />
-
-<%= link_to 'New Event post', new_event_post_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_event_post_path,
+            :class => 'btn btn-primary' %>
