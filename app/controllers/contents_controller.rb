@@ -41,6 +41,9 @@ class ContentsController < ApplicationController
   # POST /contents.json
   def create
     @content = Content.new(params[:content])
+    #Add Date Created, Date Modified
+    @content.date_created.update_attributes(:date_created => Time.now)
+    @content.date_modified.update_attributes(:date_modified => Time.now)
 
     respond_to do |format|
       if @content.save
@@ -57,6 +60,8 @@ class ContentsController < ApplicationController
   # PUT /contents/1.json
   def update
     @content = Content.find(params[:id])
+    #Add Date Created, Date Modified
+    @content.date_modified.update_attributes(:date_modified => Time.now)
 
     respond_to do |format|
       if @content.update_attributes(params[:content])
