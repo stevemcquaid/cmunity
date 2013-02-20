@@ -1,0 +1,41 @@
+<%- model_class = Content -%>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:title) %></th>
+      <th><%= model_class.human_attribute_name(:creator_id) %></th>
+      <th><%= model_class.human_attribute_name(:parent_group_id) %></th>
+      <th><%= model_class.human_attribute_name(:is_private) %></th>
+      <th><%= model_class.human_attribute_name(:date_created) %></th>
+      <th><%= model_class.human_attribute_name(:date_modified) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @contents.each do |content| %>
+      <tr>
+        <td><%= link_to content.title, content_path(content.id) %></td>
+        <td><%= content.user.name %></td>
+        <td><%= content.group.name %></td>
+        <td><%= content.is_private ? "Private" : "Public" %></td>
+        <td><%= content.date_created %></td>
+        <td><%= content.date_modified %></td>
+        <td><%=l content.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_content_path(content), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      content_path(content),
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_content_path,
+            :class => 'btn btn-primary' %>
