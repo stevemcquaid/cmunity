@@ -100,6 +100,8 @@ GEM
     rake (10.0.3)
     rdoc (3.12.1)
       json (~> 1.4)
+    rvm-capistrano (1.2.7)
+      capistrano (>= 2.0.0)
     sass (3.2.5)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -136,6 +138,7 @@ DEPENDENCIES
   jquery-rails
   less-rails
   rails (= 3.2.1)
+  rvm-capistrano
   sass-rails (~> 3.2.3)
   sqlite3
   therubyracer
