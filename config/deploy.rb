@@ -1,6 +1,9 @@
 require "rvm/capistrano"
 require "bundler/capistrano"
 
+set :rvm_type, :system
+set :rvm_ruby_string, :release_path
+
 server "devsrv4.res.cmu.edu", :web, :app, :db, primary: true
 
 set :application, "cmunity"
