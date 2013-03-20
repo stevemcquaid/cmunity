@@ -20,12 +20,13 @@ ActiveRecord::Schema.define(:version => 20130320050410) do
     t.boolean  "is_private"
     t.datetime "date_created"
     t.datetime "date_modified"
+    t.integer  "media_id"
+    t.string   "media_type"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end
 
   create_table "event_posts", :force => true do |t|
-    t.integer  "content_id"
     t.string   "location"
     t.string   "description"
     t.datetime "start_datetime"
@@ -42,7 +43,6 @@ ActiveRecord::Schema.define(:version => 20130320050410) do
   end
 
   create_table "image_posts", :force => true do |t|
-    t.integer  "content_id"
     t.string   "image_url"
     t.integer  "x_pixels"
     t.integer  "y_pixels"
@@ -51,14 +51,12 @@ ActiveRecord::Schema.define(:version => 20130320050410) do
   end
 
   create_table "text_posts", :force => true do |t|
-    t.integer  "content_id"
     t.string   "text"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "url_posts", :force => true do |t|
-    t.integer  "content_id"
     t.string   "url"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -97,7 +95,6 @@ ActiveRecord::Schema.define(:version => 20130320050410) do
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   create_table "video_posts", :force => true do |t|
-    t.integer  "content_id"
     t.string   "video_url"
     t.integer  "length"
     t.integer  "x_pixels"
