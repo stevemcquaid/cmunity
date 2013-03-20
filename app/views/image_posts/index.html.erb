@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:title) %></th>
       <th><%= model_class.human_attribute_name(:image_url) %></th>
       <th><%= model_class.human_attribute_name(:x_pixels) %></th>
       <th><%= model_class.human_attribute_name(:y_pixels) %></th>
@@ -17,7 +18,7 @@
     <% @image_posts.each do |image_post| %>
       <tr>
         <td><%= link_to image_post.id, image_post_path(image_post) %></td>
-        <td><%= image_post.content_id %></td>
+        <td><%= image_post.content.title %></td>
         <td><%= image_post.image_url %></td>
         <td><%= image_post.x_pixels %></td>
         <td><%= image_post.y_pixels %></td>

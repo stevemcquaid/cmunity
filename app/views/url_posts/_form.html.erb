@@ -1,4 +1,12 @@
 <%= form_for @url_post, :html => { :class => 'form-horizontal' } do |f| %>
+      <%= f.fields_for :content do |builder|%>
+    <div class="control-group">
+      <%= builder.label :title, :class => 'control-label' %>
+      <div class="controls">
+        <%= builder.text_field :title, :class => 'text_field' %>
+      </div>
+    </div>
+  <% end -%>
   <div class="control-group">
     <%= f.label :url, :class => 'control-label' %>
     <div class="controls">
