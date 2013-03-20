@@ -2,17 +2,17 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:title) %></th>
-      <th><%= model_class.human_attribute_name(:creator_id) %></th>
-      <th><%= model_class.human_attribute_name(:parent_group_id) %></th>
-      <th><%= model_class.human_attribute_name(:is_private) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <th>Title</th>
+      <th>Creator</th>
+      <th>Group</th>
+      <th>Public?</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <% @contents.each do |content| %>
       <tr>
-        <td><%= link_to content.title, content_path(content.id) %></td>
+        <td><%= link_to content.title.nil? ? "" : content.title, content_path(content.id) %></td>
         <td><%= content.creator_id %></td>
         <td><% %></td>
         <td><%= content.is_private ? "Private" : "Public" %></td>
@@ -31,5 +31,5 @@
 </table>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
-            new_content_path,
+            new_text_post_path,
             :class => 'btn btn-primary' %>
