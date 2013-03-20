@@ -8,7 +8,12 @@
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                groups_path, :class => 'btn' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), groups_path, :class => 'btn' %>
+		
+		<% if params[:action] == 'edit' %>
+			<%= link_to("Delete", group_path, :method => :delete,
+									:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')), 
+		              :class => 'btn btn-danger' ) %>
+		<% end %>
   </div>
 <% end %>
