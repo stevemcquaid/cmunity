@@ -8,6 +8,7 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:title) %></th>
       <th><%= model_class.human_attribute_name(:location) %></th>
       <th><%= model_class.human_attribute_name(:description) %></th>
       <th><%= model_class.human_attribute_name(:start_datetime) %></th>
@@ -21,7 +22,7 @@
     <% @event_posts.each do |event_post| %>
       <tr>
         <td><%= link_to event_post.id, event_post_path(event_post) %></td>
-        <td><%= event_post.content_id %></td>
+        <td><%= event_post.content.title %></td>
         <td><%= event_post.location %></td>
         <td><%= event_post.description %></td>
         <td><%= event_post.start_datetime %></td>
