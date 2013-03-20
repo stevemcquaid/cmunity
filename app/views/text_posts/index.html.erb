@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:title) %></th>
       <th><%= model_class.human_attribute_name(:text) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
@@ -15,7 +16,7 @@
     <% @text_posts.each do |text_post| %>
       <tr>
         <td><%= link_to text_post.id, text_post_path(text_post) %></td>
-        <td><%= text_post.content_id %></td>
+        <td><%= text_post.content.title %></td>
         <td><%= text_post.text %></td>
         <td><%=l text_post.created_at %></td>
         <td>

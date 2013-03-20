@@ -25,7 +25,7 @@ class EventPostsController < ApplicationController
   # GET /event_posts/new.json
   def new
     @event_post = EventPost.new
-
+    @event_post.build_content
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @event_post }
@@ -41,9 +41,11 @@ class EventPostsController < ApplicationController
   # POST /event_posts.json
   def create
     @event_post = EventPost.new(params[:event_post])
-
     respond_to do |format|
       if @event_post.save
+        @content = Content.new
+        @content.media = @event_post
+        @content.creator_id = current_user
         format.html { redirect_to @event_post, notice: 'Event post was successfully created.' }
         format.json { render json: @event_post, status: :created, location: @event_post }
       else
