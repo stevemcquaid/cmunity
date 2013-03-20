@@ -4,5 +4,5 @@ class Group < ActiveRecord::Base
   has_many :users, :through => :user_groups
   
   # Scopes
-  scope :my, where("user = ?", self.current_user) #this is not stable
+  scope :userIsAMember, lambda { |user_id| where("user = ?", user_id) }
 end
