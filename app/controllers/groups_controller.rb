@@ -3,6 +3,8 @@ class GroupsController < ApplicationController
   # GET /groups.json
   def index
     @groups = Group.all
+    @CU = current_user
+    @mygroups = Group.userIsAMember(current_user)
 
     respond_to do |format|
       format.html # index.html.erb
