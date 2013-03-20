@@ -44,9 +44,8 @@ class TextPostsController < ApplicationController
     @current_user = current_user
     respond_to do |format|
       if @text_post.save
-        @content = Content.new
-        @content.media = @text_post
-        @content.creator_id = @current_user
+        @text_post.content.media = @text_post
+        @text_post.content.creator_id = @current_user
         @content.save!
         format.html { redirect_to @text_post, notice: 'Text post was successfully created.' }
         format.json { render json: @text_post, status: :created, location: @text_post }

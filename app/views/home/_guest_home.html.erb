@@ -11,8 +11,7 @@
     <% @contents.each do |content| %>
       <tr>
         <td><%= link_to content.title, content_path(content.id) %></td>
-        <td><%= content.user.name %></td>
-        <td><%= content.group.name %></td>
+        <td><%= content.creator_id %></td>
       </tr>
     <% end %>
   </tbody>
