@@ -21,6 +21,9 @@ Cmunity::Application.configure do
   config.assets.digest = true
 
   config.consider_all_requests_local = true
+
+  config.action_mailer.default_url_options = { :host => 'devsrv4.res.cmu.edu' }
+
   # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = YOUR_PATH
 
