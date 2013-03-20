@@ -2,4 +2,9 @@
 </br>
 <p>Feel free to look around and explore our c'munity.  When you are ready to begin interacting, simply signup below.</p>
 
-<%= render :partial => 'contents' %>
+<% if user_signed_in? %>
+	<%= render :partial => 'contents' %>
+<% else %>
+	<%= link_to 'Sign Up', new_user_registration_path, :class => 'btn btn-primary' %>
+	<%= render :partial => 'guest_home' %>
+<% end %>
