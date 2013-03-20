@@ -1,4 +1,4 @@
 class UrlPost < ActiveRecord::Base
-  belongs_to :content
-  
+  has_one :content, as: :media, dependent: :destroy
+  accepts_nested_attributes_for :content
 end

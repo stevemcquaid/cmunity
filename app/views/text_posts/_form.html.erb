@@ -1,14 +1,18 @@
 <%= form_for @text_post, :html => { :class => 'form-horizontal' } do |f| %>
-  <div class="control-group">
-    <%= f.label :content_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.collection_select :content_id, Content.all, :id, :title %>
+
+  <%= f.fields_for :content do |builder|%>
+    <div class="control-group">
+      <%= builder.label :title, :class => 'control-label' %>
+      <div class="controls">
+        <%= builder.text_field :title, :class => 'text_field' %>
+  
+      </div>
     </div>
-  </div>
+  <% end -%>
   <div class="control-group">
     <%= f.label :text, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :text, :class => 'text_field' %>
+      <%= f.text_area :text, :class => 'text_field' %>
     </div>
   </div>
 

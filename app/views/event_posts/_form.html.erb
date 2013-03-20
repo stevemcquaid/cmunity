@@ -1,11 +1,5 @@
 <%= form_for @event_post, :html => { :class => 'form-horizontal' } do |f| %>
   <div class="control-group">
-    <%= f.label :content_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.collection_select :content_id, Content.all, :id, :title %>
-    </div>
-  </div>
-  <div class="control-group">
     <%= f.label :location, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :location, :class => 'text_field' %>

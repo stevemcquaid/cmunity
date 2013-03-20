@@ -25,7 +25,7 @@ class TextPostsController < ApplicationController
   # GET /text_posts/new.json
   def new
     @text_post = TextPost.new
-
+    @text_post.build_content
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @text_post }
@@ -44,6 +44,10 @@ class TextPostsController < ApplicationController
 
     respond_to do |format|
       if @text_post.save
+        @content = Content.new
+        @content.media = @text_post
+        @content.creator_id = current_user
+        @content.save!
         format.html { redirect_to @text_post, notice: 'Text post was successfully created.' }
         format.json { render json: @text_post, status: :created, location: @text_post }
       else
