@@ -2,27 +2,12 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 </div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @groups.each do |group| %>
-      <tr>
-        <td><%= link_to group.id, group_path(group) %></td>
-        <td><%= group.name %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_group_path(group), :class => 'btn btn-mini' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+
+<h2>My groups</h2>
+<%= render :partial => 'my_groups' %>
+
+<h2>All groups</h2>
+<%= render :partial => 'all_groups' %>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_group_path,
