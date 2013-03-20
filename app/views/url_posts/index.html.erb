@@ -6,7 +6,6 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:content_id) %></th>
       <th><%= model_class.human_attribute_name(:url) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
@@ -16,7 +15,6 @@
     <% @url_posts.each do |url_post| %>
       <tr>
         <td><%= link_to url_post.id, url_post_path(url_post) %></td>
-        <td><%= url_post.content_id %></td>
         <td><%= url_post.url %></td>
         <td><%=l url_post.created_at %></td>
         <td>

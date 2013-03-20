@@ -1,7 +1,6 @@
 class CreateEventPosts < ActiveRecord::Migration
   def change
     create_table :event_posts do |t|
-      t.integer :content_id
       t.string :location
       t.string :description
       t.datetime :start_datetime

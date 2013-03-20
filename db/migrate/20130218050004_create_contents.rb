@@ -7,6 +7,8 @@ class CreateContents < ActiveRecord::Migration
       t.boolean :is_private
       t.datetime :date_created
       t.datetime :date_modified
+      t.integer :media_id
+      t.string :media_type
 
       t.timestamps
     end
