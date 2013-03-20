@@ -46,6 +46,14 @@
           </a>
           <a class="brand" href="/">Cmunity</a>
           <div class="container-fluid nav-collapse">
+            <% if user_signed_in? %>
+              <%= link_to 'Logout', destroy_user_session_path, :class => 'btn pull-right', :method => :delete %>
+              <span class="signedinas pull-right">Signed in as: <strong><%= current_user.name %></strong></span>
+            <% else %>
+              <%= link_to 'Sign In', new_user_session_path, :class => 'btn pull-right' %>
+              <%= link_to 'Sign Up', new_user_registration_path, :class => 'btn pull-right' %>
+            <% end %>
+
             <ul class="nav">
               <li><%= link_to "Posts", contents_path  %></li>
               <li><%= link_to "Groups", groups_path  %></li>
@@ -59,6 +67,19 @@
       <div class="row-fluid">
 		  <div class="span3">
 			<div class="well sidebar-nav">
+        <% if user_signed_in? %>
+          <ul class="nav nav-list">
+            <li class="nav-header">Post A:</li>
+            <li><%= link_to '<i class="cus-calendar-add"></i> An Event'.html_safe, event_posts_path %></li>
+            <li><%= link_to '<i class="cus-image-add"></i> An Image'.html_safe, image_posts_path %></li>
+            <li><%= link_to '<i class="cus-book-add"></i> A Text'.html_safe, text_posts_path %></li>
+            <li><%= link_to '<i class="cus-link-add"></i> A URL'.html_safe, url_posts_path %></li>
+            <li><%= link_to '<i class="cus-film-add"></i> A Video'.html_safe, video_posts_path %></li>
+          </ul>
+
+        <% else %>
+
+
 				<ul class="nav nav-list">
 					<li class="nav-header">Sidebar</li>
 					<li><%= link_to "Contents", contents_path  %></li>
@@ -72,6 +93,9 @@
 					<li><%= link_to "User_Groups", user_groups_path  %></li>
 					<li><%= link_to "Video_Posts", video_posts_path %></li>
 				</ul>
+
+        <% end %>
+
 			</div><!--/.well -->
 		</div><!--/span-->
         <div class="span9">
