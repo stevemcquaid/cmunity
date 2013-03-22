@@ -43,8 +43,8 @@ class GroupsController < ApplicationController
   # POST /groups.json
   def create
     @group = Group.new(params[:group])
-    @group.user_groups.build(:user => self.current_user, :group => @group)
-    
+    @group.user_groups.build(:user => current_user, :group => @group)
+    current_user.add_role :admin, @group
     respond_to do |format|
       if @group.save
         format.html { redirect_to groups_url, notice: 'Group was successfully created.' }
