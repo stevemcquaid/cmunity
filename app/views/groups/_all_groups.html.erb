@@ -3,6 +3,7 @@
     <tr>
       <th><%= Group.human_attribute_name(:id) %></th>
       <th><%= Group.human_attribute_name(:name) %></th>
+      <th>Admin</th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -11,6 +12,7 @@
       <tr>
         <td><%= link_to group.id, group_path(group) %></td>
         <td><%= group.name %></td>
+        <td><%= group.find_role('admin', 'Group') %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_group_path(group), :class => 'btn btn-mini' %>
