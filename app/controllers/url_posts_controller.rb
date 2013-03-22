@@ -41,11 +41,10 @@ class UrlPostsController < ApplicationController
   # POST /url_posts.json
   def create
     @url_post = UrlPost.new(params[:url_post])
+    @url_post.content.media = @url_post
+    @url_post.content.creator= current_user
     respond_to do |format|
       if @url_post.save
-        @content = Content.new
-        @content.media = @url_post
-        @content.creator_id = current_user
         format.html { redirect_to @url_post, notice: 'Url post was successfully created.' }
         format.json { render json: @url_post, status: :created, location: @url_post }
       else

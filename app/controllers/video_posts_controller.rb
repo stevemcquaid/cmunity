@@ -41,11 +41,10 @@ class VideoPostsController < ApplicationController
   # POST /video_posts.json
   def create
     @video_post = VideoPost.new(params[:video_post])
+    @video_post.content.media = @video_post
+    @video_post.content.creator= current_user
     respond_to do |format|
       if @video_post.save
-        @content = Content.new
-        @content.media = @video_post
-        @content.creator_id = current_user
         format.html { redirect_to @video_post, notice: 'Video post was successfully created.' }
         format.json { render json: @video_post, status: :created, location: @video_post }
       else
