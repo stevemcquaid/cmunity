@@ -12,8 +12,8 @@ class User < ActiveRecord::Base
   # Associations
   # -----------------------------
   has_many :contents
-  has_many :user_groups
-  has_many :groups, :through => :user_groups
+  has_many :memberships
+  has_many :groups, :through => :memberships
   
   # Scopes
   # -----------------------------

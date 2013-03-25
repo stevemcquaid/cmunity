@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130322100857) do
+ActiveRecord::Schema.define(:version => 20130324232349) do
 
   create_table "contents", :force => true do |t|
     t.string   "title"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20130322100857) do
 
   create_table "groups", :force => true do |t|
     t.string   "name"
+    t.integer  "creator_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -49,6 +50,16 @@ ActiveRecord::Schema.define(:version => 20130322100857) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "memberships", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "memberships", ["group_id"], :name => "index_memberships_on_group_id"
+  add_index "memberships", ["user_id"], :name => "index_memberships_on_user_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -69,13 +80,6 @@ ActiveRecord::Schema.define(:version => 20130322100857) do
 
   create_table "url_posts", :force => true do |t|
     t.string   "url"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "user_groups", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "group_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

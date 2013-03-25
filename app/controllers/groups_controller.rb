@@ -44,7 +44,7 @@ class GroupsController < ApplicationController
   # POST /groups.json
   def create
     @group = Group.new(params[:group])
-    @group.user_groups.build(:user => current_user, :group => @group)
+    @group.memberships.build(:user => current_user, :group => @group)
     respond_to do |format|
       if @group.save
         current_user.add_role :admin, @group
