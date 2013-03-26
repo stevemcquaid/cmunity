@@ -31,4 +31,9 @@ class User < ActiveRecord::Base
     first_name + " " + last_name
   end
   
+  def is_a_member?(group)
+    groups = self.group_ids
+    groups.include?(group.id)
+  end
+
 end

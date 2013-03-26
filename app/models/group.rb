@@ -13,4 +13,8 @@ class Group < ActiveRecord::Base
       @user = User.find(@userRole.user_id)
       @user.name
   end
+
+  def get_member_names
+    self.users.collect(&:name)
+  end
 end
