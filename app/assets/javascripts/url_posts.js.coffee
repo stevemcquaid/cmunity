@@ -83,5 +83,3 @@ $(".liveurl ").on "click", ".controls .button", ->
       self.prev().addClass "inactive"
     else
       self.next().addClass "inactive"
-
-$(".edit").editable cssclass: "editinput"

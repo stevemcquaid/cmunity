@@ -14,5 +14,5 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require jquery.liveurl
-//= require jquery.jeditable
+//= require editable
 //= require_tree .
