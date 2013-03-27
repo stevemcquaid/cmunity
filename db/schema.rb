@@ -15,7 +15,6 @@ ActiveRecord::Schema.define(:version => 20130324232349) do
 
   create_table "contents", :force => true do |t|
     t.string   "title"
-    t.text     "description"
     t.integer  "creator_id"
     t.integer  "parent_group_id"
     t.boolean  "is_private"
@@ -39,7 +38,6 @@ ActiveRecord::Schema.define(:version => 20130324232349) do
 
   create_table "groups", :force => true do |t|
     t.string   "name"
-    t.integer  "creator_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -81,8 +79,13 @@ ActiveRecord::Schema.define(:version => 20130324232349) do
 
   create_table "url_posts", :force => true do |t|
     t.string   "url"
-    t.string   "domain_url"
-    t.string   "image_url"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "user_groups", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
