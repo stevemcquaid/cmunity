@@ -10,7 +10,7 @@
   <div class="control-group">
     <%= f.label :url, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :url, :class => 'text_field' %>
+      <%= f.text_field :url, :class => 'text_field', :id => 'urlfield' %>
     </div>
   </div>
 
@@ -20,3 +20,34 @@
                 url_posts_path, :class => 'btn' %>
   </div>
 <% end %>
+
+<div class="liveurl-loader"></div>
+        
+        <div class="liveurl">
+            <div class="close" title="Close"></div>
+            <div class="inner">
+                <div class="image"> </div>
+                <div class="details">
+                    <div class="info">
+                        <div class="title edit"> </div>
+                        <div class="description edit"> </div> 
+                        <div class="url"> </div>
+                    </div>
+
+                    <div class="thumbnail">
+                        <div class="pictures">
+                            <div class="controls">
+                                <div class="prev button inactive"></div>
+                                <div class="next button inactive"></div>
+                                <div class="count">
+                                    Showing <span class="current">0</span><span> out of </span><span class="max">0</span> photos
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="video"></div>
+                </div>
+
+            </div>
+        </div>
+
