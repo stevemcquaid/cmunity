@@ -7,28 +7,24 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:title) %></th>
       <th><%= model_class.human_attribute_name(:location) %></th>
       <th><%= model_class.human_attribute_name(:description) %></th>
       <th><%= model_class.human_attribute_name(:start_datetime) %></th>
       <th><%= model_class.human_attribute_name(:end_datetime) %></th>
       <th><%= model_class.human_attribute_name(:is_all_day) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @event_posts.each do |event_post| %>
       <tr>
-        <td><%= link_to event_post.id, event_post_path(event_post) %></td>
-        <td><%= event_post.content.title %></td>
+        <td><%= link_to event_post.content.title, event_post_path(event_post) %></td>
         <td><%= event_post.location %></td>
         <td><%= event_post.description %></td>
-        <td><%= event_post.start_datetime %></td>
-        <td><%= event_post.end_datetime %></td>
+        <td><%= event_post.start_datetime.strftime("%m/%d/%Y at %I:%M%p") unless event_post.start_datetime.nil? %></td>
+        <td><%= event_post.end_datetime.strftime("%m/%d/%Y at %I:%M%p") unless event_post.end_datetime.nil? %></td>
         <td><%= event_post.is_all_day %></td>
-        <td><%=l event_post.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_event_post_path(event_post), :class => 'btn btn-mini' %>

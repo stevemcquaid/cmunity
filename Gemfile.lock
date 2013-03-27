@@ -61,6 +61,8 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    faker (1.1.2)
+      i18n (~> 0.5)
     highline (1.6.16)
     hike (1.2.1)
     i18n (0.6.1)
@@ -94,6 +96,7 @@ GEM
     orm_adapter (0.4.0)
     pg (0.14.1)
     polyglot (0.3.3)
+    populator (1.0.0)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -165,10 +168,12 @@ DEPENDENCIES
   capistrano
   coffee-rails (~> 3.2.1)
   devise
+  faker
   jquery-rails
   less-rails
   meta_request
   pg
+  populator
   rails (= 3.2.13)
   rolify
   rvm-capistrano

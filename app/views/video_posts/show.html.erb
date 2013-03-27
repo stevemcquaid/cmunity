@@ -5,20 +5,16 @@
 
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
-  <dd><%= @text_post.content.title %></dd>
+  <dd><%= @video_post.content.title %></dd>
   <dt><strong><%= model_class.human_attribute_name(:video_url) %>:</strong></dt>
   <dd><%= @video_post.video_url %></dd>
   <dt><strong><%= model_class.human_attribute_name(:length) %>:</strong></dt>
   <dd><%= @video_post.length %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:x_pixels) %>:</strong></dt>
-  <dd><%= @video_post.x_pixels %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:y_pixels) %>:</strong></dt>
-  <dd><%= @video_post.y_pixels %></dd>
 </dl>
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
-              video_posts_path, :class => 'btn'  %>
+              contents_path, :class => 'btn'  %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_video_post_path(@video_post), :class => 'btn' %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

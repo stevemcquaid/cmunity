@@ -1,3 +1,46 @@
 // Place all the styles related to the url_posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+a{
+	color: #000;
+}
+
+a:hover{
+	text-decoration: none;
+}
+
+
+.editHover{
+	background-color: #E8F3FF;
+}
+
+.editBox{
+	width: 326px;
+	min-height: 20px;
+	padding: 10px 15px;
+	background-color: #fff;
+	border: 2px solid #E8F3FF;
+}
+input[type="text"].editBox
+{
+	margin:0px;
+}
+
+
+form.edit-form{
+	display:inline;
+	margin:0px;
+}
+
+.btnSave, .btnDiscard{
+	float: none;
+}
+
+.btnSave { color: green; padding:3px; }
+.btnDiscard { color: red; padding:3px; }
+
+.block{
+	float: left;
+	margin: 20px 0;
+}
