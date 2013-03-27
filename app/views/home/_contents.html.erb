@@ -5,7 +5,7 @@
       <th>Title</th>
       <th>Creator</th>
       <th>Group</th>
-      <th>Public?</th>
+      <th>Privacy</th>
       <th></th>
     </tr>
   </thead>
@@ -13,8 +13,8 @@
     <% @contents.each do |content| %>
       <tr>
         <td><%= link_to content.title.nil? ? "" : content.title, content_path(content.id) %></td>
-        <td><%= content.creator_id %></td>
-        <td><% %></td>
+        <td><%= content.creator.name unless content.creator_id.nil? %></td>
+        <td><%= content.group.name unless content.parent_group_id.nil? %></td>
         <td><%= content.is_private ? "Private" : "Public" %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
