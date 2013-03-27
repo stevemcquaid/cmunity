@@ -5,24 +5,20 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:title) %></th>
       <th><%= model_class.human_attribute_name(:image_url) %></th>
       <th><%= model_class.human_attribute_name(:x_pixels) %></th>
       <th><%= model_class.human_attribute_name(:y_pixels) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @image_posts.each do |image_post| %>
       <tr>
-        <td><%= link_to image_post.id, image_post_path(image_post) %></td>
-        <td><%= image_post.content.title %></td>
+        <td><%= image_post.content.title unless image_post.content.nil? %></td>
         <td><%= image_post.image_url %></td>
         <td><%= image_post.x_pixels %></td>
         <td><%= image_post.y_pixels %></td>
-        <td><%=l image_post.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_image_post_path(image_post), :class => 'btn btn-mini' %>

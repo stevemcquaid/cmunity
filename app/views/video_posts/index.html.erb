@@ -9,9 +9,6 @@
       <th><%= model_class.human_attribute_name(:title) %></th>
       <th><%= model_class.human_attribute_name(:video_url) %></th>
       <th><%= model_class.human_attribute_name(:length) %></th>
-      <th><%= model_class.human_attribute_name(:x_pixels) %></th>
-      <th><%= model_class.human_attribute_name(:y_pixels) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -22,9 +19,6 @@
         <td><%= video_post.content.title %></td>
         <td><%= video_post.video_url %></td>
         <td><%= video_post.length %></td>
-        <td><%= video_post.x_pixels %></td>
-        <td><%= video_post.y_pixels %></td>
-        <td><%=l video_post.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_video_post_path(video_post), :class => 'btn btn-mini' %>
