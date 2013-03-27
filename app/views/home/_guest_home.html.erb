@@ -12,6 +12,7 @@
       <tr>
         <td><%= link_to content.title, content_path(content.id) %></td>
         <td><%= content.creator_id %></td>
+        <td><%= content.parent_group_id %></td>
       </tr>
     <% end %>
   </tbody>

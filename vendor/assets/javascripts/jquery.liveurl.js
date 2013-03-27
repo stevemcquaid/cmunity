@@ -34,7 +34,7 @@
                matchNoData      : true,
                multipleImages   : true,
                defaultProtocol  : 'http://',
-               minWidth         : 100,
+               minWidth         : 200,
                minHeight        : 32,
                logoWord         : 'logo',
                success          : function() {},

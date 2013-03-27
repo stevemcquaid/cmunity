@@ -47,7 +47,7 @@
 }
 
 .liveurl .image {
-    width: 100px;
+    width: 200px;
     margin: 0 10px 10px 0;
     float: left;
     display: none;
@@ -62,7 +62,7 @@
 }
 
 .liveurl img {
-    width: 100px;
+    width: 200px;
     height: auto;
     display: none;
 }
