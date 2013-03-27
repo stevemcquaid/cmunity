@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.1'
+gem 'rails', '3.2.13'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -10,8 +10,9 @@ gem 'rails', '3.2.1'
 group :test, :development do
 	gem 'sqlite3'
 end
+
 group :production do
-	gem 'pg'
+	gem 'pg', '~> 0.14.1'
 end
 
 # Authentication
