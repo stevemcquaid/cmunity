@@ -1,4 +1,5 @@
 class GroupsController < ApplicationController
+  helper ApplicationHelper
   # GET /groups
   # GET /groups.json
   def index
@@ -43,10 +44,10 @@ class GroupsController < ApplicationController
   # POST /groups.json
   def create
     @group = Group.new(params[:group])
-    @group.user_groups.build(:user => self.current_user, :group => @group)
-    
+    @group.memberships.build(:user => current_user, :group => @group)
     respond_to do |format|
       if @group.save
+        current_user.add_role :admin, @group
         format.html { redirect_to groups_url, notice: 'Group was successfully created.' }
         format.json { render json: @group, status: :created, location: @group }
       else

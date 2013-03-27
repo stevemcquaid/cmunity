@@ -41,11 +41,10 @@ class ImagePostsController < ApplicationController
   # POST /image_posts.json
   def create
     @image_post = ImagePost.new(params[:image_post])
+    @image_post.content.media = @image_post
+    @image_post.content.creator= current_user
     respond_to do |format|
       if @image_post.save
-        @content = Content.new
-        @content.media = @image_post
-        @content.creator_id = current_user
         format.html { redirect_to @image_post, notice: 'Image post was successfully created.' }
         format.json { render json: @image_post, status: :created, location: @image_post }
       else

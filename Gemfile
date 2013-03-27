@@ -11,6 +11,12 @@ group :test, :development do
 	gem 'sqlite3'
 end
 
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
+end
+
 group :production do
 	gem 'pg', '~> 0.14.1'
 end
@@ -18,6 +24,8 @@ end
 # Authentication
 
 gem 'devise'
+gem 'cancan'
+gem 'rolify'
 
 # Gems used only for assets and not required
 # in production environments by default.
