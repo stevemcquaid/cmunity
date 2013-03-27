@@ -426,7 +426,7 @@
                         {   
                             core.textUpdate(that);
                             window.clearInterval(core.textTimer);  
-                        }, 2000);
+                        }, 1000);
                     }
                 }).on('paste', function() {core.textUpdate(that)});
     
