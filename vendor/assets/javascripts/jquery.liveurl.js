@@ -4,7 +4,7 @@
  * MIT License - You are free to use this commercial projects as long as the copyright header is left intact.
  * @author        Stephan Fischer
  * @copyright     (c) 2012 Stephan Fischer (www.ainetworks.de)
- * @version 1.2.2
+ * @version 1.2.0
  * 
  * UriParser is a function from my addon "Superswitch" for Mozilla FireFox.
  */
@@ -74,10 +74,8 @@
                     core.cleanDuplicates(links);
                     
                     if (links != null) {
-                        if (!core.preview) {
-                            core.current = $(self);
-                            core.process(links);
-                        }
+                        core.current = $(self);
+                        core.process(links);
                     }
                 };
                 
@@ -101,6 +99,7 @@
                                    
                                    if ($.urlHelper.isImage(strUrl)) {
                                        preview.image = strUrl;
+                                       core.clearPreview();
                                        core.getPreview({}, strUrl);
                                        
                                    } else {
@@ -193,15 +192,16 @@
                 core.ajaxSuccess = function(data, url)
                 {
                     // URL already loaded, or preview is already shown.
-                    if (core.isDuplicate(url, core.already) || core.preview) {
-                        core.removeLoader();
-                        return false;  
-                    }
+                    //if (core.isDuplicate(url, core.already) || core.preview) {
+                    //    core.removeLoader();
+                    //    return false;  
+                    //}
 
 
                     if ($(data).find("results").text().length == 0) {
 
                         if (o.matchNoData) {
+                            core.clearPreview();
                             core.getPreview(data, url);
                         }  else {
                             core.already.push(url);
@@ -209,6 +209,7 @@
                         }
                         
                     } else {
+                        core.clearPreview();
                         core.getPreview(data, url);
                     }
                 }
@@ -217,11 +218,18 @@
                 core.hasValue     = function(section){
                     return (preview[section].length == 0) ? false : true;  
                 };
-                
+                core.clearPreview = function()
+                {
+                    preview.title = '';
+                    preview.url = '';
+                    preview.description = '';
+                    preview.images = [];
+                };
                 core.getPreview = function(data, uri)
                 {
                     core.preview = true; 
-                    core.already.push(uri);  
+                    core.already.push(uri); 
+
 
                     var title  = "" ;
                     
@@ -312,7 +320,7 @@
                     
                     
                     core.addImages();
-                    core.current.one('clear', function() 
+                    core.current.on('clear', function() 
                     {
                        core.init();
                     });     
@@ -418,7 +426,7 @@
                         {   
                             core.textUpdate(that);
                             window.clearInterval(core.textTimer);  
-                        }, 1000);
+                        }, 2000);
                     }
                 }).on('paste', function() {core.textUpdate(that)});
     
@@ -432,7 +440,7 @@
             path: 'http://query.yahooapis.com/v1/public/yql?q=',
             query: encodeURIComponent(query)
         };
-        
+
         var isIE = /msie/.test(navigator.userAgent.toLowerCase());
         
         if (isIE && window.XDomainRequest) {

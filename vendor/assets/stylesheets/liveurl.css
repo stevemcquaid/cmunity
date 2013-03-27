@@ -29,7 +29,7 @@
     width: 475px;
 }
 
-.liveurl .details .info * {
+.liveurl .details .info  {
     float: left;
     clear: both;
     line-height: 13px;

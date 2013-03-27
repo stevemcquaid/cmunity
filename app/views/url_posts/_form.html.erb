@@ -1,9 +1,9 @@
 <%= form_for @url_post, :html => { :class => 'form-horizontal' } do |f| %>
       <%= f.fields_for :content do |builder|%>
     <div class="control-group">
-      <%= builder.label :title, :class => 'control-label' %>
       <div class="controls">
-        <%= builder.text_field :title, :class => 'text_field' %>
+        <%= builder.hidden_field :title, :class => 'title_field' %>
+        <%= builder.hidden_field :description, :class => 'desc_field' %>
       </div>
     </div>
   <% end -%>
@@ -14,8 +14,11 @@
     </div>
   </div>
 
+  <%= f.hidden_field :domain_url, :class => "domain_field" %>
+  <%= f.hidden_field :image_url, :class => "image_field" %>
+
   <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= f.submit nil, :class => 'btn btn-primary url-submit' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 url_posts_path, :class => 'btn' %>
   </div>
@@ -27,7 +30,7 @@
             <div class="close" title="Close"></div>
             <div class="inner">
                 <div class="image"> </div>
-                <div class="details">
+                <div class="detls">
                     <div class="info">
                         <div class="title editable"> </div>
                         <div class="description editable"> </div> 

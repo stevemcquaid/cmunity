@@ -10,6 +10,7 @@ $("#urlfield").liveUrl
     $(".liveurl-loader").hide()
 
   success: (data) ->
+    curImages = new Array()
     output = $(".liveurl")
     output.find(".title").text data.title
     output.find(".description").text data.description
@@ -24,7 +25,7 @@ $("#urlfield").liveUrl
       liveUrl.find(".controls .next").addClass "inactive"
       liveUrl.find(".thumbnail").hide()
       liveUrl.find(".image").hide()
-      $("textarea").trigger "clear"
+      $("#urlfield").trigger "clear"
       curImages = new Array()
 
     output.show "fast"
@@ -83,3 +84,17 @@ $(".liveurl ").on "click", ".controls .button", ->
       self.prev().addClass "inactive"
     else
       self.next().addClass "inactive"
+jQuery ->
+  $(".url-submit[type='submit']").click ->
+    description = undefined
+    domain = undefined
+    image = undefined
+    title = undefined
+    title = $(".title").html()
+    description = $(".description").html()
+    domain = $(".url").html()
+    image = $(".image").children(".active").attr("src")
+    $(".title_field").val title
+    $(".desc_field").val description
+    $(".domain_field").val domain
+    $(".image_field").val image
