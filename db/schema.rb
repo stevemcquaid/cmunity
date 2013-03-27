@@ -11,15 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130324232349) do
+ActiveRecord::Schema.define(:version => 20130327174835) do
 
   create_table "contents", :force => true do |t|
     t.string   "title"
+    t.text     "description"
     t.integer  "creator_id"
     t.integer  "parent_group_id"
     t.boolean  "is_private"
-    t.datetime "date_created"
-    t.datetime "date_modified"
     t.integer  "media_id"
     t.string   "media_type"
     t.datetime "created_at",      :null => false
@@ -38,8 +37,13 @@ ActiveRecord::Schema.define(:version => 20130324232349) do
 
   create_table "groups", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "creator_id"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   create_table "image_posts", :force => true do |t|
@@ -79,13 +83,8 @@ ActiveRecord::Schema.define(:version => 20130324232349) do
 
   create_table "url_posts", :force => true do |t|
     t.string   "url"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "user_groups", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "group_id"
+    t.string   "domain_url"
+    t.string   "image_url"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -110,6 +109,10 @@ ActiveRecord::Schema.define(:version => 20130324232349) do
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
     t.string   "authentication_token"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

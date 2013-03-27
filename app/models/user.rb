@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
   has_many :contents
   has_many :memberships
   has_many :groups, :through => :memberships
+
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>"}
   
   # Scopes
   # -----------------------------
