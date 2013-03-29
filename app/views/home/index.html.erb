@@ -1,10 +1,12 @@
-<h1>Welcome to CMUnity</h1>
+
 </br>
-<p>Feel free to look around and explore our c'munity.  When you are ready to begin interacting, simply signup below.</p>
+<p>CMUnity is an application that helps students and faculty keep updated on the events being held around campus. It helps promote events on a campus-wide scale and displays details about the inner workings of an organization, and allows students to understand the hierarchy of an organization. 
+
+This is not only beneficial for outside organizations, alumni, and the Pittsburgh community, but it also helps add organization to groups that want to track their events and responsibilities through an easy and efficient mobile application.</p>
 
 <% if user_signed_in? %>
 	<%= render :partial => 'contents' %>
 <% else %>
-	<%= link_to 'Sign Up', new_user_registration_path, :class => 'btn btn-primary' %>
+	
 	<%= render :partial => 'guest_home' %>
 <% end %>
