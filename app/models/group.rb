@@ -3,6 +3,8 @@ class Group < ActiveRecord::Base
   has_many :contents
   has_many :memberships, :dependent => :destroy
   has_many :users, :through => :memberships
+
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>"}
   
   # Scopes
   scope :userIsAMember, lambda { |user_id| where("user = ?", user_id) }
