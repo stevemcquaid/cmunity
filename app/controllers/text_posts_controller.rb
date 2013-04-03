@@ -45,6 +45,7 @@ class TextPostsController < ApplicationController
     @text_post.content.creator = current_user
     respond_to do |format|
       if @text_post.save
+        track_activity @text_post
         format.html { redirect_to @text_post, notice: 'Text post was successfully created.' }
         format.json { render json: @text_post, status: :created, location: @text_post }
       else

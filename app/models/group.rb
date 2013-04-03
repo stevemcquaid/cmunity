@@ -1,4 +1,5 @@
 class Group < ActiveRecord::Base
+
   resourcify
   has_many :contents, :foreign_key => :parent_group_id
   has_many :memberships, :dependent => :destroy
@@ -26,4 +27,5 @@ class Group < ActiveRecord::Base
   def get_member_names
     self.users.collect(&:name)
   end
+
 end
