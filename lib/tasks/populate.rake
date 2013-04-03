@@ -12,7 +12,8 @@ namespace :db do
         user.first_name = Faker::Name.first_name
         user.last_name = Faker::Name.last_name
         user.email = Faker::Internet.safe_email
-        user.encrypted_password = "password"
+        user.password = "password"
+        user.password_confirmation= "password"
         Membership.populate 1 do |membership|
           membership.user_id = user.id
           membership.group_id = group.id
