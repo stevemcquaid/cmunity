@@ -12,11 +12,11 @@ class User < ActiveRecord::Base
   has_many :memberships
   has_many :groups, :through => :memberships
   has_many :activities, :as => :owner
-  has_many :event_posts, :through => :contents, :source => :media, :source_type => "EventPost"
-  has_many :image_posts, :through => :contents, :source => :media, :source_type => "ImagePost"
-  has_many :text_posts, :through => :contents, :source => :media, :source_type => "TextPost"
-  has_many :url_posts, :through => :contents, :source => :media, :source_type => "UrlPost"
-  has_many :video_post, :through => :contents, :source => :media, :source_type => "VideoPost"
+  has_many :event_posts, :through => :contents, :source => :mediable, :source_type => "EventPost"
+  has_many :image_posts, :through => :contents, :source => :mediable, :source_type => "ImagePost"
+  has_many :text_posts, :through => :contents, :source => :mediable, :source_type => "TextPost"
+  has_many :url_posts, :through => :contents, :source => :mediable, :source_type => "UrlPost"
+  has_many :video_post, :through => :contents, :source => :mediable, :source_type => "VideoPost"
   
 
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>"}

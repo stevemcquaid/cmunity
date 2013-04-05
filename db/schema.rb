@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(:version => 20130331214423) do
     t.integer  "creator_id"
     t.integer  "parent_group_id"
     t.boolean  "is_private"
-    t.integer  "media_id"
-    t.string   "media_type"
+    t.integer  "mediable_id"
+    t.string   "mediable_type"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end
