@@ -1,0 +1,151 @@
+
+#navbar ul {
+	width: 100%;
+	float: left;
+	margin: 0 0 3em 0;
+	padding: 0;
+	list-style: none;
+	background-color: #ffffff;
+	border-bottom: 1px solid #979797;
+}
+
+#nav li{
+	float: left;
+}
+
+#nav li a{
+	display: block;
+	padding: 8px 15px;
+	text-decoration: none;
+	color: #979797;
+	border-right: 1px solid #979797;
+}
+
+body{
+	background: #efece3;
+	font-family: Helvetica, Tahoma, Arial, sans-serif;
+}
+
+
+h1{
+	font-family: "Charcoal CY", Helvetica, sans-serif;
+	font-size: 1.875em;
+	font-weight: 700;
+	line-height: 1.5em;
+}
+
+h2{
+	font-family: Helvetica;
+	font-size: 1.3125em;
+	font-weight: 700;
+	line-height: 1.5em;
+}
+
+h3{
+	font-family: Helvetica;
+	font-size: 1.125em;
+	font-weight: 700;
+	line-height: 1.5em;
+}
+
+li{
+	line-height:1.5em;
+}
+
+a{
+	text-decoration: none;
+}
+
+#header h1.logo {
+    width: 40%;
+    font-size: 4em;
+    color: #ffffff;
+}
+
+#header h1.logo span {
+    display: block;
+}
+
+#header h1.logo {
+    float: left;
+    margin: 0;
+    text-overflow: ellipsis;
+    width: 35%;
+}
+
+#header h1.logo:before, #header h1.logo:after {
+    content: "";
+    display: table;
+}
+
+#header h1.logo:after {
+    clear: both;
+}
+
+#header h1.logo a {
+    color: #FFFFFF;
+    display: block;
+    float: left;
+    width: auto;
+}
+
+#header ul#unreg_nav {
+    float: right;
+    margin-top: 2.5em;
+    text-align: right;
+    width: 60%;
+}
+
+#header ul#unreg_nav li {
+    color: #FFFFFF;
+    display: inline;
+    margin-left: 0.5em;
+}
+
+ul, li {
+    list-style-type: none;
+}
+
+#header ul#unreg_nav li a {
+    border-radius: 0.625em 0.625em 0.625em 0.625em;
+    color: #FFFFFF;
+    padding: 0.5em 5%;
+}
+
+#header ul#unreg_nav li a.selected {
+    font-weight: 700;
+}
+
+#header ul#unreg_nav {
+    float: right;
+    height: 3.5em;
+    width: 12.7em;
+}
+
+#header {
+    background: none repeat scroll 0 0 #D94935;
+    border-bottom: 0.25em solid #AE3A2A;
+    padding: 0.5em 5%;
+}
+
+#header:before, #header:after {
+    content: "";
+    display: table;
+}
+
+#header:after {
+    clear: both;
+}
+
+table{
+	float: left;
+}
+
+td{
+    padding: 0 1em;
+}
+
+.bttn {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.3);
+}
+

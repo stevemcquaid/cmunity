@@ -1,13 +1,15 @@
 body {
-  background-color: #fff;
+
+  background-color:#d8d8d8;
   color: #333;
-  font-family: verdana, arial, helvetica, sans-serif;
+  font-family: sans-serif;
   font-size: 13px;
   line-height: 18px;
 }
 
 p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
+
+  font-family: sans-serif;
   font-size: 13px;
   line-height: 18px;
 }
@@ -24,6 +26,7 @@ div {
   &.field, &.actions {
     margin-bottom: 10px;
   }
+
 }
 
 #notice {
@@ -58,3 +61,4 @@ div {
     list-style: square;
   }
 }
+

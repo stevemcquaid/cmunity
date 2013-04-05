@@ -41,9 +41,6 @@ class ContentsController < ApplicationController
   # POST /contents.json
   def create
     @content = Content.new(params[:content])
-    #Add Date Created, Date Modified
-    @content.date_created = Time.now
-    @content.date_modified = Time.now
 
     respond_to do |format|
       if @content.save
