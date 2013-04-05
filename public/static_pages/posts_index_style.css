@@ -6268,6 +6268,11 @@ header.lazy-header p {
 #content .ap form .form_block {
   position: relative;
 }
+
+#content .ap form .form_block.2 {
+  float: left;
+}
+
 #content .ap form .form_block .counter {
   color: #bcbab2;
   font-size: 1.35em;
