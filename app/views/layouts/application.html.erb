@@ -28,10 +28,10 @@
 	        <a class="brand" href="#">CMUnity</a>
 	        <div class="nav-collapse collapse navbar-responsive-collapse">
 	          <ul class="nav">
-	            <li class="active"><a href="#">Home</a></li>
-	            <li><a href="#">Activity</a></li>
-	            <li><a href="#">Groups</a></li>
-							<li><a href="#">Events</a></li>
+							<li class="<%= 'active' if current_page?(root_path) %>"><%= link_to "Home", root_path %></li>
+							<li class="<%= 'active' if current_page?(posts_path) %>"><%= link_to "Activity", posts_path %></li>
+							<li class="<%= 'active' if current_page?(circles_path) %>"><%= link_to "Circles", circles_path %></li>
+							<li class="<%= 'active' if current_page?(events_path) %>"><%= link_to "Events", events_path %></li>
 	          </ul>
 	          <form class="navbar-search pull-left" action="">
 	            <input type="text" class="search-query span2" placeholder="Search">
