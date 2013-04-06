@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>CMUnity</title>
+		<!--<style type="text/css">
+			h1{
+				color: #FFF;
+				background-color: red;
+			}
+		</style>-->
+		<link href="form_index_style.css" type="text/css" rel="stylesheet">
+	</head>
+
+	<body>
+		<div id="content">
+			<h1 class="logo">
+				<a href="#">cmunity</a>
+			</h1>
+<!-- 		<div id="header">
+				<h1 class="logo">
+					cmunity
+				</h1>
+
+		</div> -->
+		<form method="post" id="login_form">
+			<div class="form_block">
+				<input type="text" name="username" value placeholder="Email">
+			</div>
+			<div class="form_block">
+				<input type="password" name="password" value placeholder="Password">
+			</div>
+			<div class="form_block regb">
+				<input name="user[remember_me]" type="hidden" value="0">
+				<input id="user_remember_me" name="user[remember_me]" type="checkbox" value="1">
+				<label for="user_remember_me">Remember Me</label>
+			</div>
+			<div class="form_block regb">
+				<p>
+					Don't have an account?
+					<a href="/users/sign_up">Register.</a>
+				</p>
+				<input type="submit" value="Login" class="act pri">
+			</div>
+		</form>
+		<p class="pwd">
+			<a href="/users/password/new">Forgot your password?</a>
+		</p>
+		</div>
+	</body>
+
+	<footer>
+		<nav>
+			<ul id="footer_nav">
+				<li>
+					<a href="#" title="About">About</a>
+				</li>
+				<li>
+					<a href="#" title="Team">Team</a>
+				</li>
+				<li>
+					<a href="#" title="Terms">Terms</a>
+				</li>
+				<li>
+					<a href="#" title="Help">Help</a>
+				</li>
+			</ul>
+		</nav>
+	</footer>
+
+</html>

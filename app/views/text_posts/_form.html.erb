@@ -2,21 +2,19 @@
 
   <%= f.fields_for :content do |builder|%>
     <div class="control-group">
-      <%= builder.label :title, :class => 'control-label' %>
       <div class="controls">
-        <%= builder.text_field :title, :class => 'text_field' %>
+        <input type="text" placeholder="Title">
       </div>
     </div>
   <% end -%>
   <div class="control-group">
-    <%= f.label :text, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_area :text, :class => 'text_field', :cols => "50", :rows => "10" %>
+      <textarea rows="3" placeholder="Content"></textarea>
     </div>
   </div>
 
   <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= f.submit "Submit", :class => 'btn btn-info' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 text_posts_path, :class => 'btn' %>
   </div>
