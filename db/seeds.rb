@@ -29,8 +29,8 @@ require 'faker'
 				:creator_id => user.id,
 				:parent_group_id => group.id,
 				:title => Populator.words(1..3).titleize,
-				:media_id => textpost.id,
-				:media_type => "TextPost",
+				:mediable_id => textpost.id,
+				:mediable_type => "TextPost",
 				:is_private => [true, false].sample
 				})
 		end
