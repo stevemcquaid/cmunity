@@ -4,6 +4,7 @@ class Group < ActiveRecord::Base
   has_many :contents, :foreign_key => :parent_group_id
   has_many :memberships, :dependent => :destroy
   has_many :users, :through => :memberships
+  has_many :roles, :as => :resource
   has_many :activities, :as => :owner
   has_many :event_posts, :through => :contents, :source => :mediable, :source_type => "EventPost"
   has_many :image_posts, :through => :contents, :source => :mediable, :source_type => "ImagePost"
