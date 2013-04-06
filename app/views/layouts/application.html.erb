@@ -17,34 +17,38 @@
   </head>
   <body>
 
-    <div class="navbar navbar-fixed-top navbar-inverse">
+    <div class="navbar navbar-fixed-top navbar-cmunity">
       <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
+        <div class="container-fluid ">
           <a class="brand" href="/"><img src='<%= asset_path("white_coolvetica.png") %>'/></a>
           <div class="container-fluid nav-collapse">
-            <% if user_signed_in? %>
-              <%= link_to 'Logout', destroy_user_session_path, :class => 'btn pull-right', :method => :delete %>
-              <span class="signedinas pull-right">Signed in as: <strong><%= current_user.name %></strong></span>
-            <% else %>
-
-            <br>
-              <%= link_to 'Sign In', new_user_session_path, :class => 'btn pull-right' %>
-              <!--<%= link_to 'Sign Up', new_user_registration_path, :class => 'btn pull-right' %>-->
-            <% end %>
-            <br><br>
-            <ul class="nav">
-              <li><%= link_to "Posts", contents_path  %></li>
-              <li><%= link_to "Groups", groups_path  %></li>
-            </ul>
+            <div class="btn-group">
+              <a class="btn btn-success dropdown-toggle" data-toggle="dropdown" href="#">
+                Action
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li>Testing</li><!-- dropdown menu links -->
+              </ul>
+          </div>
           </div><!--/.nav-collapse -->
         </div>
       </div>
+      <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <ul class="nav">
+            <li class="active"><a href="#">Posts</a></li>
+            <li><a href="#">Organizations</a></li>
+            <li><a href="#">Events</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
+    </div>
+
+
+    
 
     <div class="container-fluid">
       <div class="row-fluid">
