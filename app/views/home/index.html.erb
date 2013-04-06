@@ -1,13 +1,20 @@
 
 
 </br>
-<p>CMUnity is an application that helps students and faculty keep updated on the events being held around campus. It helps promote events on a campus-wide scale and displays details about the inner workings of an organization, and allows students to understand the hierarchy of an organization. 
 
-This is not only beneficial for outside organizations, alumni, and the Pittsburgh community, but it also helps add organization to groups that want to track their events and responsibilities through an easy and efficient mobile application.</p>
+<div id="index_top">
+	<%= render :partial => 'pitch' %>
+</div>
 
-
-<% if user_signed_in? %>
+<div id="index_bottom">
+	<% if user_signed_in? %>
 	<%= render :partial => 'user_home' %>
-<% else %>
+	<% else %>
 	<%= render :partial => 'guest_home' %>
-<% end %>
+	<% end %>
+</div>
+
+
+
+
+
