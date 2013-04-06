@@ -6,8 +6,7 @@ Cmunity::Application.routes.draw do
   # Devise Routes
 
   devise_for :users
-  devise_for :user, :path => '', :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" }
-  
+  devise_for :users, :path => '', :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" }
   # Root
 
   root :to => 'home#index'
