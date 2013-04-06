@@ -1,21 +1,19 @@
 <%= form_for @image_post, :html => { :class => 'form-horizontal' } do |f| %>
     <%= f.fields_for :content do |builder|%>
     <div class="control-group">
-      <%= builder.label :title, :class => 'control-label' %>
       <div class="controls">
-        <%= builder.text_field :title, :class => 'text_field' %>
+        <input type="text" placeholder="Title">
       </div>
     </div>
   <% end -%>
   <div class="control-group">
-    <%= f.label :image_url, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :image_url, :class => 'text_field' %>
+      <input type="text" placeholder="Image URL">
     </div>
   </div>
 
   <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= f.submit "Submit", :class => 'btn btn-info' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 image_posts_path, :class => 'btn' %>
   </div>

@@ -1,22 +1,20 @@
 <%= form_for @event_post, :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.fields_for :content do |builder|%>
     <div class="control-group">
-      <%= builder.label :title, :class => 'control-label' %>
       <div class="controls">
-        <%= builder.text_field :title, :class => 'text_field' %>
+        <input type="text" placeholder="Title">
       </div>
     </div>
   <% end -%>
   <div class="control-group">
-    <%= f.label :location, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :location, :class => 'text_field' %>
+      <input type="text" placeholder="Location">
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :description, :class => 'control-label' %>
+    
     <div class="controls">
-      <%= f.text_field :description, :class => 'text_field' %>
+      <textarea rows="3" placeholder="Description"></textarea>
     </div>
   </div>
   <div class="control-group">
@@ -39,7 +37,7 @@
   </div>
 
   <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= f.submit "Submit", :class => 'btn btn-info' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 event_posts_path, :class => 'btn' %>
   </div>
