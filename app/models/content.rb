@@ -16,5 +16,14 @@ class Content < ActiveRecord::Base
   scope :by_group, lambda {|group_id| where(:parent_group_id => group_id) }  
   scope :by_creator, lambda {|creator_id| where(:creator_id => creator_id) }
 
+  def can_manage?(user)
+    user.has_role? 'admin', self.group
+  end
+
+  def member_approved?(user)
+    user.is_a_member?(self.group)
+  end
+
+
 
 end

@@ -29,6 +29,17 @@ class Group < ActiveRecord::Base
       User.joins{roles}.where{(roles.name.eq 'admin') & (roles.resource_type.eq 'Group') & (roles.resource_id.eq gid)}.first
   end
 
+  def can_manage?(user)
+    if user.has_role? 'admin', self
+      true
+    elsif user.has_role? 'member', self
+      false
+    else
+      false
+    end
+  end
+
+
   def get_member_names
     self.users.collect(&:name)
   end

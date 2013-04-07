@@ -70,7 +70,6 @@ require 'faker'
 				edate = sdate + w.days
 				eventpost = EventPost.create({
 					:location => Faker::Address.street_address,
-					:description => Populator.paragraphs(1..3),
 					:start_datetime => sdate,
 					:end_datetime => edate,
 					:is_all_day => [true, false].sample
