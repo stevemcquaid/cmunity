@@ -46,8 +46,8 @@ ActiveRecord::Schema.define(:version => 20130407061457) do
     t.integer  "creator_id"
     t.integer  "parent_group_id"
     t.boolean  "is_private"
-    t.integer  "mediable_id"
-    t.string   "mediable_type"
+    t.integer  "media_id"
+    t.string   "media_type"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end
@@ -108,6 +108,12 @@ ActiveRecord::Schema.define(:version => 20130407061457) do
     t.string   "subject_type"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+  create_table "ratings", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "content_id"
+    t.integer  "vote_value"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "roles", :force => true do |t|
