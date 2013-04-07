@@ -62,6 +62,7 @@ class TextPostsController < ApplicationController
 
     respond_to do |format|
       if @text_post.update_attributes(params[:text_post])
+        track_activity @text_post
         format.html { redirect_to @text_post, notice: 'Text post was successfully updated.' }
         format.json { head :no_content }
       else
@@ -76,7 +77,7 @@ class TextPostsController < ApplicationController
   def destroy
     @text_post = TextPost.find(params[:id])
     @text_post.destroy
-
+    track_activity @text_post
     respond_to do |format|
       format.html { redirect_to text_posts_url }
       format.json { head :no_content }

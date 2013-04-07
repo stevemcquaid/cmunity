@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  group_id: 1
+  sender_type: MyString
+  sender_id: 1
+  approvable_type: MyString
+  approvable_id: 1
+  status: MyString
+  sent_at: 2013-04-07 02:14:57
+  received_at: 2013-04-07 02:14:57
+  replied_at: 2013-04-07 02:14:57
+
+two:
+  group_id: 1
+  sender_type: MyString
+  sender_id: 1
+  approvable_type: MyString
+  approvable_id: 1
+  status: MyString
+  sent_at: 2013-04-07 02:14:57
+  received_at: 2013-04-07 02:14:57
+  replied_at: 2013-04-07 02:14:57

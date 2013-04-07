@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130406060025) do
+ActiveRecord::Schema.define(:version => 20130407061457) do
 
   create_table "activities", :force => true do |t|
     t.integer  "owner_id"
@@ -26,6 +26,20 @@ ActiveRecord::Schema.define(:version => 20130406060025) do
   add_index "activities", ["owner_id"], :name => "index_activities_on_owner_id"
   add_index "activities", ["trackable_id"], :name => "index_activities_on_trackable_id"
 
+  create_table "approvals", :force => true do |t|
+    t.integer  "group_id"
+    t.string   "sender_type"
+    t.integer  "sender_id"
+    t.string   "approvable_type"
+    t.integer  "approvable_id"
+    t.string   "status"
+    t.datetime "sent_at"
+    t.datetime "received_at"
+    t.datetime "replied_at"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
   create_table "contents", :force => true do |t|
     t.string   "title"
     t.text     "description"
@@ -36,6 +50,15 @@ ActiveRecord::Schema.define(:version => 20130406060025) do
     t.string   "mediable_type"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+  end
+
+  create_table "cosponsors", :force => true do |t|
+    t.integer  "sender_id"
+    t.integer  "receiver_id"
+    t.integer  "creator_id"
+    t.integer  "event_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "event_posts", :force => true do |t|
@@ -79,6 +102,7 @@ ActiveRecord::Schema.define(:version => 20130406060025) do
 
   create_table "permissions", :force => true do |t|
     t.integer  "role_id"
+    t.integer  "creator_id"
     t.string   "action"
     t.integer  "subject_id"
     t.string   "subject_type"

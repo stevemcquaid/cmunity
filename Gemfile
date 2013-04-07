@@ -7,7 +7,6 @@ gem 'rails', '3.2.13'
 gem 'wirble'
 gem 'hirb'
 
-
 group :test, :development do
 	gem 'sqlite3'
 end
@@ -31,6 +30,8 @@ gem 'rolify'
 
 gem 'populator'
 gem 'faker'
+
+gem 'squeel'
 
 gem 'paperclip'
 

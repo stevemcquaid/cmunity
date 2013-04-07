@@ -8,22 +8,28 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me 
+  
   has_many :contents, :foreign_key => 'creator_id'
   has_many :memberships
   has_many :groups, :through => :memberships
   has_many :activities, :as => :owner
+  has_many :cosponsors, :foreign_key => 'creator_id'
+  has_many :approvals, :as => :sender
   has_many :event_posts, :through => :contents, :source => :mediable, :source_type => "EventPost"
   has_many :image_posts, :through => :contents, :source => :mediable, :source_type => "ImagePost"
   has_many :text_posts, :through => :contents, :source => :mediable, :source_type => "TextPost"
   has_many :url_posts, :through => :contents, :source => :mediable, :source_type => "UrlPost"
   has_many :video_post, :through => :contents, :source => :mediable, :source_type => "VideoPost"
-  
+  has_many :users_roles
+  has_many :roles, :through => :users_roles
 
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>"}
   
   # Scopes
   # -----------------------------
   scope :alphabetical, order("last_name, first_name")
+
+
   
   # Validations
   # -----------------------------
@@ -36,7 +42,18 @@ class User < ActiveRecord::Base
   def name
     first_name + " " + last_name
   end
-  
+
+
+  def by_group_role(role = 'member')
+    uid = self.id
+    groups = nil
+    if role == 'officer'
+      groups = Group.joins{roles.users}.where{ (roles.name.not_eq 'admin') & (roles.name.not_eq 'member') & (roles.resource_type.eq 'Group') & (users.id.eq uid)}      
+    else
+      groups = Group.joins{roles.users}.where{ (roles.name.eq role) & (roles.resource_type.eq 'Group') & (users.id.eq uid)}
+    end
+  end
+
   def is_a_member?(group)
     groups = self.group_ids
     groups.include?(group.id)
