@@ -92,6 +92,7 @@ GEM
       railties
     mime-types (1.22)
     multi_json (1.7.2)
+    nested_form (0.3.2)
     net-scp (1.1.0)
       net-ssh (>= 2.6.5)
     net-sftp (2.1.1)
@@ -201,6 +202,7 @@ DEPENDENCIES
   jquery-rails
   less-rails
   meta_request
+  nested_form
   paperclip
   pg (~> 0.14.1)
   populator

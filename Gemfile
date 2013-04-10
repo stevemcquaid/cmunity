@@ -6,6 +6,8 @@ gem 'rails', '3.2.13'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 gem 'wirble'
 gem 'hirb'
+gem 'squeel'
+
 
 group :test, :development do
 	gem 'sqlite3'
@@ -30,8 +32,6 @@ gem 'rolify'
 
 gem 'populator'
 gem 'faker'
-
-gem 'squeel'
 
 gem 'paperclip'
 gem 'simple_form'
