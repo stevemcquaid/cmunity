@@ -45,6 +45,7 @@ class EventPostsController < ApplicationController
     @event_post.content.creator= current_user
     respond_to do |format|
       if @event_post.save
+        track_activity @event_post
         format.html { redirect_to @event_post, notice: 'Event post was successfully created.' }
         format.json { render json: @event_post, status: :created, location: @event_post }
       else
@@ -61,6 +62,7 @@ class EventPostsController < ApplicationController
 
     respond_to do |format|
       if @event_post.update_attributes(params[:event_post])
+        track_activity @event_post
         format.html { redirect_to @event_post, notice: 'Event post was successfully updated.' }
         format.json { head :no_content }
       else
@@ -75,7 +77,7 @@ class EventPostsController < ApplicationController
   def destroy
     @event_post = EventPost.find(params[:id])
     @event_post.destroy
-
+    track_activity @event_post
     respond_to do |format|
       format.html { redirect_to event_posts_url }
       format.json { head :no_content }

@@ -45,6 +45,7 @@ class ImagePostsController < ApplicationController
     @image_post.content.creator= current_user
     respond_to do |format|
       if @image_post.save
+        track_activity @image_post
         format.html { redirect_to @image_post, notice: 'Image post was successfully created.' }
         format.json { render json: @image_post, status: :created, location: @image_post }
       else
@@ -61,6 +62,7 @@ class ImagePostsController < ApplicationController
 
     respond_to do |format|
       if @image_post.update_attributes(params[:image_post])
+        track_activity @image_post
         format.html { redirect_to @image_post, notice: 'Image post was successfully updated.' }
         format.json { head :no_content }
       else
@@ -75,7 +77,7 @@ class ImagePostsController < ApplicationController
   def destroy
     @image_post = ImagePost.find(params[:id])
     @image_post.destroy
-
+    track_activity @image_post
     respond_to do |format|
       format.html { redirect_to image_posts_url }
       format.json { head :no_content }

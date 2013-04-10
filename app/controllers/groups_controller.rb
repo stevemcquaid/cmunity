@@ -47,6 +47,7 @@ class GroupsController < ApplicationController
     @group.memberships.build(:user => current_user, :group => @group)
     respond_to do |format|
       if @group.save
+        track_activity @group
         current_user.add_role :admin, @group
         format.html { redirect_to groups_url, notice: 'Group was successfully created.' }
         format.json { render json: @group, status: :created, location: @group }
@@ -64,6 +65,7 @@ class GroupsController < ApplicationController
 
     respond_to do |format|
       if @group.update_attributes(params[:group])
+        track_activity @group
         format.html { redirect_to groups_url, notice: 'Group was successfully updated.' }
         format.json { head :no_content }
       else
@@ -79,7 +81,7 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
     name = @group.name #needed for output message
     @group.destroy
-
+    track_activity @group
     respond_to do |format|
       format.html { redirect_to groups_url, notice: "#{name} group was deleted." }
       format.json { head :no_content }
