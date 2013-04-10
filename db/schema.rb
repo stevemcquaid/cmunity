@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130404192410) do
+ActiveRecord::Schema.define(:version => 20130407061457) do
 
   create_table "activities", :force => true do |t|
     t.integer  "owner_id"
@@ -26,21 +26,43 @@ ActiveRecord::Schema.define(:version => 20130404192410) do
   add_index "activities", ["owner_id"], :name => "index_activities_on_owner_id"
   add_index "activities", ["trackable_id"], :name => "index_activities_on_trackable_id"
 
+  create_table "approvals", :force => true do |t|
+    t.integer  "group_id"
+    t.string   "sender_type"
+    t.integer  "sender_id"
+    t.string   "approvable_type"
+    t.integer  "approvable_id"
+    t.string   "status"
+    t.datetime "sent_at"
+    t.datetime "received_at"
+    t.datetime "replied_at"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
   create_table "contents", :force => true do |t|
     t.string   "title"
     t.text     "description"
     t.integer  "creator_id"
     t.integer  "parent_group_id"
     t.boolean  "is_private"
-    t.integer  "media_id"
-    t.string   "media_type"
+    t.integer  "mediable_id"
+    t.string   "mediable_type"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end
 
+  create_table "cosponsors", :force => true do |t|
+    t.integer  "sender_id"
+    t.integer  "receiver_id"
+    t.integer  "creator_id"
+    t.integer  "event_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "event_posts", :force => true do |t|
     t.string   "location"
-    t.string   "description"
     t.datetime "start_datetime"
     t.datetime "end_datetime"
     t.boolean  "is_all_day"
@@ -77,12 +99,14 @@ ActiveRecord::Schema.define(:version => 20130404192410) do
   add_index "memberships", ["group_id"], :name => "index_memberships_on_group_id"
   add_index "memberships", ["user_id"], :name => "index_memberships_on_user_id"
 
-  create_table "ratings", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "content_id"
-    t.integer  "vote_value"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+  create_table "permissions", :force => true do |t|
+    t.integer  "role_id"
+    t.integer  "creator_id"
+    t.string   "action"
+    t.integer  "subject_id"
+    t.string   "subject_type"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "roles", :force => true do |t|

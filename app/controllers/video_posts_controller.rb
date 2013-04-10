@@ -45,6 +45,7 @@ class VideoPostsController < ApplicationController
     @video_post.content.creator= current_user
     respond_to do |format|
       if @video_post.save
+        track_activity @video_post
         format.html { redirect_to @video_post, notice: 'Video post was successfully created.' }
         format.json { render json: @video_post, status: :created, location: @video_post }
       else
@@ -61,6 +62,7 @@ class VideoPostsController < ApplicationController
 
     respond_to do |format|
       if @video_post.update_attributes(params[:video_post])
+        track_activity @video_post
         format.html { redirect_to @video_post, notice: 'Video post was successfully updated.' }
         format.json { head :no_content }
       else
@@ -75,7 +77,7 @@ class VideoPostsController < ApplicationController
   def destroy
     @video_post = VideoPost.find(params[:id])
     @video_post.destroy
-
+    track_activity @video_post
     respond_to do |format|
       format.html { redirect_to video_posts_url }
       format.json { head :no_content }
