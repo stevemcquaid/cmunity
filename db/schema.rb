@@ -72,6 +72,8 @@ ActiveRecord::Schema.define(:version => 20130407061457) do
 
   create_table "groups", :force => true do |t|
     t.string   "name"
+    t.text     "description"
+    t.string   "type"
     t.integer  "creator_id"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false

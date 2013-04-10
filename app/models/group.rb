@@ -30,7 +30,9 @@ class Group < ActiveRecord::Base
   end
 
   def can_manage?(user)
-    if user.has_role? 'admin', self
+    if user.nil?
+      false
+    elsif user.has_role? 'admin', self
       true
     elsif user.has_role? 'member', self
       false
