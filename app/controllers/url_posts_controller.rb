@@ -45,6 +45,7 @@ class UrlPostsController < ApplicationController
     @url_post.content.creator= current_user
     respond_to do |format|
       if @url_post.save
+        track_activity @url_post
         format.html { redirect_to @url_post, notice: 'Url post was successfully created.' }
         format.json { render json: @url_post, status: :created, location: @url_post }
       else
@@ -61,6 +62,7 @@ class UrlPostsController < ApplicationController
 
     respond_to do |format|
       if @url_post.update_attributes(params[:url_post])
+        track_activity @url_post
         format.html { redirect_to @url_post, notice: 'Url post was successfully updated.' }
         format.json { head :no_content }
       else
@@ -75,7 +77,7 @@ class UrlPostsController < ApplicationController
   def destroy
     @url_post = UrlPost.find(params[:id])
     @url_post.destroy
-
+    track_activity @url_post
     respond_to do |format|
       format.html { redirect_to url_posts_url }
       format.json { head :no_content }

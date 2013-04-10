@@ -12,6 +12,13 @@
   <dd><%= @content.parent_group_id %></dd>
   <dt><strong><%= model_class.human_attribute_name(:is_private) %>:</strong></dt>
   <dd><%= @content.is_private ? "Private" : "Public" %></dd>
+
+  <% 
+    type = @content.mediable_type.clone
+    type.slice! "Post"
+  %>
+  <dt><strong>Type:</strong></dt>
+  <dd><%= type %></dd>
 </dl>
 
 <div class="form-actions">
@@ -25,3 +32,15 @@
               :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
               :class => 'btn btn-danger' %>
 </div>
+
+<% if @content.mediable_type == "TextPost" %>
+  <%= render :partial => 'text_post_display', :locals => { :text => @content.mediable } %>
+<% elsif @content.mediable_type == "UrlPost" %>
+  <%= render :partial => 'url_post_display', :locals => { :url => @content.mediable }  %>
+<% elsif @content.mediable_type == "VideoPost" %>
+  <%= render :partial => 'video_post_display', :locals => { :video => @content.mediable }  %>
+<% elsif @content.mediable_type == "ImagePost" %>
+  <%= render :partial => 'image_post_display', :locals => { :image => @content.mediable }  %>
+<% elsif @content.mediable_type == "EventPost" %>
+  <%= render :partial => 'event_post_display', :locals => { :event => @content.mediable }  %>
+<% end %>
