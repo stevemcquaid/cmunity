@@ -20,9 +20,14 @@ class Group < ActiveRecord::Base
 
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>"}
   
-  # Scopes
-  scope :userIsAMember, lambda { |user_id| where("user = ?", user_id) }
-  scope :roles, joins{roles}
+  
+  # Validations
+  validates :name, :presence => true, :length => { :minimum => 3 }, :uniqueness => true
+  validates :description, :presence => true, :length => { :minimum => 5 }
+  validates_attachment :avatar, :presence => true, :content_type => { :content_type => "image/jpg" }, :size => { :in => 0..1000.kilobytes }
+  validates_with AttachmentPresenceValidator, :attributes => :avatar
+
+
   
   def find_admin
       gid = self.id
@@ -41,6 +46,13 @@ class Group < ActiveRecord::Base
     end
   end
 
+  def get_contents
+    self.contents
+  end
+
+  def get_officers
+    self.roles
+  end
 
   def get_member_names
     self.users.collect(&:name)

@@ -24,6 +24,10 @@ group :production do
 	gem 'pg', '~> 0.14.1'
 end
 
+
+group :test do
+  gem 'shoulda'
+end
 # Authentication
 
 gem 'devise'

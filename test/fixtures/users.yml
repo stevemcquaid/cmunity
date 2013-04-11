@@ -4,8 +4,13 @@ one:
   first_name: MyString
   last_name: MyString
   email: MyString
+  encrypted_password: 4567554354
+  sign_in_count: 10
+
 
 two:
   first_name: MyString
   last_name: MyString
   email: MyString
+  encrypted_password: 4567554354
+  sign_in_count: 10

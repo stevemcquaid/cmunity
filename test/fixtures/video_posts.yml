@@ -1,14 +1,12 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  content_id: 1
   video_url: MyString
   length: 1
   x_pixels: 1
   y_pixels: 1
 
 two:
-  content_id: 1
   video_url: MyString
   length: 1
   x_pixels: 1

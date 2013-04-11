@@ -38,7 +38,7 @@ namespace :deploy do
   desc "Sets permissions for Rails Application"
   task :set_permissions do
     puts "\n\n=== Setting Permissions! ===\n\n"
-    run "chown -R www-data:www-data #{deploy_to}"
+    run "sudo chown -R www-data:www-data #{deploy_to}"
   end
 
   task :setup_config, roles: :app do
@@ -71,6 +71,8 @@ namespace :deploy do
   before "deploy", "deploy:check_revision"
 
   # Datbase Tasks
+
+
   namespace :db do
 
     desc "Syncs the database.yml file from the local machine to the remote machine"
@@ -100,8 +102,10 @@ namespace :deploy do
     desc "Resets the Production Database"
     task :migrate_reset do
       puts "\n\n=== Resetting the Production Database! ===\n\n"
+      force_close_and_drop_db
       run "cd #{current_path}; rake db:migrate:reset RAILS_ENV=production"
     end
+ 
     
     desc "Destroys Production Database"
     task :drop do
@@ -124,6 +128,22 @@ namespace :deploy do
       run "cd #{current_path}; rake db:seed RAILS_ENV=production"
     end
 
+    desc "Force disconnect of open backends and drop database"
+    task :force_close_and_drop_db do
+      dbname = 'cmunity_production'
+      run "psql -U postgres -h localhost",
+          :data => <<-"PSQL"
+             REVOKE CONNECT ON DATABASE #{dbname} FROM public;
+             ALTER DATABASE #{dbname} CONNECTION LIMIT 0;
+             SELECT pg_terminate_backend(pid)
+               FROM pg_stat_activity
+               WHERE pid <> pg_backend_pid()
+               AND datname='#{dbname}';
+             DROP #{dbname};
+          PSQL
+    end
+    before "db:migrate_reset", "db:force_close_and_drop_db"
+    before "db:drop", "db:force_close_and_drop_db"
   end
 
 
