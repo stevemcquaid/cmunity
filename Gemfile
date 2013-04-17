@@ -27,6 +27,7 @@ end
 
 group :test do
   gem 'shoulda'
+  gem "rspec", "~> 2.13.0"
 end
 # Authentication
 
