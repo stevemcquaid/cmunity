@@ -12,6 +12,16 @@ require 'faker'
     
 [Group, User, Membership, Role, UsersRole, TextPost, ImagePost, UrlPost, Activity, Permission, EventPost, VideoPost].each(&:delete_all)
 
+
+chosenOne = User.create({
+	:first_name => "Yoda",
+	:last_name => "Baggins",
+	:email => "djstevemcquaid@gmail.com",
+	:password => "12345678",
+	:password_confirmation => "12345678"
+	})
+
+
 5.times do
 	
 	group = Group.create(:name => Populator.words(1..3).titleize)

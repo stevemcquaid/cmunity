@@ -16,15 +16,15 @@ class Content < ActiveRecord::Base
   scope :by_group, lambda {|group_id| where(:parent_group_id => group_id) }  
   scope :by_creator, lambda {|creator_id| where(:creator_id => creator_id) }
 
-  validates :description, :presence => true, :unless => Proc.new { |c| c.mediable_type == "TextPost"} # Validates presence of description unless TextPost
+  #validates :description, :presence => true, :unless => :isTextPost? # Validates presence of description unless TextPost
   validates :title, :presence => true, :length => { :in => 2..50 }
   validates :creator_id, :presence => true
   #validates :parent_group_id, :allow_blank => true   # Can't validate only on allow blank
-  validates :mediable_type, :presence => true, :inclusion => { :in => ["TextPost", "ImagePost", "UrlPost", "VideoPost", "EventPost"] }
-  validates :mediable_id, :presence => true
+  #validates :mediable_type, :presence => true, :inclusion => { :in => ["TextPost", "ImagePost", "UrlPost", "VideoPost", "EventPost"] }
+  #validates :mediable_id, :presence => true
   validate :creator_id_exists
-  validate :parent_group_id_exists, :unless => Proc.new { |c| c.parent_group_id.nil?}
-  validate :mediable_id_exists
+  #validate :parent_group_id_exists, :unless => Proc.new { |c| c.parent_group_id.nil?}
+  #validate :mediable_id_exists
 
   def can_manage?(user)
     user.has_role? 'admin', self.group
@@ -52,6 +52,11 @@ class Content < ActiveRecord::Base
       false
     end
   end
+  
+  def isTextPost?
+    self.mediable_type == "TextPost"
+  end
+   
 
   def mediable_id_exists
     klass = self.mediable_type.constantize

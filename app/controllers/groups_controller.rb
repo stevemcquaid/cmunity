@@ -5,7 +5,9 @@ class GroupsController < ApplicationController
   def index
     @groups = Group.all
     @CU = current_user
-    @mygroups = Group.userIsAMember(current_user)
+    
+    #if not logged in
+    @mygroups = current_user.groups unless current_user.nil?
 
     respond_to do |format|
       format.html # index.html.erb
@@ -45,6 +47,7 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(params[:group])
     @group.memberships.build(:user => current_user, :group => @group)
+    
     respond_to do |format|
       if @group.save
         track_activity @group

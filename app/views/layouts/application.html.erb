@@ -31,7 +31,9 @@
 							<li class="<%= 'active' if current_page?(root_path) %>"><%= link_to "Home", root_path %></li>
 							<li class="<%= 'active' if current_page?(posts_path) %>"><%= link_to "Activity", posts_path %></li>
 							<li class="<%= 'active' if current_page?(communities_path) %>"><%= link_to "Communities", communities_path %></li>
-							<li class="<%= 'active' if current_page?(events_path) %>"><%= link_to "Events", events_path %></li>
+							<% if false #commenting this out for now due to bugs %>
+								<li class="<%= 'active' if current_page?(events_path) %>"><%= link_to "Events", events_path %></li>
+							<% end %>
 	          </ul>
 	          <form class="navbar-search pull-left" action="">
 	            <input type="text" class="search-query span2" placeholder="Search">
@@ -49,38 +51,39 @@
     
 
     <div class="container">
-			
-        <% if user_signed_in? %>
-				<div class="well sidebar-nav">
-          <ul class="nav nav-list">
-            <li class="nav-header">Post:</li>
-            <li><%= link_to '<i class="icon-pencil"></i> A Text'.html_safe, new_text_post_path %></li>
-            <li><%= link_to '<i class="icon-calendar"></i> An Event'.html_safe, new_event_post_path %></li>
-            <li><%= link_to '<i class="icon-camera"></i> An Image'.html_safe, new_image_post_path %></li>
-            <li><%= link_to '<i class="icon-film"></i> A Video'.html_safe, new_video_post_path %></li>
-            <li><%= link_to '<i class="icon-search"></i> A URL'.html_safe, new_url_post_path %></li>     
-          </ul>
-				</div><!--/.well -->
-
-        <% elsif false %>
-
+		<% if false  #commenting this sidebar out for now due to bugs%>	
+	        <% if user_signed_in? %>
 					<div class="well sidebar-nav">
-						<ul class="nav nav-list">
-							<li class="nav-header">Development Sidebar</li>
-							<li><%= link_to "Contents", contents_path  %></li>
-							<li><%= link_to "Event_Posts", event_posts_path  %></li>
-							<li><%= link_to "Groups", groups_path  %></li>
-							<li><%= link_to "Home", root_path  %></li>
-							<li><%= link_to "Image_Posts", image_posts_path  %></li>
-							<li><%= link_to "Text_Posts", text_posts_path  %></li>
-							<li><%= link_to "URL_Posts", url_posts_path  %></li>
-							<li><%= link_to "Users", users_path  %></li>
-							<li><%= link_to "User_Groups", user_groups_path  %></li>
-							<li><%= link_to "Video_Posts", video_posts_path %></li>
-						</ul>
+	          <ul class="nav nav-list">
+	            <li class="nav-header">Post:</li>
+	            <li><%= link_to '<i class="icon-pencil"></i> A Text'.html_safe, new_text_post_path %></li>
+	            <li><%= link_to '<i class="icon-calendar"></i> An Event'.html_safe, new_event_post_path %></li>
+	            <li><%= link_to '<i class="icon-camera"></i> An Image'.html_safe, new_image_post_path %></li>
+	            <li><%= link_to '<i class="icon-film"></i> A Video'.html_safe, new_video_post_path %></li>
+	            <li><%= link_to '<i class="icon-search"></i> A URL'.html_safe, new_url_post_path %></li>     
+	          </ul>
 					</div><!--/.well -->
 
-        <% end %>
+	        <% elsif false %>
+
+						<div class="well sidebar-nav">
+							<ul class="nav nav-list">
+								<li class="nav-header">Development Sidebar</li>
+								<li><%= link_to "Contents", contents_path  %></li>
+								<li><%= link_to "Event_Posts", event_posts_path  %></li>
+								<li><%= link_to "Groups", groups_path  %></li>
+								<li><%= link_to "Home", root_path  %></li>
+								<li><%= link_to "Image_Posts", image_posts_path  %></li>
+								<li><%= link_to "Text_Posts", text_posts_path  %></li>
+								<li><%= link_to "URL_Posts", url_posts_path  %></li>
+								<li><%= link_to "Users", users_path  %></li>
+								<li><%= link_to "User_Groups", user_groups_path  %></li>
+								<li><%= link_to "Video_Posts", video_posts_path %></li>
+							</ul>
+						</div><!--/.well -->
+
+	        <% end %>
+	    <% end %>
 
 				<% if !flash.nil? %>
 	        <div >

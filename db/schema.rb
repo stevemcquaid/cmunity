@@ -46,8 +46,8 @@ ActiveRecord::Schema.define(:version => 20130407061457) do
     t.integer  "creator_id"
     t.integer  "parent_group_id"
     t.boolean  "is_private"
-    t.integer  "media_id"
-    t.string   "media_type"
+    t.integer  "mediable_id"
+    t.string   "mediable_type"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end
@@ -63,7 +63,6 @@ ActiveRecord::Schema.define(:version => 20130407061457) do
 
   create_table "event_posts", :force => true do |t|
     t.string   "location"
-    t.string   "description"
     t.datetime "start_datetime"
     t.datetime "end_datetime"
     t.boolean  "is_all_day"
@@ -73,6 +72,8 @@ ActiveRecord::Schema.define(:version => 20130407061457) do
 
   create_table "groups", :force => true do |t|
     t.string   "name"
+    t.text     "description"
+    t.string   "type"
     t.integer  "creator_id"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
@@ -108,14 +109,6 @@ ActiveRecord::Schema.define(:version => 20130407061457) do
     t.string   "subject_type"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
-  end
-
-  create_table "ratings", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "content_id"
-    t.integer  "vote_value"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   create_table "roles", :force => true do |t|

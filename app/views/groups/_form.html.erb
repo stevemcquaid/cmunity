@@ -1,17 +1,21 @@
 <%= form_for @group, :html => { :class => 'form-horizontal' } do |f| %>
+  <% @group.errors.full_messages.each do |msg| %>
+    <p><%= msg %></p>
+  <% end %>
   <div class="control-group">
     <div class="controls">
-      <input type="text" placeholder="Organization Name">
+      <%= f.text_field :name, :class => 'text_field', :placeholder => "Community Name" %>
     </div>
   </div>
+	
   <div class="control-group">
     <div class="controls">
-      <textarea rows="3" placeholder="Description"></textarea>     
+      <%= f.text_area :description, :class => 'text_field', :placeholder => "Description", :size => "20x3" %>
     </div>
   </div>
-  
+	
   <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= f.submit "Create", :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")), groups_path, :class => 'btn' %>
 		
 		<% if params[:action] == 'edit' %>
@@ -19,5 +23,6 @@
 									:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')), 
 		              :class => 'btn btn-danger' ) %>
 		<% end %>
+		
   </div>
 <% end %>

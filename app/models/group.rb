@@ -24,8 +24,8 @@ class Group < ActiveRecord::Base
   # Validations
   validates :name, :presence => true, :length => { :minimum => 3 }, :uniqueness => true
   validates :description, :presence => true, :length => { :minimum => 5 }
-  validates_attachment :avatar, :presence => true, :content_type => { :content_type => "image/jpg" }, :size => { :in => 0..1000.kilobytes }
-  validates_with AttachmentPresenceValidator, :attributes => :avatar
+  #validates_attachment :avatar, :presence => true, :content_type => { :content_type => "image/jpg" }, :size => { :in => 0..1000.kilobytes }
+  #validates_with AttachmentPresenceValidator, :attributes => :avatar
 
 
   
