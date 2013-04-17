@@ -1,24 +1,32 @@
 <div class="accordion" id="accordion2">
-
-    <% @groups.each do |group| %>
       <div class="accordion-group">
+    <% @groups.each do |group| %>
         <div class="accordion-heading">
           <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
             <%= group.name %>
           </a>
         </div>
+        
         <div id="collapseOne" class="accordion-body collapse in">
           <div class="accordion-inner">
             <%= group.name + ' -- ' + group.find_admin %><br>
             <%= "Total Number of Members: " + group.users.count.to_s %>
             <%= link_to t('.edit', :default => t("helpers.links.edit")), (group), :class => 'btn btn-mini pull-right' %>
-            
+            <div class="btn-group pull-right"></div>
           </div>
         </div>
+            <% end %>
+
       </div>
       
-
-    <% end %>
-
-
 </div>
+
+<!--
+
+      <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">
+                Menu
+        <span class="caret"></span>
+      </a>
+        <ul class="dropdown-menu">
+        <!-- dropdown menu links 
+        </ul>-->
