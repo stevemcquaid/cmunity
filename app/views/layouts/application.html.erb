@@ -48,9 +48,7 @@
 
     
 
-    <div class="container-fluid">
-      <div class="row-fluid">
-		  <div class="span3">
+    <div class="container">
 			
         <% if user_signed_in? %>
 				<div class="well sidebar-nav">
@@ -84,23 +82,23 @@
 
         <% end %>
 
-		</div><!--/span-->
-        <div class="span9">
-					<% flash.each do |name, msg| %>
-					  <% if msg.is_a?(String) %>
-					    <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
-					      <a class="close" data-dismiss="alert">&#215;</a>
-					      <%= content_tag :div, msg, :id => "flash_#{name}" %>
-					    </div>
-					  <% end %>
-					<% end %>
+				<% if !flash.nil? %>
+	        <div >
+						<% flash.each do |name, msg| %>
+						  <% if msg.is_a?(String) %>
+						    <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+						      <a class="close" data-dismiss="alert">&#215;</a>
+						      <%= content_tag :div, msg, :id => "flash_#{name}" %>
+						    </div>
+						  <% end %>
+						<% end %>
 					
-					<% #being safe %>
-					<%= alert %>
+						<% #being safe %>
+						<%= alert %>
 					
-          <%= yield %>
-        </div>
-      </div><!--/row-->
+	          <%= yield %>
+	        </div>
+				<% end %>
 
   	  </br>
 			

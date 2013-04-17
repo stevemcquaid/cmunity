@@ -1,8 +1,5 @@
 Cmunity::Application.routes.draw do
 
-  
-
-
   # Devise Routes
 
   devise_for :users
