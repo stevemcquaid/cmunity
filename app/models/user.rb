@@ -39,8 +39,10 @@ class User < ActiveRecord::Base
   validates_format_of :email, :with => /^[\w]([^@\s,;]+)@(([a-z0-9.-]+\.)+(com|edu|org|net|gov|mil|biz|info))$/i, :message => "is not a valid format", :allow_blank => true
   #need more validations when adding password + signed up, email validated, and authorized etc.
   validates :password, :length => { :in => 6..20 }
-  validates_attachment :avatar, :presence => true, :content_type => { :content_type => "image/jpg" }, :size => { :in => 0..1000.kilobytes }
-  validates_with AttachmentPresenceValidator, :attributes => :avatar
+  
+  #Validations for Avatar...need form
+  #validates_attachment :avatar, :presence => true, :content_type => { :content_type => "image/jpg" }, :size => { :in => 0..1000.kilobytes }
+  #validates_with AttachmentPresenceValidator, :attributes => :avatar
 
 
   
