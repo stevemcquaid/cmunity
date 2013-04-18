@@ -13,7 +13,8 @@ Cmunity::Application.configure do
 		:domain             => 'gmail.com',
 		:authentication     => :plain,
 		:user_name          => 'thecmunity@gmail.com',
-		:password           => 'correcthorsebatterystaple'
+		:password           => 'pzyfvbpfisdttyzo'
+		:enable_starttls_auto => true
 		}
 end
 # Initialize the rails application
