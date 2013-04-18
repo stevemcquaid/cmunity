@@ -15,7 +15,7 @@ set :rake, "bundle exec rake"
 
 set :scm, "git"
 set :repository, "git@github.com:stevemcquaid/#{application}.git"
-set :branch, "master"
+set(:branch, 'master') unless exists?(:branch)
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
