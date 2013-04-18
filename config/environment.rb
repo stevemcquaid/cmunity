@@ -13,7 +13,7 @@ Cmunity::Application.configure do
 		:domain             => 'gmail.com',
 		:authentication     => :plain,
 		:user_name          => 'thecmunity@gmail.com',
-		:password           => 'pzyfvbpfisdttyzo'
+		:password           => 'pzyfvbpfisdttyzo',
 		:enable_starttls_auto => true
 		}
 end
