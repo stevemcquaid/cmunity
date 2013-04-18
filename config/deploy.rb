@@ -38,7 +38,7 @@ namespace :deploy do
   desc "Sets permissions for Rails Application"
   task :set_permissions do
     puts "\n\n=== Setting Permissions! ===\n\n"
-    run "sudo chown -R www-data:www-data #{deploy_to}"
+    surun "chown -R #{user} #{deploy_to}"
   end
 
   task :setup_config, roles: :app do
@@ -89,14 +89,12 @@ namespace :deploy do
     task :create do
       puts "\n\n=== Creating the Production Database! ===\n\n"
       run "cd #{current_path}; rake db:create RAILS_ENV=production"
-      system "cap deploy:set_permissions"
     end
 
     desc "Migrate Production Database"
     task :migrate do
       puts "\n\n=== Migrating the Production Database! ===\n\n"
       run "cd #{current_path}; rake db:migrate RAILS_ENV=production"
-      system "cap deploy:set_permissions"
     end
 
     desc "Resets the Production Database"
@@ -111,7 +109,6 @@ namespace :deploy do
     task :drop do
       puts "\n\n=== Destroying the Production Database! ===\n\n"
       run "cd #{current_path}; rake db:drop RAILS_ENV=production"
-      system "cap deploy:set_permissions"
     end
 
     desc "Moves the SQLite3 Production Database to the shared path"
@@ -130,21 +127,17 @@ namespace :deploy do
 
     desc "Force disconnect of open backends and drop database"
     task :force_close_and_drop_db do
-      dbname = 'cmunity_production'
-      run "psql -U postgres -h localhost",
-          :data => <<-"PSQL"
-             REVOKE CONNECT ON DATABASE #{dbname} FROM public;
-             ALTER DATABASE #{dbname} CONNECTION LIMIT 0;
-             SELECT pg_terminate_backend(pid)
-               FROM pg_stat_activity
-               WHERE pid <> pg_backend_pid()
-               AND datname='#{dbname}';
-             DROP #{dbname};
-          PSQL
+      run 'echo "SELECT pg_terminate_backend(procpid) FROM pg_stat_activity WHERE datname=\'cmunity_production\';" | psql -U postgres'
     end
     before "db:migrate_reset", "db:force_close_and_drop_db"
-    before "db:drop", "db:force_close_and_drop_db"
+    before "deploy:db:drop", "deploy:db:force_close_and_drop_db"
   end
 
+def surun(command)
+  password = fetch(:root_password, Capistrano::CLI.password_prompt("password: "))
+  run("sudo '#{command}'") do |channel, stream, output|
+    channel.send_data("#{password}n") if output
+  end
+end
 
 end
