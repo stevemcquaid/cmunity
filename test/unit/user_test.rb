@@ -28,8 +28,8 @@ class UserTest < ActiveSupport::TestCase
   end
 
   def test_validate_uniqueness_of_email
-    new_user(:email => 'bar@example.com').save!
-    assert_equal ["has already been taken"], new_user(:email => 'bar@example.com').errors[:email]
+    new_user(:email => 'bar@example.com', :password => "123456").save!
+    assert_equal ["has already been taken"], new_user(:email => 'bar@example.com', :password => "123456").errors[:email]
   end
 
   #def test_validate_password_length
