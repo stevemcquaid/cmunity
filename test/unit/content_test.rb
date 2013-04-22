@@ -4,7 +4,7 @@ class ContentTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
-  #should belong_to(:mediable)
+  should belong_to(:mediable)
   should belong_to(:group)
   should belong_to(:creator)
 

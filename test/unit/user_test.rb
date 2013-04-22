@@ -9,7 +9,7 @@ class UserTest < ActiveSupport::TestCase
   should validate_presence_of(:first_name)
   should validate_presence_of(:last_name)
   should validate_presence_of(:email)
-  
+  should validate_uniqueness_of(:email)  
   should  "Allowed Emails" do
     # Validating email...
     allow_value("fred@fred.com").for(:email)
@@ -27,10 +27,10 @@ class UserTest < ActiveSupport::TestCase
     !allow_value("fred@fred.con").for(:email)
   end
 
-  def test_validate_uniqueness_of_email
-    new_user(:email => 'bar@example.com', :password => "12345678").save!
-    assert_equal ["has already been taken"], new_user(:email => 'bar@example.com', :password => "12345678").errors[:email]
-  end
+#  def test_validate_uniqueness_of_email
+#    new_user(:email => 'bar@example.com', :password => "12345678").save!
+#    assert_equal ["has already been taken"], new_user(:email => 'bar@example.com', :password => "12345678").errors[:email]
+#  end
 
   #def test_validate_password_length
    # assert_equal ["is too short (minimum is 6 characters)"], new_user(:password => 'bad').errors[:password]
