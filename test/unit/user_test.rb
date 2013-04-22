@@ -5,6 +5,10 @@ class UserTest < ActiveSupport::TestCase
   should "the truth" do
     assert true
   end
+
+  should validate_presence_of(:first_name)
+  should validate_presence_of(:last_name)
+  should validate_presence_of(:email)
   
   should  "Allowed Emails" do
     # Validating email...
@@ -22,8 +26,35 @@ class UserTest < ActiveSupport::TestCase
     !allow_value("my fred@fred.com").for(:email)
     !allow_value("fred@fred.con").for(:email)
   end
+
+  def test_validate_uniqueness_of_email
+    new_user(:email => 'bar@example.com').save!
+    assert_equal ["has already been taken"], new_user(:email => 'bar@example.com').errors[:email]
+  end
+
+  def test_validate_password_length
+    assert_equal ["is too short (minimum is 6 characters)"], new_user(:password => 'bad').errors[:password]
+  end
+
+  def test_require_password
+    assert_equal ["can't be blank"], new_user(:password => '').errors[:password]
+  end
+
+  def test_require_well_formed_email
+    assert_equal ["is invalid"], new_user(:email => 'foo@bar@example.com').errors[:email]
+  end
+
+  def new_user(attributes = {})
+    attributes[:first_name] ||= 'foo'
+    attributes[:last_name] ||= 'fuu'
+    attributes[:email] ||= 'foo@example.com'
+    attributes[:password] ||= 'abc123'
+    user = User.new(attributes)
+    user.valid? # run validations
+    user
+  end
   
-  
+
   
     # # Need to do the rest with a context
 #     context "Creating a context of three employees" do
