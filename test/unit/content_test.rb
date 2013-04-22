@@ -17,5 +17,6 @@ class ContentTest < ActiveSupport::TestCase
   should allow_value("Hi balhblahba").for(:title)
 
   should_not allow_value("a").for(:title)
+  should_not allow_value("3").for(:title)
   should_not allow_value("abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstu").for(:title)
 end

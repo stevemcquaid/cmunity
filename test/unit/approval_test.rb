@@ -9,8 +9,6 @@ class ApprovalTest < ActiveSupport::TestCase
   should belong_to(:sender)
   should belong_to(:approvable)
 
-	
-
 #attr_accessible :approvable_id, :approvable_type, :group_id, :received_at, :replied_at, :sender_id, :sender_type, :sent_at, :status
 	
 end
