@@ -5,5 +5,5 @@ class ImagePostTest < ActiveSupport::TestCase
   #   assert true
   # end
 
-  should have_one(:content)
+  should have_one(:mediable)
 end
