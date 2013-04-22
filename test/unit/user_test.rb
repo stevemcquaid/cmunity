@@ -32,9 +32,9 @@ class UserTest < ActiveSupport::TestCase
     assert_equal ["has already been taken"], new_user(:email => 'bar@example.com').errors[:email]
   end
 
-  def test_validate_password_length
-    assert_equal ["is too short (minimum is 6 characters)"], new_user(:password => 'bad').errors[:password]
-  end
+  #def test_validate_password_length
+   # assert_equal ["is too short (minimum is 6 characters)"], new_user(:password => 'bad').errors[:password]
+ # end
 
   def test_require_password
     assert_equal ["can't be blank"], new_user(:password => '').errors[:password]
