@@ -10,7 +10,7 @@ class ActivityTest < ActiveSupport::TestCase
 
 	#test scopes
 
-
+	#others
 	test "attr_accessible" do
 		allow_mass_assignment_of(:action)
 		allow_mass_assignment_of(:owner)
