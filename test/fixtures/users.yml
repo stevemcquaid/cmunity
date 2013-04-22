@@ -14,3 +14,10 @@ two:
   email: johnsmith@gmail.com
   encrypted_password: 4567554354
   sign_in_count: 10
+
+three:
+  first_name: Steve
+  last_name: McQuaid
+  email: smq@gmail.com
+  encrypted_password: 4567554354
+  sign_in_count: 10

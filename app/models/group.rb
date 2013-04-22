@@ -10,19 +10,19 @@ class Group < ActiveRecord::Base
   has_many :approvals, :as => :sender
   has_many :cosponsors, :foreign_key => 'sender_id'
   has_many :cosponsors, :foreign_key => 'receiver_id'
-  has_many :event_posts, :through => :cosponsors, :foreign_key => 'event_id'
-  has_many :event_posts, :through => :contents, :source => :mediable, :source_type => "EventPost"
-  has_many :image_posts, :through => :contents, :source => :mediable, :source_type => "ImagePost"
-  has_many :text_posts, :through => :contents, :source => :mediable, :source_type => "TextPost"
-  has_many :url_posts, :through => :contents, :source => :mediable, :source_type => "UrlPost"
-  has_many :video_post, :through => :contents, :source => :mediable, :source_type => "VideoPost"
+  # has_many :event_posts, :through => :cosponsors, :foreign_key => 'event_id'
+  # has_many :event_posts, :through => :contents, :source => :mediable, :source_type => "EventPost"
+  # has_many :image_posts, :through => :contents, :source => :mediable, :source_type => "ImagePost"
+  # has_many :text_posts, :through => :contents, :source => :mediable, :source_type => "TextPost"
+  # has_many :url_posts, :through => :contents, :source => :mediable, :source_type => "UrlPost"
+  # has_many :video_posts, :through => :contents, :source => :mediable, :source_type => "VideoPost"
 
 
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>"}
   
   
   # Validations
-  validates :name, :presence => true, :length => { :minimum => 3 }, :uniqueness => true
+  validates :name, :presence => true, :length => { :minimum => 2 }, :uniqueness => true
   validates :description, :presence => true, :length => { :minimum => 5 }
   #validates_attachment :avatar, :presence => true, :content_type => { :content_type => "image/jpg" }, :size => { :in => 0..1000.kilobytes }
   #validates_with AttachmentPresenceValidator, :attributes => :avatar

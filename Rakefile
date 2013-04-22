@@ -5,3 +5,7 @@
 require File.expand_path('../config/application', __FILE__)
 
 Cmunity::Application.load_tasks
+
+#require 'single_test'
+
+#SingleTest.load_tasks
