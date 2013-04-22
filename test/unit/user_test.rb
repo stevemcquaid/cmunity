@@ -28,8 +28,8 @@ class UserTest < ActiveSupport::TestCase
   end
 
   def test_validate_uniqueness_of_email
-    new_user(:email => 'bar@example.com', :password => "123456").save!
-    assert_equal ["has already been taken"], new_user(:email => 'bar@example.com', :password => "123456").errors[:email]
+    new_user(:email => 'bar@example.com', :password => "12345678").save!
+    assert_equal ["has already been taken"], new_user(:email => 'bar@example.com', :password => "12345678").errors[:email]
   end
 
   #def test_validate_password_length
@@ -37,11 +37,11 @@ class UserTest < ActiveSupport::TestCase
  # end
 
   def test_require_password
-    assert_equal ["can't be blank"], new_user(:password => '').errors[:password]
+    assert_equal ["can't be blank", "is too short (minimum is 6 characters)"], new_user(:password => '').errors[:password]
   end
 
   def test_require_well_formed_email
-    assert_equal ["is invalid"], new_user(:email => 'foo@bar@example.com').errors[:email]
+    assert_equal ["is invalid", "is not a valid format"],  new_user(:email => 'foo@bar@example.com').errors[:email]
   end
 
   def new_user(attributes = {})
