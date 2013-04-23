@@ -56,7 +56,7 @@ group :assets do
 end
 
 gem 'jquery-rails', '~> 2.2.1'
-gem 'jquery-ui-rails'
+gem 'jquery-ui-rails', '~> 4.0.2'
 gem 'haml-rails', '~> 0.4'
 
 gem 'therubyracer', '~> 0.11.4'

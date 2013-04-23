@@ -261,7 +261,7 @@ DEPENDENCIES
   haml-rails (~> 0.4)
   hirb (~> 0.7.1)
   jquery-rails (~> 2.2.1)
-  jquery-ui-rails
+  jquery-ui-rails (~> 4.0.2)
   less-rails (~> 2.3.2)
   meta_request (~> 0.2.3)
   nested_form (~> 0.3.2)

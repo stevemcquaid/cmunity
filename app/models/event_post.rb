@@ -9,6 +9,6 @@ class EventPost < ActiveRecord::Base
   accepts_nested_attributes_for :content
   accepts_nested_attributes_for :cosponsor
 
-  attr_accessible :location, :start_datetime, :end_datetime, :is_all_day, :content_attributes, :cosponsor_attributes
+  attr_accessible :location, :start_date, :end_date, :start_time, :end_time, :is_all_day, :content_attributes, :cosponsor_attributes
 
 end
