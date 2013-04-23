@@ -4,20 +4,19 @@ gem 'rails', '3.2.13'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
-gem 'wirble'
-gem 'hirb'
-gem 'squeel'
+gem 'wirble', '~> 0.1.3'
+gem 'hirb', '~> 0.7.1'
+gem 'squeel', '~> 1.0.18'
 
 
-group :test, :development do
-	gem 'sqlite3'
-end
+gem 'sqlite3', '~> 1.3.7', :group => [:test, :development]
+
 
 group :development do
-  gem 'better_errors'
-  gem 'binding_of_caller'
-  gem 'meta_request'
-  gem 'rails-erd'
+  gem 'better_errors', '~> 0.8.0'
+  gem 'binding_of_caller', '~> 0.7.1'
+  gem 'meta_request', '~> 0.2.3'
+  gem 'rails-erd', '~> 1.1.0'
 end
 
 group :production do
@@ -26,60 +25,44 @@ end
 
 
 group :test do
-  gem 'shoulda'
+  gem 'shoulda', '~> 3.3.2'
   gem "rspec", "~> 2.13.0"
-  gem 'cucumber-rails', :require => false
-   # database_cleaner is not required, but highly recommended
-   gem 'database_cleaner'
+  gem 'cucumber-rails', '~> 1.3.1', :require => false
+  gem 'database_cleaner', '~> 0.9.1'
 end
-# Authentication
 
-gem 'devise'
-gem 'cancan'
-gem 'rolify'
+# Authentication & Authorization
+gem 'devise', '~> 2.2.3'
+gem 'cancan', '~> 1.6.9'
+gem 'rolify', '~> 3.2.0'
 
-gem 'populator'
-gem 'faker'
-
-gem 'paperclip'
-gem 'simple_form'
-gem 'nested_form'
+# Fake data generators
+gem 'populator', '~> 1.0.0'
+gem 'faker', '~> 1.1.2'
 
 
+# File Attachments
+gem 'paperclip', '~> 3.4.1'
 
-# Gems used only for assets and not required
+# Form Generators & DSLs
+gem 'simple_form', '~> 2.1.0'
+gem 'nested_form' ,'~> 0.3.2'
+
 # in production environments by default.
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer'
-
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
+gem 'jquery-rails', '~> 2.2.1'
+gem 'haml-rails', '~> 0.4'
 
-gem "therubyracer"
-gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
-gem "twitter-bootstrap-rails"
-
-#User Auth
-#gem 'devise'
-
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Use unicorn as the web server
-# gem 'unicorn'
+gem 'therubyracer', '~> 0.11.4'
+gem 'less-rails', '~> 2.3.2'
+gem 'twitter-bootstrap-rails', '~> 2.2.6'
 
 # Deploy with Capistrano
-gem 'capistrano'
-gem 'rvm-capistrano'
+gem 'capistrano', '~> 2.14.2'
+gem 'rvm-capistrano', '~> 1.2.7'
 
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
