@@ -10,6 +10,8 @@ class Group < ActiveRecord::Base
   has_many :approvals, :as => :sender
   has_many :cosponsors, :foreign_key => 'sender_id'
   has_many :cosponsors, :foreign_key => 'receiver_id'
+  has_one :creator
+  
   # has_many :event_posts, :through => :cosponsors, :foreign_key => 'event_id'
   # has_many :event_posts, :through => :contents, :source => :mediable, :source_type => "EventPost"
   # has_many :image_posts, :through => :contents, :source => :mediable, :source_type => "ImagePost"
