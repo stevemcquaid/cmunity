@@ -24,8 +24,10 @@ class TextPostsController < ApplicationController
   # GET /text_posts/new
   # GET /text_posts/new.json
   def new
-    @text_post = TextPost.new
-    @text_post.build_content
+    @text = TextPost.new
+    @text.build_content
+    @text.content.mediable = @text
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @text_post }
@@ -40,17 +42,16 @@ class TextPostsController < ApplicationController
   # POST /text_posts
   # POST /text_posts.json
   def create
-    @text_post = TextPost.new(params[:text_post])
-    @text_post.content.media = @text_post
-    @text_post.content.creator = current_user
+    @text = TextPost.new(params[:text_post])
+    @text.content.creator = current_user
     respond_to do |format|
-      if @text_post.save
-        track_activity @text_post
-        format.html { redirect_to @text_post, notice: 'Text post was successfully created.' }
-        format.json { render json: @text_post, status: :created, location: @text_post }
+      if @text.save
+        track_activity @text
+        format.html { redirect_to texts_url, notice: 'Text post was successfully created.' }
+        format.json { render json: @text, status: :created, location: @text }
       else
         format.html { render action: "new" }
-        format.json { render json: @text_post.errors, status: :unprocessable_entity }
+        format.json { render json: @text.errors, status: :unprocessable_entity }
       end
     end
   end

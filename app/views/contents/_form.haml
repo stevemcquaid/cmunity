@@ -1,0 +1,13 @@
+- if params.has_key?(:type)
+  - if params[:type] == "Text"
+    = render :partial => 'contents/type/forms/text_form'
+  - elsif params[:type] == "Url"
+    = render :partial => 'contents/type/forms/url_form'
+  - elsif params[:type] == "Event"
+    = render :partial => 'contents/type/forms/event_form'
+  - elsif params[:type] == "Video"
+    = render :partial => 'contents/type/forms/video_form'
+  - elsif params[:type] == "Image"
+    = render :partial => 'contents/type/forms/image_form'
+  - else
+    %p How did you get here?

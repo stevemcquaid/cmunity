@@ -4,6 +4,8 @@ class Content < ActiveRecord::Base
   belongs_to :group, :class_name => "Group", :foreign_key => :parent_group_id
   belongs_to :creator, :class_name => "User", :foreign_key => :creator_id
  
+  has_one :text_post, :through => :mediable, :source => :eventable, :source_type => 'TextPost'
+
   attr_accessible :title, :creator_id, :parent_group_id, :is_private, :description, :mediable_id, :mediable_type
 
   scope :public, where{ is_private.eq false }

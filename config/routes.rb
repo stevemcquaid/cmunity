@@ -8,7 +8,6 @@ Cmunity::Application.routes.draw do
 
   root :to => 'home#index'
   
-  match "posts" => "contents#index"
   match "communities" => "groups#index"
   match "events" => "event_posts#index"
 
@@ -18,12 +17,12 @@ Cmunity::Application.routes.draw do
   resources :groups
   resources :users
 
-  resources :contents
-  resources :event_posts, :as => "events"
-  resources :video_posts, :as => "videos"
-  resources :text_posts, :as => "texts"
-  resources :url_posts, :as => "urls"
-  resources :image_posts, :as => "images"
+  resources :contents, :path => "posts", :constraints => {:id => /[0-9]+/}, :as => "posts"
+  resources :event_posts, :path => "posts/events", :as => "events"
+  resources :video_posts, :path => "posts/videos", :as => "videos"
+  resources :text_posts, :path => "posts/texts", :as => "texts"
+  resources :url_posts, :path => "posts/urls", :as => "urls"
+  resources :image_posts, :path => "posts/images", :as => "images"
 
   resources :memberships
 
