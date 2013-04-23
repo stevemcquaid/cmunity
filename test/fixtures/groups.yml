@@ -1,7 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  name: MyString
+  name: ASA
+  description: This is Asian Student Association.
 
 two:
-  name: MyString
+  name: KSA
+  description: This is Korean Student Association.

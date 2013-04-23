@@ -12,7 +12,8 @@
 	<h2>All Groups</h2>
 	<%= render :partial => 'all_groups' %>
 <% end %>
-
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_group_path,
-            :class => 'btn btn-primary' %>
+<% if user_signed_in? %>
+	<%= link_to t('.new', :default => t("helpers.links.new")),
+	            new_group_path,
+	            :class => 'btn btn-primary' %>
+<% end %>

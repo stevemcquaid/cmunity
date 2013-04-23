@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(:version => 20130407061457) do
   add_index "roles", ["name"], :name => "index_roles_on_name"
 
   create_table "text_posts", :force => true do |t|
-    t.string   "text"
+    t.text     "text"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
