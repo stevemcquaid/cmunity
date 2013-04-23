@@ -28,28 +28,23 @@ class User < ActiveRecord::Base
   # Scopes
   # -----------------------------
   scope :alphabetical, order("last_name, first_name")
-
-
   
   # Validations
   # -----------------------------
   # make sure required fields are present
-  validates_presence_of :first_name, :last_name, :email  
-  validates_uniqueness_of :email, :allow_blank => true
-  validates_format_of :email, :with => /^[\w]([^@\s,;]+)@(([a-z0-9.-]+\.)+(com|edu|org|net|gov|mil|biz|info))$/i, :message => "is not a valid format", :allow_blank => true
+  validates_presence_of :first_name, :last_name, :email
+  validates_uniqueness_of :email, :allow_blank => true, :message => "must not be nil"
+  validates_format_of :email, :with => /^[\w]([^@\s,;]+)@(([a-z0-9.-]+\.)+(com|edu|org|net|gov|mil|biz|info))$/i, :message => "is not a valid format", :allow_blank => false
   #need more validations when adding password + signed up, email validated, and authorized etc.
   validates :password, :length => { :in => 6..20 }
   
   #Validations for Avatar...need form
   #validates_attachment :avatar, :presence => true, :content_type => { :content_type => "image/jpg" }, :size => { :in => 0..1000.kilobytes }
   #validates_with AttachmentPresenceValidator, :attributes => :avatar
-
-
   
   def name
     first_name + " " + last_name
   end
-
 
   def by_group_role(role = 'member')
     uid = self.id

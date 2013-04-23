@@ -2,29 +2,39 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
   
-  should "the truth" do
+  test "the truth" do
     assert true
   end
   
-  should  "Allowed Emails" do
-    # Validating email...
-    allow_value("fred@fred.com").for(:email)
-    allow_value("fred@andrew.cmu.edu").for(:email)
-    allow_value("my_fred@fred.org").for(:email)
-    allow_value("fred123@fred.gov").for(:email)
-    allow_value("my.fred@fred.net").for(:email)
+  test "Allow attr_accessible" do
+    assert allow_mass_assignment_of(:first_name)
+    assert allow_mass_assignment_of(:last_name)
+    assert allow_mass_assignment_of(:email)
+    assert allow_mass_assignment_of(:password)
+    assert allow_mass_assignment_of(:password_confirmation)
+    assert allow_mass_assignment_of(:remember_me)
+  end
+        
+  #Valid Emails
+  test  "Allowed Emails" do
+    assert allow_value("fred@fred.com").for(:email)
+    assert allow_value("fred@andrew.cmu.edu").for(:email)
+    assert allow_value("my_fred@fred.org").for(:email)
+    assert allow_value("fred123@fred.gov").for(:email)
+    assert allow_value("my.fred@fred.net").for(:email)
   end
   
-  should "Not Allow Emails" do
-    !allow_value("fred").for(:email)
-    !allow_value("fred@fred,com").for(:email)
-    !allow_value("fred@fred.uk").for(:email)
-    !allow_value("my fred@fred.com").for(:email)
-    !allow_value("fred@fred.con").for(:email)
+  #Invalid Emails
+  test "Not Allow Emails" do
+    refute allow_value(nil).for(:email)
+    refute allow_value("fred").for(:email)
+    refute allow_value("fred@fred,com").for(:email)
+    refute allow_value("fred@fred.uk").for(:email)
+    refute allow_value("my fred@fred.com").for(:email)
+    refute allow_value("fred@fred.con").for(:email)
   end
-  
-  
-  
+
+
     # # Need to do the rest with a context
 #     context "Creating a context of three employees" do
 #       # create the objects I want with factories
