@@ -56,9 +56,17 @@ class User < ActiveRecord::Base
     end
   end
 
-  def is_a_member?(group)
+  def is_member?(group)
     groups = self.group_ids
     groups.include?(group.id)
   end
+  
+  # def is_admin?(group)
+  #   self.by_group_role('admin').include?(group)
+  # end
+  # 
+  # def is_officer?(group)
+  #   self.by_group_role('officer').include?(group)
+  # end
 
 end

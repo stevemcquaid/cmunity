@@ -31,7 +31,7 @@ class Content < ActiveRecord::Base
   end
 
   def member_approved?(user)
-    user.is_a_member?(self.group)
+    user.is_member?(self.group)
   end
 
   def creator_id_exists
