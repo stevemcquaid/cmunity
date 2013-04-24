@@ -12,10 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui
 //= require twitter/bootstrap
+//= require bootstrap-datepicker
 //= require jquery.liveurl
 //= require editable
 //= require_tree .
 
-$("input.datepicker").datepicker();
