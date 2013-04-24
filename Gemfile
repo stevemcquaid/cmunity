@@ -62,7 +62,7 @@ gem 'haml-rails', '~> 0.4'
 gem 'therubyracer', '~> 0.11.4'
 gem 'less-rails', '~> 2.3.2'
 gem 'twitter-bootstrap-rails', '~> 2.2.6'
-gem 'bootstrap-datepicker-rails','~> 1.0.0.5'
+gem 'bootstrap-datepicker-rails', '~> 1.0.0.5'
 
 # Deploy with Capistrano
 gem 'capistrano', '~> 2.14.2'

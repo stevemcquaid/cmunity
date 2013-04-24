@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require bootstrap-timepicker
 //= require bootstrap-datepicker
 //= require jquery.liveurl
 //= require editable

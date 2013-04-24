@@ -9,15 +9,14 @@
         %span Post As:
         = c.input :parent_group_id, collection: current_user.groups, label_method: :name, value_method: :id
     = e.input :location
-    .input-append.date.datepicker
-      = e.input :start_date, :as => :string, :input_html => { :id => 'startdate' }
+    = e.input :start_date, :as => :string, :input_html => { :id => 'startdate' }
+    = e.input :end_date, :as => :string, :input_html => { :id => 'enddate' }
+    = e.input :start_time, :as => :string, :input_html => { :id => 'start-time'}
 
-    = e.input :start_time
-    = e.input :end_date, :as => :string, :input_html => { :id => 'enddate' } 
-    = e.input :end_time
+    = e.input :end_time, :as => :string, :input_html => { :id => 'end-time'}
     = e.input :is_all_day
     = e.simple_fields_for :content do |c|
-      = c.input :description
+      = c.input :description, :input_html => { :class => 'span6' }
 
   .form-actions
     = e.button :submit, :class => 'btn btn-primary' 
