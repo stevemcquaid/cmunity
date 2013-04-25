@@ -6,19 +6,22 @@ class Ability
     #
     user ||= User.new # guest user (not logged in)
     can :read, :all
-    can :manage, Group do |group|
-      group.can_manage?(user)
+
+    if user.guest?
+      can :show, Content, :is_private => false
+      cannot :show, Content, :is_private => true
     end
-    can :read, Group do |group|
-      user.is_a_member(group)
+
+    if !user.guest?
+      can :show, Content, :is_private => false 
+      cannot :show, Content, :is_private => true
+      can :show, Content, :is_private => true, :creator_id => user.id
+      can :show, Content, :is_private => true, :group => { :id => user.group_ids }
+      can :new, Content
+      can :manage, Group
     end
-    can :manage, Content do |content|
-      content.can_manage?(user)
-    end
-    can :read, Content do |content|
-      (content.member_approved?(user)) | (!content.is_private)
-    end
-    cannot :read, Content
+
+
 
     # The first argument to `can` is the action you are giving the user 
     # permission to do.

@@ -15,7 +15,7 @@
   <tbody>
     <% @contents.each do |content| %>
       <tr>
-        <td><%= link_to content.title, posts_path(content) %></td>
+        <td><%= link_to content.title, post_path(content) %></td>
         <td><%= content.creator.name unless content.creator.nil? %></td>
         <td><%= content.group.name unless content.group.nil? %></td>
         <td><%= content.is_private ? "Private" : "Public" %></td>
