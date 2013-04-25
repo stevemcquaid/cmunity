@@ -1,4 +1,5 @@
 class GroupsController < ApplicationController
+  load_and_authorize_resource
   helper ApplicationHelper
   # GET /groups
   # GET /groups.json

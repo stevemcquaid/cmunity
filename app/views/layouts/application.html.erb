@@ -2,125 +2,102 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "CMUnity" %></title>
-    <%= csrf_meta_tags %>
-
-    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
-    <![endif]-->
-
-    <%= stylesheet_link_tag "application", :media => "all" %>
-
-  </head>
-  <body>
-
-		<div class="navbar">
-	    <div class="navbar-inner">
-	      <div class="container">
-	        <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-	          <span class="icon-bar"></span>
-	          <span class="icon-bar"></span>
-	          <span class="icon-bar"></span>
-	        </a>
-	        <%= link_to "CMUnity", root_path, :class=>'brand' %>
-	        <div class="nav-collapse collapse navbar-responsive-collapse">
-	          <ul class="nav">
-							<li class="<%= 'active' if current_page?(root_path) %>"><%= link_to "Home", root_path %></li>
-							<li class="<%= 'active' if current_page?(posts_path) %>"><%= link_to "Activity", posts_path %></li>
-							<li class="<%= 'active' if current_page?(communities_path) %>"><%= link_to "Communities", communities_path %></li>
-							<% if false #commenting this out for now due to bugs %>
-								<li class="<%= 'active' if current_page?(events_path) %>"><%= link_to "Events", events_path %></li>
-							<% end %>
-	          </ul>
-	          <form class="navbar-search pull-left" action="">
-	            <input type="text" class="search-query span2" placeholder="Search">
-	          </form>
-						<% if user_signed_in? %>
-							<%= render :partial => 'shared/account_dropdown' %>
-						<% else %>
-							<%= render :partial => 'shared/signin_dropdown' %>
-						<% end %>
-	        </div><!-- /.nav-collapse -->
-	      </div>
-	    </div><!-- /navbar-inner -->
-	  </div>
-
-    
-
-    <div class="container">
-		<% if false  #commenting this sidebar out for now due to bugs%>	
-	        <% if user_signed_in? %>
-					<div class="well sidebar-nav">
-	          <ul class="nav nav-list">
-	            <li class="nav-header">Post:</li>
-	            <li><%= link_to '<i class="icon-pencil"></i> A Text'.html_safe, new_text_post_path %></li>
-	            <li><%= link_to '<i class="icon-calendar"></i> An Event'.html_safe, new_event_post_path %></li>
-	            <li><%= link_to '<i class="icon-camera"></i> An Image'.html_safe, new_image_post_path %></li>
-	            <li><%= link_to '<i class="icon-film"></i> A Video'.html_safe, new_video_post_path %></li>
-	            <li><%= link_to '<i class="icon-search"></i> A URL'.html_safe, new_url_post_path %></li>     
-	          </ul>
-					</div><!--/.well -->
-
-	        <% elsif false %>
-
-						<div class="well sidebar-nav">
-							<ul class="nav nav-list">
-								<li class="nav-header">Development Sidebar</li>
-								<li><%= link_to "Contents", contents_path  %></li>
-								<li><%= link_to "Event_Posts", event_posts_path  %></li>
-								<li><%= link_to "Groups", groups_path  %></li>
-								<li><%= link_to "Home", root_path  %></li>
-								<li><%= link_to "Image_Posts", image_posts_path  %></li>
-								<li><%= link_to "Text_Posts", text_posts_path  %></li>
-								<li><%= link_to "URL_Posts", url_posts_path  %></li>
-								<li><%= link_to "Users", users_path  %></li>
-								<li><%= link_to "User_Groups", user_groups_path  %></li>
-								<li><%= link_to "Video_Posts", video_posts_path %></li>
-							</ul>
-						</div><!--/.well -->
-
-	        <% end %>
-	    <% end %>
-
-				<% if !flash.nil? %>
-	        <div >
-						<% flash.each do |name, msg| %>
-						  <% if msg.is_a?(String) %>
-						    <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
-						      <a class="close" data-dismiss="alert">&#215;</a>
-						      <%= content_tag :div, msg, :id => "flash_#{name}" %>
-						    </div>
-						  <% end %>
-						<% end %>
-					
-						<% #being safe %>
-						<%= alert %>
-					
-	          <%= yield %>
-	        </div>
-				<% end %>
-
-  	  </br>
-			
-			<% if false %>
-		
-      <footer>
-				<div class="row-fluid">
-        <p>&copy; CMUnity 2012</p>
-				</div>
-      </footer>
-			
-			<% end %>
-	
-    </div> <!-- /container -->
-
-    <!-- Javascripts
+      <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title><%= content_for?(:title) ? yield(:title) : "CMUnity" %></title>
+          <%= csrf_meta_tags %>
+          <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+          <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+          <![endif]-->
+          <%= stylesheet_link_tag "application", :media => "all" %>
+        </head>
+        <body>
+          <div class="navbar">
+            <div class="navbar-inner">
+              <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </a>
+                <%= link_to "CMUnity", root_path, :class=>'brand' %>
+                <div class="nav-collapse collapse navbar-responsive-collapse">
+                  <ul class="nav">
+                    <li class="<%= 'active' if current_page?(root_path) %>"><%= link_to "Home", root_path %></li>
+                    <li class="<%= 'active' if current_page?(posts_path) %>"><%= link_to "Posts", posts_path %></li>
+                    <li class="<%= 'active' if current_page?(communities_path) %>"><%= link_to "Communities", communities_path %></li>
+                    <% if false #commenting this out for now due to bugs %>
+                      <li class="<%= 'active' if current_page?(events_path) %>"><%= link_to "Events", events_path %></li>
+                    <% end %>
+                  </ul>
+                  <form class="navbar-search pull-left" action="">
+                    <input type="text" class="search-query span2" placeholder="Search">
+                    </form>
+                    <% if user_signed_in? %>
+                      <%= render :partial => 'shared/account_dropdown' %>
+                    <% else %>
+                      <%= render :partial => 'shared/signin_dropdown' %>
+                    <% end %>
+                  </div><!-- /.nav-collapse -->
+                </div>
+              </div><!-- /navbar-inner -->
+            </div>
+            <div class="container">
+              <% if false  #commenting this sidebar out for now due to bugs%>
+                <% if user_signed_in? %>
+                  <div class="well sidebar-nav">
+                    <ul class="nav nav-list">
+                      <li class="nav-header">Post:</li>
+                      <li><%= link_to '<i class="icon-pencil"></i> A Text'.html_safe, new_text_post_path %></li>
+                      <li><%= link_to '<i class="icon-calendar"></i> An Event'.html_safe, new_event_post_path %></li>
+                      <li><%= link_to '<i class="icon-camera"></i> An Image'.html_safe, new_image_post_path %></li>
+                      <li><%= link_to '<i class="icon-film"></i> A Video'.html_safe, new_video_post_path %></li>
+                      <li><%= link_to '<i class="icon-search"></i> A URL'.html_safe, new_url_post_path %></li>
+                    </ul>
+                  </div><!--/.well -->
+                <% elsif false %>
+                  <div class="well sidebar-nav">
+                    <ul class="nav nav-list">
+                      <li class="nav-header">Development Sidebar</li>
+                      <li><%= link_to "Contents", contents_path  %></li>
+                      <li><%= link_to "Event_Posts", event_posts_path  %></li>
+                      <li><%= link_to "Groups", groups_path  %></li>
+                      <li><%= link_to "Home", root_path  %></li>
+                      <li><%= link_to "Image_Posts", image_posts_path  %></li>
+                      <li><%= link_to "Text_Posts", text_posts_path  %></li>
+                      <li><%= link_to "URL_Posts", url_posts_path  %></li>
+                      <li><%= link_to "Users", users_path  %></li>
+                      <li><%= link_to "User_Groups", user_groups_path  %></li>
+                      <li><%= link_to "Video_Posts", video_posts_path %></li>
+                    </ul>
+                  </div><!--/.well -->
+                <% end %>
+              <% end %>
+              <% if !flash.nil? %>
+                <% flash.each do |name, msg| %>
+                  <% if msg.is_a?(String) %>
+                    <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+                      <a class="close" data-dismiss="alert">&#215;</a>
+                      <%= content_tag :div, msg, :id => "flash_#{name}" %>
+                    </div>
+                  <% end %>
+                <% end %>
+                <%= yield %>
+              <% end %>
+            </br>
+            <% if false %>
+              <footer>
+                <div class="row-fluid">
+                  <p>&copy; CMUnity 2012</p>
+                </div>
+              </footer>
+            <% end %>
+          </div>
+          <!-- /container -->
+          <!-- Javascripts
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <%= javascript_include_tag "application" %>
-
-  </body>
-</html>
+          <!-- Placed at the end of the document so the pages load faster -->
+          <%= javascript_include_tag "application" %>
+        </body>
+      </html>

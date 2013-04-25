@@ -1,4 +1,5 @@
 class ContentsController < ApplicationController
+  load_and_authorize_resource
   # GET /contents
   # GET /contents.json
   def index
@@ -25,6 +26,31 @@ class ContentsController < ApplicationController
   # GET /contents/new.json
   def new
     @content = Content.new
+    @content.creator_id ||= current_user
+
+    if params.has_key?(:type)
+      if params[:type] == "Text"
+        @text = TextPost.new
+        @text.build_content
+        @text.content = @content
+      elsif params[:type] == "Url"
+        @url = UrlPost.new
+        @url.build_content
+        @url.content = @content
+      elsif params[:type] == "Video"
+        @video = VideoPost.new
+        @video.build_content
+        @video.content = @content
+      elsif params[:type] == "Image"
+        @image = ImagePost.new
+        @image.build_content
+        @image.content = @content
+      elsif params[:type] == "Event"
+        @event = EventPost.new
+        @event.build_content
+        @event.content = @content
+      end
+    end
 
     respond_to do |format|
       format.html # new.html.erb

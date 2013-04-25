@@ -24,8 +24,10 @@ class EventPostsController < ApplicationController
   # GET /event_posts/new
   # GET /event_posts/new.json
   def new
-    @event_post = EventPost.new
-    @event_post.build_content
+    @event = EventPost.new
+    @event.build_content
+    @event.content.mediable = @event
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @event_post }

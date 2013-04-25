@@ -1,0 +1,19 @@
+.page-header
+  %h1 
+    URL
+    %small Share a link
+
+= simple_form_for(@url, :url => urls_path, :html => {:class => 'form-horizontal'}) do |t| 
+  = t.error_notification
+
+  .form-inputs
+    = t.simple_fields_for :content do |c|
+      = c.input :title
+      = c.input :is_private
+      - if !current_user.by_group_role('admin').empty?
+        %span Post As:
+        = c.input :parent_group_id, collection: current_user.by_group_role('admin'), label_method: :name, value_method: :id
+    = t.input :url
+
+  .form-actions
+  = t.button :submit, "Post URL", :class => 'btn btn-primary'
