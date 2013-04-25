@@ -5,6 +5,7 @@ class Ability
     # Define abilities for the passed in user here. For example:
     #
     user ||= User.new # guest user (not logged in)
+    can :read, :all
     can :manage, Group do |group|
       group.can_manage?(user)
     end
@@ -17,7 +18,8 @@ class Ability
     can :read, Content do |content|
       (content.member_approved?(user)) | (!content.is_private)
     end
-    can :read, :all
+    cannot :read, Content
+
     # The first argument to `can` is the action you are giving the user 
     # permission to do.
     # If you pass :manage it will apply to every action. Other common actions

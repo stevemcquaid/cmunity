@@ -1,4 +1,5 @@
 class ContentsController < ApplicationController
+  load_and_authorize_resource
   # GET /contents
   # GET /contents.json
   def index
