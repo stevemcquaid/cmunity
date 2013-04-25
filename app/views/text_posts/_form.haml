@@ -1,15 +1,21 @@
-= simple_form_for(@text, :url => texts_path, :html => {:class => 'form-horizontal'}) do |t| 
-  = t.error_notification
+.page-header
+  %h1 
+    Text
+    %small Create a New Text
+.row
+  = simple_form_for(@text, :url => texts_path, :html => {:class => 'form-horizontal'}) do |t| 
+    = t.error_notification
 
-  .form-inputs
-    = t.simple_fields_for :content do |c|
-      = c.input :title
-      = c.input :is_private
-      - if !current_user.groups.empty?
-        %span Post As:
-        = c.input :parent_group_id, collection: current_user.groups, label_method: :name, value_method: :id
-
-    = t.input :text, as: :text
-
-  .form-actions
-    = t.button :submit, :class => 'btn btn-primary'
+    .form-inputs
+      .span5
+        = t.simple_fields_for :content do |c|
+          = c.input :title
+          = c.input :is_private
+          - if !current_user.by_group_role('admin').empty?
+            %span Post As:
+            = c.input :parent_group_id, collection: current_user.by_group_role('admin'), label_method: :name, value_method: :id
+      .span7
+        = t.input :text, as: :text, :input_html => { :class => 'span3', :rows => 6 }
+    .row
+      .form-actions
+        = t.button :submit, "Post Text", :class => 'btn btn-primary'
