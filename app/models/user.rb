@@ -60,6 +60,10 @@ class User < ActiveRecord::Base
     groups = self.group_ids
     groups.include?(group.id)
   end
+
+  def guest?
+    self.id.nil?
+  end
   
   # def is_admin?(group)
   #   self.by_group_role('admin').include?(group)

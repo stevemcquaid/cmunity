@@ -24,8 +24,9 @@ class UrlPostsController < ApplicationController
   # GET /url_posts/new
   # GET /url_posts/new.json
   def new
-    @url_post = UrlPost.new
-    @url_post.build_content
+    @url = UrlPost.new
+    @url.build_content
+    @url.content.mediable = @url
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @url_post }
@@ -40,12 +41,11 @@ class UrlPostsController < ApplicationController
   # POST /url_posts
   # POST /url_posts.json
   def create
-    @url_post = UrlPost.new(params[:url_post])
-    @url_post.content.media = @url_post
-    @url_post.content.creator= current_user
+    @url = UrlPost.new(params[:url_post])
+    @url.content.creator= current_user
     respond_to do |format|
       if @url_post.save
-        track_activity @url_post
+        track_activity @url
         format.html { redirect_to @url_post, notice: 'Url post was successfully created.' }
         format.json { render json: @url_post, status: :created, location: @url_post }
       else
