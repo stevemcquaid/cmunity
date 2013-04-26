@@ -15,3 +15,6 @@
  *= require liveurl
  *= require_tree .
 */
+button.btn-primary a {
+	color: white;
+}
