@@ -5,10 +5,7 @@ class ActivityTest < ActiveSupport::TestCase
 	should belong_to(:owner)
 	should belong_to(:trackable)
 
-	#test validations
-
-
-	#test scopes
+	#must test all scopes
 
 	#others
 	test "attr_accessible" do
