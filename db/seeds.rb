@@ -80,8 +80,10 @@ chosenOne = User.create({
 				edate = sdate + w.days
 				eventpost = EventPost.create({
 					:location => Faker::Address.street_address,
-					:start_datetime => sdate,
-					:end_datetime => edate,
+					:start_date => sdate,
+					:end_date => edate,
+					:start_time => Time.now,
+					:end_date => 2.hours.from_now,
 					:is_all_day => [true, false].sample
 					})
 				subtype = eventpost

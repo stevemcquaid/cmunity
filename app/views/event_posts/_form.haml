@@ -1,0 +1,44 @@
+.page-header
+  %h1 
+    Events
+    %small Create a New Event
+.row
+  = simple_form_for(@event, :url => events_path, :html => {:class => 'form-horizontal'}) do |e| 
+    = e.error_notification
+
+    .form-inputs
+      .span6
+        = e.simple_fields_for :content do |c|
+          = c.input :title
+          = c.input :is_private
+          - if !current_user.by_group_role('admin').empty?
+            %span Post As:
+            = c.input :parent_group_id, collection: current_user.by_group_role('admin'), label_method: :name, value_method: :id
+        = e.input :location
+  
+        = e.input :start_date, :wrapper => :append_datepicker_start do
+          = e.input_field :start_date, :as => :string, :id => 'start-date'
+          = content_tag :span, nil, :class => "add-on" do
+            = content_tag :i, nil, :class => "icon-calendar"
+
+        = e.input :end_date, :wrapper => :append_datepicker_end do
+          = e.input_field :end_date, :as => :string, :id => 'end-date'
+          = content_tag :span, nil, :class => "add-on" do
+            = content_tag :i, nil, :class => "icon-calendar"
+      .span6
+        = e.input :start_time, :wrapper => :append_timepicker do
+          = e.input_field :start_time, :as => :string, :id => 'start-time'
+          = content_tag :span, nil, :class => "add-on" do
+            = content_tag :i, nil, :class => "icon-time"
+
+        = e.input :end_time, :wrapper => :append_timepicker do
+          = e.input_field :end_time, :as => :string, :id => 'end-time'
+          = content_tag :span, nil, :class => "add-on" do
+            = content_tag :i, nil, :class => "icon-time"
+
+        = e.input :is_all_day, :input_html => { :id => "all_day" }
+        = e.simple_fields_for :content do |c|
+          = c.input :description, :input_html => { :class => 'span4', :rows => 5 }
+    .row
+      .form-actions
+        = e.button :submit, "Post Event", :class => 'btn btn-primary' 

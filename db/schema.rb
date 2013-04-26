@@ -63,11 +63,13 @@ ActiveRecord::Schema.define(:version => 20130407061457) do
 
   create_table "event_posts", :force => true do |t|
     t.string   "location"
-    t.datetime "start_datetime"
-    t.datetime "end_datetime"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.time     "start_time"
+    t.time     "end_time"
     t.boolean  "is_all_day"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "groups", :force => true do |t|

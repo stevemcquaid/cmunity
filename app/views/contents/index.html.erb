@@ -15,16 +15,16 @@
   <tbody>
     <% @contents.each do |content| %>
       <tr>
-        <td><%= link_to content.title, content_path(content) %></td>
+        <td><%= link_to content.title, post_path(content) %></td>
         <td><%= content.creator.name unless content.creator.nil? %></td>
         <td><%= content.group.name unless content.group.nil? %></td>
         <td><%= content.is_private ? "Private" : "Public" %></td>
         <% if current_user == content.creator %>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_content_path(content), :class => 'btn btn-mini' %>
+                      edit_post_path(content), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      content_path(content),
+                      posts_path(content),
                       :method => :delete,
                       :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
                       :class => 'btn btn-mini btn-danger' %>
@@ -36,6 +36,6 @@
 </table>
 <% if user_signed_in? %>
   <%= link_to t('.new', :default => t("helpers.links.new")),
-              new_content_path,
+              new_post_path,
               :class => 'btn btn-primary' %>
 <% end %>
