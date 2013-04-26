@@ -1,23 +1,27 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= Group.human_attribute_name(:id) %></th>
+      <th><%= Group.human_attribute_name(:name) %></th>
+      <th># of Members</th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
-    <% @my_groups.each do |group| %>
+    <% @myGroups.each do |group| %>
       <tr>
         <td><%= link_to group.id, group_path(group) %></td>
-        <td><%= group.name %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_group_path(group), :class => 'btn btn-mini' %>
-        </td>
+        <td><%= link_to group.name, group_path(group) %></td>
+				<td><%= group.users.count %></td>
+        <% if group.can_manage?(current_user) %>
+          <td>
+            <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                        edit_group_path(group), :class => 'btn btn-mini' %>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= will_paginate @my_groups, :renderer => BootstrapPagination::Rails %>
+<%= will_paginate @myGroups, :renderer => BootstrapPagination::Rails %>

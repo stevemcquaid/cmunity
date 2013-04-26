@@ -7,11 +7,23 @@ class GroupsController < ApplicationController
     @groups = Group.paginate(:page => params[:page], :per_page => 10)
     @CU = current_user
     
-    #if not logged in
-    @mygroups = current_user.groups.paginate(:page => params[:page], :per_page => 10) unless current_user.nil?
-
+    #logged in
+    @myGroups = current_user.groups.paginate(:page => params[:page], :per_page => 10) unless current_user.nil?
+    
     respond_to do |format|
       format.html # index.html.erb
+      format.json { render json: @groups }
+    end
+  end
+  
+  # GET /mygroups
+  # GET /mygroups.json
+  def index_my_groups
+    #logged in
+    @myGroups = current_user.groups.paginate(:page => params[:page], :per_page => 10) unless current_user.nil?
+    
+    respond_to do |format|
+      format.html # index_my_groups.html.erb
       format.json { render json: @groups }
     end
   end

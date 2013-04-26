@@ -34,8 +34,10 @@
     <% end %>
   </tbody>
 </table>
+
+<%= will_paginate @contents, :renderer => BootstrapPagination::Rails %>
+
 <% if user_signed_in? %>
-  <%= link_to t('.new', :default => t("helpers.links.new")),
-              new_post_path,
-              :class => 'btn btn-primary' %>
+  <%= link_to t('.new', :default => t("helpers.links.new")), new_post_path, :class => 'btn btn-primary' %>
+	<br/>
 <% end %>

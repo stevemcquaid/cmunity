@@ -5,11 +5,7 @@
       <th><%= Group.human_attribute_name(:name) %></th>
       <th>Admin</th>
       <th># of Members</th>
-      <% @groups.each do |group| %>
-        <% if group.can_manage?(current_user) %>
-          <th><%=t '.actions', :default => t("helpers.actions") %></th>
-        <% end %>
-      <% end %>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
@@ -29,4 +25,5 @@
     <% end %>
   </tbody>
 </table>
+
 <%= will_paginate @groups, :renderer => BootstrapPagination::Rails %>
