@@ -4,21 +4,20 @@
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
+  <dt><strong>Title:</strong></dt>
   <dd><%= @content.title %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:creator_id) %>:</strong></dt>
-  <dd><%= @content.creator.name %></dd>
-  <dt><strong>Group:</strong></dt>
-  <dd><%= @content.group.name %></dd>
-  <dt><strong>Privacy:</strong></dt>
-  <dd><%= @content.is_private ? "Private" : "Public" %></dd>
-
+  <dt><strong>Type:</strong></dt>
   <% 
     type = @content.mediable_type.clone
     type.slice! "Post"
   %>
-  <dt><strong>Type:</strong></dt>
   <dd><%= type %></dd>
+  <dt><strong>Privacy:</strong></dt>
+  <dd><%= @content.is_private ? "Private" : "Public" %></dd>
+  <dt><strong>Creator:</strong></dt>
+  <dd><%= @content.creator.name unless @content.creator.nil? %></dd>
+  <dt><strong>Group:</strong></dt>
+  <dd><%= @content.group.name unless @content.group.nil? %></dd>
 </dl>
 
 <div class="form-actions">
