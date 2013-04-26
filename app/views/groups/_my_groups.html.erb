@@ -17,6 +17,7 @@
         </td>
       </tr>
     <% end %>
-		<%= will_paginate @my_groups %>
   </tbody>
 </table>
+
+<%= will_paginate @my_groups, :renderer => BootstrapPagination::Rails %>

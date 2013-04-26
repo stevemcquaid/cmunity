@@ -8,6 +8,7 @@ gem 'wirble', '~> 0.1.3'
 gem 'hirb', '~> 0.7.1'
 gem 'squeel', '~> 1.0.18'
 gem 'will_paginate', '~> 3.0.0'
+gem 'will_paginate-bootstrap'
 
 gem 'sqlite3', '~> 1.3.7', :group => [:test, :development]
 

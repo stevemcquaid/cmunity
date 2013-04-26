@@ -1,15 +1,15 @@
 <div class="page-header">
-  <h1>Groups</h1>
+  <h1>Communities</h1>
 </div>
 
 <% #if not logged in %>
 <% if not @myGroups.nil? %>
-	<h2>My Groups</h2>
+	<h2>My Communities</h2>
 	<%= render :partial => 'my_groups' %>
 <% end %>
 
 <% if not @groups.nil? %>
-	<h2>All Groups</h2>
+	<h2>All Communities</h2>
 	<%= render :partial => 'all_groups' %>
 <% end %>
 <% if user_signed_in? %>

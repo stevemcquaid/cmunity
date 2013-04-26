@@ -4,11 +4,11 @@ class GroupsController < ApplicationController
   # GET /groups
   # GET /groups.json
   def index
-    @groups = Group.paginate(:page => params[:page], :per_page => 20)
+    @groups = Group.paginate(:page => params[:page], :per_page => 10)
     @CU = current_user
     
     #if not logged in
-    @mygroups = current_user.groups.paginate(:page => params[:page], :per_page => 20) unless current_user.nil?
+    @mygroups = current_user.groups.paginate(:page => params[:page], :per_page => 10) unless current_user.nil?
 
     respond_to do |format|
       format.html # index.html.erb
