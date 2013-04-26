@@ -1,20 +1,25 @@
 <%- model_class = Content -%>
-      <hr id="hrhr">
-
-     <div class="row-fluid">
-        <div class="span4">
-          <h2>Activity</h2>
-          <p>View posts, comments, pictures, and videos from users of CMUnity. </p>
-          <p><a class="btn" href="posts">View Activity Feed »</a></p>
-        </div>
-        <div class="span4">
-          <h2>Communities</h2>
-          <p>Learn about and have the opportunity join various campus communities.</p>
-          <p><a class="btn" href="communities">View Communities »</a></p>
-       </div>
-        <div class="span4">
-          <h2>Events</h2>
-          <p>Discover new activities and events to participate on and around campus.</p>
-          <p><a class="btn" href="events">View Events »</a></p>
-        </div>
-      </div>
+<hr/>
+<div class="row-fluid">
+  <div class="span4">
+    <center>
+			<h2>Activity</h2>
+    	<p>View posts, comments, pictures, and videos from users of CMUnity. </p>
+    	<p><%= link_to "View Posts »", posts_path, :class=>"btn"%></p>
+		</center>
+  </div>
+  <div class="span4">
+		<center>
+      <h2>Communities</h2>
+      <p>Learn about and have the opportunity join various campus communities.</p>
+      <p><%= link_to "View Communities »", communities_path, :class=>"btn"%></p>
+		</center>
+ </div>
+  <div class="span4">
+		<center>
+      <h2>Events</h2>
+      <p>Discover new activities and events to participate on and around campus.</p>
+      <p><%= link_to "View Events »", events_path, :class=>"btn"%></p>
+		</center>
+  </div>
+</div>

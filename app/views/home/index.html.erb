@@ -1,20 +1,8 @@
-
-
-</br>
-
-<div id="index_top">
-	<%= render :partial => 'pitch' %>
-</div>
-
-<div id="index_bottom">
-	<% if user_signed_in? %>
+<% if user_signed_in? %>
+	<%= render :partial => 'create_posts_buttons' %>
+	<%= render :partial => 'user_pitch' %>
 	<%= render :partial => 'user_home' %>
-	<% else %>
+<% else %>
+	<%= render :partial => 'guest_pitch' %>
 	<%= render :partial => 'guest_home' %>
-	<% end %>
-</div>
-
-
-
-
-
+<% end %>

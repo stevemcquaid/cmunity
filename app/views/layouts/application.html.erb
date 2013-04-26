@@ -45,7 +45,7 @@
             </div>
             <div class="container">
               <% if true  #commenting this sidebar out for now due to bugs%>
-                <% if user_signed_in? %>
+                <% if user_signed_in? && params[:controller] != 'home' %>
                   <div class="well sidebar-nav span3">
                     <ul class="nav nav-list">
                       <div class="desktop-post-nav">
@@ -108,9 +108,13 @@
                     </div>
                   <% end %>
                 <% end %>
-                <div class="span8">
+                <% if params[:controller] == "home" %>
                   <%= yield %>
-                </div>
+                <% else %>
+                  <div class="span8">
+                    <%= yield %>
+                  </div>
+                <% end %>
               <% end %>
             </br>
             <% if false %>

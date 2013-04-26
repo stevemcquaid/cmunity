@@ -2,8 +2,7 @@ class TextPostsController < ApplicationController
   # GET /texts
   # GET /texts.json
   def index
-    @texts = TextPost.all
-
+    @texts = TextPost.order('updated_at DESC').paginate(:page => params[:page], :per_page => 20)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @texts }

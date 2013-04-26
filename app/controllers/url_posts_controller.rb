@@ -46,7 +46,7 @@ class UrlPostsController < ApplicationController
     respond_to do |format|
       if @url.save
         track_activity @url
-        format.html { redirect_to urls_url, notice: 'Url post was successfully created.' }
+        format.html { redirect_to post_path(@url.content), notice: 'Url post was successfully created.' }
         format.json { render json: @url, status: :created, location: @url }
       else
         format.html { render action: "new" }

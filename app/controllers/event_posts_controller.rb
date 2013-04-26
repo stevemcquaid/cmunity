@@ -48,7 +48,7 @@ class EventPostsController < ApplicationController
     respond_to do |format|
       if @event.save
         track_activity @event
-        format.html { redirect_to events_url, notice: 'Event post was successfully created.' }
+        format.html { redirect_to post_path(@event.content), notice: 'Event post was successfully created.' }
         format.json { render json: @event, status: :created, location: @event }
       else
         format.html { render action: "new" }

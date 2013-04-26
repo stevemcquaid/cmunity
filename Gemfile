@@ -7,10 +7,10 @@ gem 'rails', '3.2.13'
 gem 'wirble', '~> 0.1.3'
 gem 'hirb', '~> 0.7.1'
 gem 'squeel', '~> 1.0.18'
-
+gem 'will_paginate', '~> 3.0.0'
+gem 'will_paginate-bootstrap'
 
 gem 'sqlite3', '~> 1.3.7', :group => [:test, :development]
-
 
 group :development do
   gem 'better_errors', '~> 0.8.0'
@@ -23,12 +23,15 @@ group :production do
 	gem 'pg', '~> 0.14.1'
 end
 
-
 group :test do
   gem 'shoulda', '~> 3.3.2'
   gem "rspec", "~> 2.13.0"
-  gem 'cucumber-rails', '~> 1.3.1', :require => false
-  gem 'database_cleaner', '~> 0.9.1'
+  gem 'rspec-rails'
+  gem 'cucumber-rails', :require => false
+   # database_cleaner is not required, but highly recommended
+  gem 'database_cleaner'
+  gem 'capybara'
+  gem 'webrat'
 end
 
 # Authentication & Authorization

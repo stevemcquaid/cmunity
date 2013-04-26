@@ -3,11 +3,11 @@
     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.name %> <b class="caret"></b></a>
     <ul class="dropdown-menu">
       <li><a href="#">My Posts</a></li>
-      <li><a href="#">My Groups</a></li>
+      <li><%= link_to "My Communities", mycommunities_path %></li>
       <li><a href="#">My Events</a></li>
       <li class="divider"></li>
       <li class="nav-header">Options</li>
-      <li><a href="#">Change Password</a></li>
+      <li><%= link_to 'Change Password', edit_user_registration_path %></li>
       <li><%= link_to('Sign Out', destroy_user_session_path, :method => :delete)  %></li>
     </ul>
   </li>

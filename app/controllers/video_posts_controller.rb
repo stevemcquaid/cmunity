@@ -46,7 +46,7 @@ class VideoPostsController < ApplicationController
     respond_to do |format|
       if @video.save
         track_activity @video
-        format.html { redirect_to videos_url, notice: 'Video post was successfully created.' }
+        format.html { redirect_to post_path(@video.content), notice: 'Video post was successfully created.' }
         format.json { render json: @video, status: :created, location: @video }
       else
         format.html { render action: "new" }

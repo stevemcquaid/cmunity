@@ -1,27 +1,24 @@
 <%- model_class = Content -%>
-  <%= link_to "New Text", new_text_path, :class => 'btn btn-primary'%>
-  <%= link_to "New Event", new_event_path, :class => 'btn btn-primary' %>
-  <%= link_to "New URL", new_url_path, :class => 'btn btn-primary' %>
-  <%= link_to "New Video", new_video_path, :class => 'btn btn-primary' %>
-  <%= link_to "New Image", new_image_path, :class => 'btn btn-primary' %>
-  <div class="home_top">
-      <hr>
+<div class="row-fluid">
+  <div class="span4">
+    <center>
+			<h2>Activity</h2>
+    	<p>View posts and comments from users of CMUnity. You can share pictures and videos to friends and members of your organization about the latest news and events.</p>
+    	<p><%= link_to "View Posts »", posts_path, :class=>"btn"%></p>
+		</center>
   </div>
-    <div class="row-fluid">
-        <div class="span4">
-          <h2>Activity</h2>
-          <p>View posts and comments from users of CMUnity. You can share pictures and videos to friends and members of your organization about the latest news and events.</p>
-          <p><a class="btn btn-info" href="posts">View Activity Feed »</a></p>
-        </div>
-        <div class="span4">
-          <h2>Communities</h2>
-          <p>Create or join communities and become a part of their endeavors and goals for the school year. Manage and organize your internal community's hierarchy and affairs. </p>
-          <p><a class="btn btn-info" href="communities">View Communities »</a></p>
-       </div>
-        <div class="span4">
-          <h2>Events</h2>
-          <p>Create and promote events from your communities and share them with the rest of campus. What better way to publicize your events?</p>
-          <p><a class="btn btn-info" href="events">View Events »</a></p>
-        </div>
-    </div>
-
+  <div class="span4">
+		<center>
+      <h2>Communities</h2>
+      <p>Create or join communities and become a part of their endeavors and goals for the school year. Manage and organize your internal community's hierarchy and affairs. </p>
+      <p><%= link_to "View Communities »", communities_path, :class=>"btn"%></p>
+		</center>
+ </div>
+  <div class="span4">
+		<center>
+      <h2>Events</h2>
+      <p>Create and promote events from your communities and share them with the rest of campus. What better way to publicize your events?</p>
+      <p><%= link_to "View Events »", events_path, :class=>"btn"%></p>
+		</center>
+  </div>
+</div>

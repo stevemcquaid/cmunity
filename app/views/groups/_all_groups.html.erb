@@ -5,19 +5,15 @@
       <th><%= Group.human_attribute_name(:name) %></th>
       <th>Admin</th>
       <th># of Members</th>
-      <% @groups.each do |group| %>
-        <% if group.can_manage?(current_user) %>
-          <th><%=t '.actions', :default => t("helpers.actions") %></th>
-        <% end %>
-      <% end %>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @groups.each do |group| %>
       <tr>
         <td><%= link_to group.id, group_path(group) %></td>
-        <td><%= group.name %></td>
-        <td><%= group.find_admin.name unless group.find_admin.nil? %></td>
+        <td><%= link_to group.name, group_path(group) %></td>
+        <td><%= link_to group.find_admin.name, user_path(group.find_admin) unless group.find_admin.nil? %></td>
         <td><%= group.users.count %></td>
         <% if group.can_manage?(current_user) %>
           <td>
@@ -29,3 +25,5 @@
     <% end %>
   </tbody>
 </table>
+
+<%= will_paginate @groups, :renderer => BootstrapPagination::Rails %>

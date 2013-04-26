@@ -46,7 +46,7 @@ class ImagePostsController < ApplicationController
     respond_to do |format|
       if @image.save
         track_activity @image
-        format.html { redirect_to images_url, notice: 'Image post was successfully created.' }
+        format.html { redirect_to post_path(@image.content), notice: 'Image post was successfully created.' }
         format.json { render json: @image, status: :created, location: @image }
       else
         format.html { render action: "new" }
