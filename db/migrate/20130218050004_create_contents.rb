@@ -5,6 +5,7 @@ class CreateContents < ActiveRecord::Migration
       t.text :description
       t.integer :creator_id
       t.integer :parent_group_id
+      t.integer :post_as
       t.boolean :is_private
       t.integer :mediable_id
       t.string :mediable_type

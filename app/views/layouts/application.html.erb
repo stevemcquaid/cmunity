@@ -44,18 +44,43 @@
               </div><!-- /navbar-inner -->
             </div>
             <div class="container">
-              <% if false  #commenting this sidebar out for now due to bugs%>
-                <% if user_signed_in? %>
-                  <div class="well sidebar-nav">
+              <% if true  #commenting this sidebar out for now due to bugs%>
+                <% if user_signed_in? && params[:controller] != 'home' %>
+                  <div class="well sidebar-nav span3">
                     <ul class="nav nav-list">
+                      <div class="desktop-post-nav">
                       <li class="nav-header">Post:</li>
-                      <li><%= link_to '<i class="icon-pencil"></i> A Text'.html_safe, new_text_post_path %></li>
-                      <li><%= link_to '<i class="icon-calendar"></i> An Event'.html_safe, new_event_post_path %></li>
-                      <li><%= link_to '<i class="icon-camera"></i> An Image'.html_safe, new_image_post_path %></li>
-                      <li><%= link_to '<i class="icon-film"></i> A Video'.html_safe, new_video_post_path %></li>
-                      <li><%= link_to '<i class="icon-search"></i> A URL'.html_safe, new_url_post_path %></li>
+                        <li><%= link_to '<i class="icon-pencil"></i> A Text'.html_safe, new_text_path %></li>
+                        <li><%= link_to '<i class="icon-calendar"></i> An Event'.html_safe, new_event_path %></li>
+                        <li><%= link_to '<i class="icon-camera"></i> An Image'.html_safe, new_image_path %></li>
+                        <li><%= link_to '<i class="icon-film"></i> A Video'.html_safe, new_video_path %></li>
+                        <li><%= link_to '<i class="icon-search"></i> A URL'.html_safe, new_url_path %></li>
+                      </div>
+                      <div class="tablet-post-nav row">
+                        <li class="btn"><%= link_to '<i class="icon-pencil"></i> Text'.html_safe, new_text_path %></li>
+                        <li class="btn"><%= link_to '<i class="icon-calendar"></i> Event'.html_safe, new_event_path %></li>
+                        <li class="btn"><%= link_to '<i class="icon-camera"></i> Image'.html_safe, new_image_path %></li>
+                        <li class="btn"><%= link_to '<i class="icon-film"></i> Video'.html_safe, new_video_path %></li>
+                        <li class="btn"><%= link_to '<i class="icon-search"></i> URL'.html_safe, new_url_path %></li>
+                      </div>
                     </ul>
                   </div><!--/.well -->
+                  <ul class="nav nav-list">
+                      <div class="mobile-post-nav-wide">
+                        <li class="btn btn-large"><%= link_to '<i class="icon-pencil"></i>'.html_safe, new_text_path%></li>
+                        <li class="btn btn-large"><%= link_to '<i class="icon-calendar"></i>'.html_safe, new_text_path%></li>
+                        <li class="btn btn-large"><%= link_to '<i class="icon-camera"></i>'.html_safe, new_text_path%></li>
+                        <li class="btn btn-large"><%= link_to '<i class="icon-film"></i>'.html_safe, new_text_path%></li>
+                        <li class="btn btn-large"><%= link_to '<i class="icon-search"></i>'.html_safe, new_text_path%></li>
+                      </div>
+                      <div class="mobile-post-nav-long">
+                        <li class="btn"><%= link_to '<i class="icon-pencil"></i>'.html_safe, new_text_path%></li>
+                        <li class="btn"><%= link_to '<i class="icon-calendar"></i>'.html_safe, new_text_path%></li>
+                        <li class="btn"><%= link_to '<i class="icon-camera"></i>'.html_safe, new_text_path%></li>
+                        <li class="btn"><%= link_to '<i class="icon-film"></i>'.html_safe, new_text_path%></li>
+                        <li class="btn"><%= link_to '<i class="icon-search"></i>'.html_safe, new_text_path%></li>
+                      </div>
+                  </ul>
                 <% elsif false %>
                   <div class="well sidebar-nav">
                     <ul class="nav nav-list">
@@ -83,7 +108,13 @@
                     </div>
                   <% end %>
                 <% end %>
-                <%= yield %>
+                <% if params[:controller] == "home" %>
+                  <%= yield %>
+                <% else %>
+                  <div class="span8">
+                    <%= yield %>
+                  </div>
+                <% end %>
               <% end %>
             </br>
             <% if false %>

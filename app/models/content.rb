@@ -3,10 +3,11 @@ class Content < ActiveRecord::Base
   belongs_to :mediable, :polymorphic => true
   belongs_to :group, :class_name => "Group", :foreign_key => :parent_group_id
   belongs_to :creator, :class_name => "User", :foreign_key => :creator_id
+  belongs_to :creator_group, :class_name => "Group", :foreign_key => :post_as
  
   has_one :text_post, :through => :mediable, :source => :eventable, :source_type => 'TextPost'
 
-  attr_accessible :title, :creator_id, :parent_group_id, :is_private, :description, :mediable_id, :mediable_type
+  attr_accessible :title, :creator_id, :parent_group_id, :post_as, :is_private, :description, :mediable_id, :mediable_type
 
   scope :public, where{ is_private.eq false }
   scope :private, where{ is_private.eq true }

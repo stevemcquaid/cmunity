@@ -1,14 +1,14 @@
 .page-header
   %h1 
-    URL
-    %small Share a link
+    Video
+    %small Share an Video
 
-= simple_form_for(@url, :url => urls_path, :html => {:class => 'form-horizontal'}) do |u| 
-  = u.error_notification
+= simple_form_for(@video, :url => videos_path, :html => {:class => 'form-horizontal'}) do |vid| 
+  = vid.error_notification
 
   .row
     .form-inputs
-      = u.simple_fields_for :content do |c|
+      = vid.simple_fields_for :content do |c|
 
         - admin_groups = current_user.by_group_role('admin')
         - if !admin_groups.empty?
@@ -21,8 +21,8 @@
             %span.control-label Post to Group:
             = c.input :parent_group_id, collection: user_groups, label_method: :name, value_method: :id, :input_html => { :id => 'group_input', :class => 'selectpicker' }, :label => false
 
-      = u.input :url
+      = vid.input :video_url
 
   .row
     .form-actions
-      = u.button :submit, "Post URL", :class => 'btn btn-primary'
+      = vid.button :submit, "Post Video", :class => 'btn btn-primary'

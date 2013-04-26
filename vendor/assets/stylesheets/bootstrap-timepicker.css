@@ -23,9 +23,14 @@
   left: auto;
   right: 13px;
 }
-.bootstrap-timepicker .add-on {
+/*.bootstrap-timepicker .add-on {
+  cursor: pointer;
+}*/
+
+.bootstrap-timepicker {
   cursor: pointer;
 }
+
 .bootstrap-timepicker .add-on i {
   display: inline-block;
   width: 16px;
