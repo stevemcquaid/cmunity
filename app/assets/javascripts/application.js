@@ -15,6 +15,7 @@
 //= require twitter/bootstrap
 //= require bootstrap-datepicker
 //= require bootstrap-timepicker
+//= require bootstrap-switch
 //= require jquery.liveurl
 //= require editable
 //= require_tree .

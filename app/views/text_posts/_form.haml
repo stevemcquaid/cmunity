@@ -10,7 +10,7 @@
       .span5
         = t.simple_fields_for :content do |c|
           = c.input :title
-          = c.input :is_private
+          = c.input :is_private, as: :bootswitch, :wrapper => :bootstrap_switch, :input_html => { :id => 'private'}
           - if !current_user.by_group_role('admin').empty?
             %span Post As:
             = c.input :parent_group_id, collection: current_user.by_group_role('admin'), label_method: :name, value_method: :id

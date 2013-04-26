@@ -11,6 +11,7 @@
  *= require_self
  *= require bootstrap-datepicker
  *= require bootstrap-timepicker
+ *= require bootstrap-switch
  *= require liveurl
  *= require_tree .
 */
