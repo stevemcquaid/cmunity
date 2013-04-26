@@ -18,6 +18,7 @@
               , $switchLeft
               , $switchRight
               , $label
+              , $dataswitch = $element.find('#switch_data')
               , myClasses = ""
               , classes = $element.attr('class')
               , color
@@ -33,17 +34,17 @@
 
             $element.addClass('has-switch');
 
-            if ($element.data('on') !== undefined)
-              color = "switch-" + $element.data('on');
+            if ($dataswitch.data('on') !== undefined)
+              color = "switch-" + $dataswitch.data('on');
 
-            if ($element.data('on-label') !== undefined)
-              onLabel = $element.data('on-label');
+            if ($dataswitch.data('on-label') !== undefined)
+              onLabel = $dataswitch.data('on-label');
 
-            if ($element.data('off-label') !== undefined)
-              offLabel = $element.data('off-label');
+            if ($dataswitch.data('off-label') !== undefined)
+              offLabel = $dataswitch.data('off-label');
 
-            if ($element.data('icon') !== undefined)
-              icon = $element.data('icon');
+            if ($dataswitch.data('icon') !== undefined)
+              icon = $dataswitch.data('icon');
 
             $switchLeft = $('<span>')
               .addClass("switch-left")
@@ -52,8 +53,8 @@
               .html(onLabel);
 
             color = '';
-            if ($element.data('off') !== undefined)
-              color = "switch-" + $element.data('off');
+            if ($dataswitch.data('off') !== undefined)
+              color = "switch-" + $dataswitch.data('off');
 
             $switchRight = $('<span>')
               .addClass("switch-right")
@@ -72,7 +73,7 @@
 
             $div = $element.find(':checkbox').wrap($('<div>')).parent().data('animated', false);
 
-            if ($element.data('animated') !== false)
+            if ($dataswitch.data('animated') !== false)
               $div.addClass('switch-animate').data('animated', true);
 
             $div
@@ -123,7 +124,7 @@
                   $element.removeClass('switch-off').addClass('switch-on');
                 else $element.removeClass('switch-on').addClass('switch-off');
 
-                if ($element.data('animated') !== false)
+                if ($dataswitch.data('animated') !== false)
                   $element.addClass("switch-animate");
 
                 $element.parent().trigger('switch-change', {'el': $this, 'value': thisState})

@@ -17,3 +17,72 @@
 .dropdown-menu {
 	padding:10px;
 }
+
+.tablet-post-nav {
+	display: none;
+}
+
+.tablet-post-nav li {
+
+}
+
+
+
+.mobile-post-nav-wide, .mobile-post-nav-long {
+	display: none;
+	margin: 0px auto;
+}
+
+.mobile-post-nav-wide {
+	padding: 0 10px;
+}
+
+.mobile-post-nav-long li {
+    margin: 0px 3px;
+    vertical-align: top;
+    display: inline-block;
+}
+
+
+
+
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) { 
+	.desktop-post-nav {
+		display: none;
+	}
+	.tablet-post-nav {
+		display: block;
+	}
+
+ }
+ 
+/* Landscape phones and down */
+@media (max-width: 560px) { 
+
+	.tablet-post-nav {
+		display: none;
+	}
+
+	.sidebar-nav {
+		display:none;
+	}
+	.mobile-post-nav-wide {
+		display: block;
+	}
+
+
+
+ }
+
+ @media (max-width: 450px) {
+ 	.mobile-post-nav-wide {
+ 		display: none;
+ 	}
+
+ 	.mobile-post-nav-long {
+ 		display: block;
+ 	}
+
+ }

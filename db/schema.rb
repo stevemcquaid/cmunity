@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(:version => 20130407061457) do
     t.text     "description"
     t.integer  "creator_id"
     t.integer  "parent_group_id"
+    t.integer  "post_as"
     t.boolean  "is_private"
     t.integer  "mediable_id"
     t.string   "mediable_type"

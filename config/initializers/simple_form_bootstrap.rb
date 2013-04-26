@@ -89,6 +89,20 @@ SimpleForm.setup do |config|
     end
   end
 
+  config.wrappers :bootstrap_switch_small, :tag => 'div', :class => "control-group", :error_class => 'error' do |b|
+    b.use :html5
+    b.use :placeholder
+    b.use :label
+    b.wrapper :tag => 'div', :class => 'controls' do |input|
+      input.wrapper :tag => 'div', :class => 'switch switch-small' do |switch|
+        switch.use :input
+      end
+      input.use :hint,  :wrap_with => { :tag => 'span', :class => 'help-block' }
+      input.use :error, :wrap_with => { :tag => 'span', :class => 'help-inline' }
+    end
+  end
+
+
   config.wrappers :checkbox_inline, :tag => false do |b|
     b.use :label_input
   end

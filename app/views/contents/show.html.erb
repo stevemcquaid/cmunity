@@ -8,8 +8,14 @@
   <dd><%= @content.title %></dd>
   <dt><strong><%= model_class.human_attribute_name(:creator_id) %>:</strong></dt>
   <dd><%= @content.creator_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:parent_group_id) %>:</strong></dt>
-  <dd><%= @content.parent_group_id %></dd>
+  <% if @content.parent_group_id %>
+    <dt><strong><%= model_class.human_attribute_name(:parent_group_id) %>:</strong></dt>
+    <dd><%= @content.parent_group_id.to_s + " - " + @content.creator_group.name %></dd>
+  <% end %>
+  <% if @content.parent_group_id %>
+    <dt><strong><%= model_class.human_attribute_name(:post_as) %>:</strong></dt>
+    <dd><%= @content.post_as.to_s + " - " + @content.creator_group.name %></dd>
+    <% end %>
   <dt><strong><%= model_class.human_attribute_name(:is_private) %>:</strong></dt>
   <dd><%= @content.is_private ? "Private" : "Public" %></dd>
 

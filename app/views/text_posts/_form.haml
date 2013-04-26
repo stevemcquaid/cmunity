@@ -2,20 +2,26 @@
   %h1 
     Text
     %small Create a New Text
-.row
-  = simple_form_for(@text, :url => texts_path, :html => {:class => 'form-horizontal'}) do |t| 
-    = t.error_notification
 
+= simple_form_for(@text, :url => texts_path, :html => {:class => 'form-horizontal'}) do |t| 
+  = t.error_notification
+  .row
     .form-inputs
       .span5
         = t.simple_fields_for :content do |c|
+
+          - admin_groups = current_user.by_group_role('admin')
+          - if !admin_groups.empty?
+            = c.input :post_as, collection: admin_groups, label_method: :name, value_method: :id, :input_html => { :class => 'selectpicker' }
           = c.input :title
-          = c.input :is_private, as: :bootswitch, :wrapper => :bootstrap_switch, :input_html => { :id => 'private'}
-          - if !current_user.by_group_role('admin').empty?
-            %span Post As:
-            = c.input :parent_group_id, collection: current_user.by_group_role('admin'), label_method: :name, value_method: :id
+          = c.input :is_private, as: :bootswitch, :label => 'Private?', :wrapper => :bootstrap_switch_small, :input_html => { :id => 'switch_data', :class => "private", :data => { 'on-label' => '<i class="icon-ok icon-white"></i>', 'off-label' => '<i class="icon-remove"></i>'}}
+          - user_groups = current_user.groups
+          - if !user_groups.empty?
+            #group_section
+              %span.control-label Post to Group:
+              = c.input :parent_group_id, collection: user_groups, label_method: :name, value_method: :id, :input_html => { :id => 'group_input', :class => 'selectpicker' }, :label => false
       .span7
         = t.input :text, as: :text, :input_html => { :class => 'span3', :rows => 6 }
-    .row
-      .form-actions
-        = t.button :submit, "Post Text", :class => 'btn btn-primary'
+  .row
+    .form-actions
+      = t.button :submit, "Post Text", :class => 'btn btn-primary'

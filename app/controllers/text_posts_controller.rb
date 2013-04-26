@@ -1,28 +1,28 @@
 class TextPostsController < ApplicationController
-  # GET /text_posts
-  # GET /text_posts.json
+  # GET /texts
+  # GET /texts.json
   def index
-    @text_posts = TextPost.all
+    @texts = TextPost.all
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @text_posts }
+      format.json { render json: @texts }
     end
   end
 
-  # GET /text_posts/1
-  # GET /text_posts/1.json
+  # GET /texts/1
+  # GET /texts/1.json
   def show
-    @text_post = TextPost.find(params[:id])
+    @text = TextPost.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @text_post }
+      format.json { render json: @text }
     end
   end
 
-  # GET /text_posts/new
-  # GET /text_posts/new.json
+  # GET /texts/new
+  # GET /texts/new.json
   def new
     @text = TextPost.new
     @text.build_content
@@ -30,24 +30,24 @@ class TextPostsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @text_post }
+      format.json { render json: @text }
     end
   end
 
-  # GET /text_posts/1/edit
+  # GET /texts/1/edit
   def edit
-    @text_post = TextPost.find(params[:id])
+    @text = TextPost.find(params[:id])
   end
 
-  # POST /text_posts
-  # POST /text_posts.json
+  # POST /texts
+  # POST /texts.json
   def create
     @text = TextPost.new(params[:text_post])
     @text.content.creator = current_user
     respond_to do |format|
       if @text.save
         track_activity @text
-        format.html { redirect_to texts_url, notice: 'Text post was successfully created.' }
+        format.html { redirect_to post_path(@text.content), notice: 'Text post was successfully created.' }
         format.json { render json: @text, status: :created, location: @text }
       else
         format.html { render action: "new" }
@@ -56,31 +56,31 @@ class TextPostsController < ApplicationController
     end
   end
 
-  # PUT /text_posts/1
-  # PUT /text_posts/1.json
+  # PUT /texts/1
+  # PUT /texts/1.json
   def update
-    @text_post = TextPost.find(params[:id])
+    @text = TextPost.find(params[:id])
 
     respond_to do |format|
-      if @text_post.update_attributes(params[:text_post])
-        track_activity @text_post
-        format.html { redirect_to @text_post, notice: 'Text post was successfully updated.' }
+      if @text.update_attributes(params[:text_post])
+        track_activity @text
+        format.html { redirect_to @text, notice: 'Text post was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @text_post.errors, status: :unprocessable_entity }
+        format.json { render json: @text.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /text_posts/1
-  # DELETE /text_posts/1.json
+  # DELETE /texts/1
+  # DELETE /texts/1.json
   def destroy
-    @text_post = TextPost.find(params[:id])
-    @text_post.destroy
-    track_activity @text_post
+    @text = TextPost.find(params[:id])
+    @text.destroy
+    track_activity @text
     respond_to do |format|
-      format.html { redirect_to text_posts_url }
+      format.html { redirect_to texts_url }
       format.json { head :no_content }
     end
   end

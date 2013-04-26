@@ -2,43 +2,50 @@
   %h1 
     Events
     %small Create a New Event
-.row
-  = simple_form_for(@event, :url => events_path, :html => {:class => 'form-horizontal'}) do |e| 
-    = e.error_notification
 
+= simple_form_for(@event, :url => events_path, :html => {:class => 'form-horizontal small-labels'}) do |e| 
+  = e.error_notification
+
+  .row.row-desktop
     .form-inputs
-      .span6
+      .span3
         = e.simple_fields_for :content do |c|
-          = c.input :title
-          = c.input :is_private
-          - if !current_user.by_group_role('admin').empty?
-            %span Post As:
-            = c.input :parent_group_id, collection: current_user.by_group_role('admin'), label_method: :name, value_method: :id
-        = e.input :location
-  
+
+          - admin_groups = current_user.by_group_role('admin')
+          - if !admin_groups.empty?
+            = c.input :post_as, collection: admin_groups, label_method: :name, value_method: :id, :input_html => { :class => 'selectpicker span2' }
+          = c.input :title, :input_html => { :class => 'span2' }
+          = c.input :is_private, as: :bootswitch, :label => 'Private?', :wrapper => :bootstrap_switch_small, :input_html => { :id => 'switch_data', :class => 'private', :data => { 'on-label' => '<i class="icon-ok icon-white"></i>', 'off-label' => '<i class="icon-remove"></i>'}}
+          - user_groups = current_user.groups
+          - if !user_groups.empty?
+            #group_section
+              = c.input :parent_group_id, collection: user_groups, label_method: :name, value_method: :id, :input_html => { :id => 'group_input', :class => 'selectpicker span2' }, :label => "Post to Group"
+
+        = e.input :location, :input_html => { :class => 'span2' }
+
         = e.input :start_date, :wrapper => :append_datepicker_start do
-          = e.input_field :start_date, :as => :string, :id => 'start-date'
+          = e.input_field :start_date, :as => :string, :id => 'start-date', :class => 'span2'
           = content_tag :span, nil, :class => "add-on" do
             = content_tag :i, nil, :class => "icon-calendar"
 
         = e.input :end_date, :wrapper => :append_datepicker_end do
-          = e.input_field :end_date, :as => :string, :id => 'end-date'
+          = e.input_field :end_date, :as => :string, :id => 'end-date', :class => 'span2'
           = content_tag :span, nil, :class => "add-on" do
             = content_tag :i, nil, :class => "icon-calendar"
-      .span6
+      .span3
         = e.input :start_time, :wrapper => :append_timepicker do
-          = e.input_field :start_time, :as => :string, :id => 'start-time'
+          = e.input_field :start_time, :as => :string, :id => 'start-time', :class => 'span2'
           = content_tag :span, nil, :class => "add-on" do
             = content_tag :i, nil, :class => "icon-time"
 
         = e.input :end_time, :wrapper => :append_timepicker do
-          = e.input_field :end_time, :as => :string, :id => 'end-time'
+          = e.input_field :end_time, :as => :string, :id => 'end-time', :class => 'span2'
           = content_tag :span, nil, :class => "add-on" do
             = content_tag :i, nil, :class => "icon-time"
 
-        = e.input :is_all_day, :input_html => { :id => "all_day" }
+        = e.input :is_all_day, as: :bootswitch, :wrapper => :bootstrap_switch_small, :input_html => { :id => 'switch_data', :class => 'all_day' , :data => { 'on-label' => '<i class="icon-ok icon-white"></i>', 'off-label' => '<i class="icon-remove"></i>'}}
         = e.simple_fields_for :content do |c|
-          = c.input :description, :input_html => { :class => 'span4', :rows => 5 }
-    .row
-      .form-actions
-        = e.button :submit, "Post Event", :class => 'btn btn-primary' 
+          = c.input :description, :input_html => { :class => 'span3', :rows => 5 }
+  .row.row-desktop
+    .form-actions
+      = e.button :submit, "Post Event", :class => 'btn btn-primary' 

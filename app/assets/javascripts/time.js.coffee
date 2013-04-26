@@ -6,7 +6,7 @@ $ ->
   $("#end-time").timepicker
     minuteStep: 15
 
-  $("#all_day").change ->
+  $(".all_day").change ->
     if @checked
       oldStart = $("#start-time").val()
       oldEnd = $("#end-time").val()

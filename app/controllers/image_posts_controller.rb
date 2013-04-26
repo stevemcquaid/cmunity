@@ -1,85 +1,85 @@
 class ImagePostsController < ApplicationController
-  # GET /image_posts
-  # GET /image_posts.json
+  # GET /images
+  # GET /images.json
   def index
-    @image_posts = ImagePost.all
+    @images = ImagePost.all
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @image_posts }
+      format.json { render json: @images }
     end
   end
 
-  # GET /image_posts/1
-  # GET /image_posts/1.json
+  # GET /images/1
+  # GET /images/1.json
   def show
-    @image_post = ImagePost.find(params[:id])
+    @image = ImagePost.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @image_post }
+      format.json { render json: @image }
     end
   end
 
-  # GET /image_posts/new
-  # GET /image_posts/new.json
+  # GET /images/new
+  # GET /images/new.json
   def new
-    @image_post = ImagePost.new
-    @image_post.build_content
+    @image = ImagePost.new
+    @image.build_content
+    @image.content.mediable = @image
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @image_post }
+      format.json { render json: @image }
     end
   end
 
-  # GET /image_posts/1/edit
+  # GET /images/1/edit
   def edit
-    @image_post = ImagePost.find(params[:id])
+    @image = ImagePost.find(params[:id])
   end
 
-  # POST /image_posts
-  # POST /image_posts.json
+  # POST /images
+  # POST /images.json
   def create
-    @image_post = ImagePost.new(params[:image_post])
-    @image_post.content.media = @image_post
-    @image_post.content.creator= current_user
+    @image = ImagePost.new(params[:image_post])
+    @image.content.creator = current_user
     respond_to do |format|
-      if @image_post.save
-        track_activity @image_post
-        format.html { redirect_to @image_post, notice: 'Image post was successfully created.' }
-        format.json { render json: @image_post, status: :created, location: @image_post }
+      if @image.save
+        track_activity @image
+        format.html { redirect_to images_url, notice: 'Image post was successfully created.' }
+        format.json { render json: @image, status: :created, location: @image }
       else
         format.html { render action: "new" }
-        format.json { render json: @image_post.errors, status: :unprocessable_entity }
+        format.json { render json: @image.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PUT /image_posts/1
-  # PUT /image_posts/1.json
+  # PUT /images/1
+  # PUT /images/1.json
   def update
-    @image_post = ImagePost.find(params[:id])
+    @image = ImagePost.find(params[:id])
 
     respond_to do |format|
-      if @image_post.update_attributes(params[:image_post])
-        track_activity @image_post
-        format.html { redirect_to @image_post, notice: 'Image post was successfully updated.' }
+      if @image.update_attributes(params[:imagest_po])
+        track_activity @image
+        format.html { redirect_to @image, notice: 'Image post was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @image_post.errors, status: :unprocessable_entity }
+        format.json { render json: @image.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /image_posts/1
-  # DELETE /image_posts/1.json
+  # DELETE /images/1
+  # DELETE /images/1.json
   def destroy
-    @image_post = ImagePost.find(params[:id])
-    @image_post.destroy
-    track_activity @image_post
+    @image = ImagePost.find(params[:id])
+    @image.destroy
+    track_activity @image
     respond_to do |format|
-      format.html { redirect_to image_posts_url }
+      format.html { redirect_to images_url }
       format.json { head :no_content }
     end
   end

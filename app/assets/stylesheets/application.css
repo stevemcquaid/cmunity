@@ -12,6 +12,9 @@
  *= require bootstrap-datepicker
  *= require bootstrap-timepicker
  *= require bootstrap-switch
+ *= require bootstrap-select
+ *= require jasny-bootstrap
+ *= require jasny-bootstrap-responsive
  *= require liveurl
  *= require_tree .
 */
