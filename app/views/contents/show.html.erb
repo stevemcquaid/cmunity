@@ -7,10 +7,10 @@
   <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
   <dd><%= @content.title %></dd>
   <dt><strong><%= model_class.human_attribute_name(:creator_id) %>:</strong></dt>
-  <dd><%= @content.creator_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:parent_group_id) %>:</strong></dt>
-  <dd><%= @content.parent_group_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:is_private) %>:</strong></dt>
+  <dd><%= @content.creator.name %></dd>
+  <dt><strong>Group:</strong></dt>
+  <dd><%= @content.group.name %></dd>
+  <dt><strong>Privacy:</strong></dt>
   <dd><%= @content.is_private ? "Private" : "Public" %></dd>
 
   <% 
@@ -22,14 +22,11 @@
 </dl>
 
 <div class="form-actions">
-  <%= link_to t('.back', :default => t("helpers.links.back")),
-              posts_path, :class => 'btn'  %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_post_path(@content), :class => 'btn' %>
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              post_path(@content),
-              :method => 'delete',
-              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
-              :class => 'btn btn-danger' %>
+  <%= link_to t('.back', :default => t("helpers.links.back")), posts_path, :class => 'btn'  %>
+	
+	<% if current_user && @content.can_manage?(current_user) %>
+  	<%= link_to t('.edit', :default => t("helpers.links.edit")), edit_post_path(@content), :class => 'btn' %>
+  	<%= link_to t('.destroy', :default => t("helpers.links.destroy")), post_path(@content), :method => 'delete', :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')), :class => 'btn btn-danger' %>
+	<% end %>
 </div>
 
