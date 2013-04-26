@@ -99,23 +99,15 @@
                   </div><!--/.well -->
                 <% end %>
               <% end %>
-              <% if !flash.nil? %>
-                <% flash.each do |name, msg| %>
-                  <% if msg.is_a?(String) %>
-                    <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
-                      <a class="close" data-dismiss="alert">&#215;</a>
-                      <%= content_tag :div, msg, :id => "flash_#{name}" %>
-                    </div>
-                  <% end %>
-                <% end %>
                 <% if params[:controller] == "home" %>
+                  <%= render :partial => 'shared/flash', :locals => { :flash => flash } %>
                   <%= yield %>
                 <% else %>
                   <div class="span8">
+                    <%= render :partial => 'shared/flash', :locals => { :flash => flash } %>
                     <%= yield %>
                   </div>
                 <% end %>
-              <% end %>
             </br>
             <% if false %>
               <footer>
