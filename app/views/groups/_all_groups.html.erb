@@ -12,8 +12,8 @@
     <% @groups.each do |group| %>
       <tr>
         <td><%= link_to group.id, group_path(group) %></td>
-        <td><%= group.name %></td>
-        <td><%= group.find_admin.name unless group.find_admin.nil? %></td>
+        <td><%= link_to group.name, group_path(group) %></td>
+        <td><%= link_to group.find_admin.name, user_path(group.find_admin) unless group.find_admin.nil? %></td>
         <td><%= group.users.count %></td>
         <% if group.can_manage?(current_user) %>
           <td>

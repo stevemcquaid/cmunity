@@ -4,11 +4,11 @@ class GroupsController < ApplicationController
   # GET /groups
   # GET /groups.json
   def index
-    @groups = Group.paginate(:page => params[:page], :per_page => 10)
+    @groups = Group.order('updated_at DESC').paginate(:page => params[:page], :per_page => 10)
     @CU = current_user
     
     #logged in
-    @myGroups = current_user.groups.paginate(:page => params[:page], :per_page => 10) unless current_user.nil?
+    @myGroups = current_user.groups.order('updated_at DESC').paginate(:page => params[:page], :per_page => 10) unless current_user.nil?
     
     respond_to do |format|
       format.html # index.html.erb
