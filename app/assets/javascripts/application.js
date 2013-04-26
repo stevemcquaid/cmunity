@@ -13,9 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require jasny-bootstrap
 //= require bootstrap-datepicker
 //= require bootstrap-timepicker
 //= require bootstrap-switch
+//= require bootstrap-select
 //= require jquery.liveurl
 //= require editable
 //= require_tree .

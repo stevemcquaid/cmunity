@@ -6,6 +6,14 @@
 <dl class="dl-horizontal">
   <dt><strong>Title:</strong></dt>
   <dd><%= @content.title %></dd>
+  <% if @content.parent_group_id %>
+    <dt><strong>Group:</strong></dt>
+    <dd><%= @content.parent_group_id.to_s + " - " + @content.group.name %></dd>
+  <% end %>
+  <% if @content.post_as %>
+    <dt><strong>Creator Group:</strong></dt>
+    <dd><%= @content.post_as.to_s + " - " + @content.creator_group.name %></dd>
+  <% end %>
   <dt><strong>Type:</strong></dt>
   <% 
     type = @content.mediable_type.clone
@@ -16,8 +24,6 @@
   <dd><%= @content.is_private ? "Private" : "Public" %></dd>
   <dt><strong>Creator:</strong></dt>
   <dd><%= @content.creator.name unless @content.creator.nil? %></dd>
-  <dt><strong>Group:</strong></dt>
-  <dd><%= @content.group.name unless @content.group.nil? %></dd>
 </dl>
 
 <div class="form-actions">

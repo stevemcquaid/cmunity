@@ -1,85 +1,85 @@
 class VideoPostsController < ApplicationController
-  # GET /video_posts
-  # GET /video_posts.json
+  # GET /videos
+  # GET /videos.json
   def index
-    @video_posts = VideoPost.all
+    @videos = VideoPost.all
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @video_posts }
+      format.json { render json: @videos }
     end
   end
 
-  # GET /video_posts/1
-  # GET /video_posts/1.json
+  # GET /videos/1
+  # GET /videos/1.json
   def show
-    @video_post = VideoPost.find(params[:id])
+    @video = VideoPost.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @video_post }
+      format.json { render json: @video }
     end
   end
 
-  # GET /video_posts/new
-  # GET /video_posts/new.json
+  # GET /videos/new
+  # GET /videos/new.json
   def new
-    @video_post = VideoPost.new
-    @video_post.build_content
+    @video = VideoPost.new
+    @video.build_content
+    @video.content.mediable = @video
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @video_post }
+      format.json { render json: @video }
     end
   end
 
-  # GET /video_posts/1/edit
+  # GET /videos/1/edit
   def edit
-    @video_post = VideoPost.find(params[:id])
+    @video = VideoPost.find(params[:id])
   end
 
-  # POST /video_posts
-  # POST /video_posts.json
+  # POST /videos
+  # POST /videos.json
   def create
-    @video_post = VideoPost.new(params[:video_post])
-    @video_post.content.media = @video_post
-    @video_post.content.creator= current_user
+    @video = VideoPost.new(params[:video_post])
+    @video.content.creator = current_user
     respond_to do |format|
-      if @video_post.save
-        track_activity @video_post
-        format.html { redirect_to @video_post, notice: 'Video post was successfully created.' }
-        format.json { render json: @video_post, status: :created, location: @video_post }
+      if @video.save
+        track_activity @video
+        format.html { redirect_to post_path(@video.content), notice: 'Video post was successfully created.' }
+        format.json { render json: @video, status: :created, location: @video }
       else
         format.html { render action: "new" }
-        format.json { render json: @video_post.errors, status: :unprocessable_entity }
+        format.json { render json: @video.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PUT /video_posts/1
-  # PUT /video_posts/1.json
+  # PUT /videos/1
+  # PUT /videos/1.json
   def update
-    @video_post = VideoPost.find(params[:id])
+    @video = VideoPost.find(params[:id])
 
     respond_to do |format|
-      if @video_post.update_attributes(params[:video_post])
-        track_activity @video_post
-        format.html { redirect_to @video_post, notice: 'Video post was successfully updated.' }
+      if @video.update_attributes(params[:video_post])
+        track_activity @video
+        format.html { redirect_to @video, notice: 'Video post was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @video_post.errors, status: :unprocessable_entity }
+        format.json { render json: @video.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /video_posts/1
-  # DELETE /video_posts/1.json
+  # DELETE /videos/1
+  # DELETE /videos/1.json
   def destroy
-    @video_post = VideoPost.find(params[:id])
-    @video_post.destroy
-    track_activity @video_post
+    @video = VideoPost.find(params[:id])
+    @video.destroy
+    track_activity @video
     respond_to do |format|
-      format.html { redirect_to video_posts_url }
+      format.html { redirect_to videos_url }
       format.json { head :no_content }
     end
   end
