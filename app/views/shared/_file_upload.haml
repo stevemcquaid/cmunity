@@ -1,0 +1,12 @@
+.well.text-center.photo_well.clearfix{:style => "display: inline-block; width: 270px;"} 
+  %p.lead{:style => "margin: 0 0 5px;"} Upload an Image
+  .fileupload.fileupload-new{"data-provides" => "fileupload"}
+    .fileupload-new.thumbnail{:style => "width: #{width}px; height: #{height}px;"}
+      %img{:src => "http://www.placehold.it/#{width}x#{height}/EFEFEF/AAAAAA&text=no+image"}/
+    .fileupload-preview.fileupload-exists.thumbnail{:style => "max-width: #{width}px; max-height: #{height}px; line-height: 20px;"}
+    %div
+      %span.btn.btn-file{ :style => "margin: 0 0 5px 0;" }
+        %span.fileupload-new Select image
+        %span.fileupload-exists Change
+        = f.file_field attribute.to_sym
+      %a.btn.fileupload-exists{"data-dismiss" => "fileupload", :href => "#"} Remove

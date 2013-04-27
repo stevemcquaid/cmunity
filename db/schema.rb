@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130407061457) do
+ActiveRecord::Schema.define(:version => 20130427032530) do
 
   create_table "activities", :force => true do |t|
     t.integer  "owner_id"
@@ -69,8 +69,12 @@ ActiveRecord::Schema.define(:version => 20130407061457) do
     t.time     "start_time"
     t.time     "end_time"
     t.boolean  "is_all_day"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "groups", :force => true do |t|

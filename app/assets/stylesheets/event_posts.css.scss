@@ -3,6 +3,16 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .event-col {
-	padding:10px;
 }
 
+.form-horizontal .event-col .controls {
+	margin-left:90px;
+}
+
+
+@media (max-width: 1200px) { 
+
+	.part1, .part2, .part3, .photo_bin, .photo_well {
+		width: 100% !important;
+	}
+}

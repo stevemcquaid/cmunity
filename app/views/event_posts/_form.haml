@@ -7,8 +7,13 @@
   = e.error_notification
 
   .row-fluid.row-desktop
-    .form-inputs
-      .span6.event-col
+    .span5.photo_bin
+      = render :partial => "shared/file_upload", :locals => { :f => e, :attribute => 'photo', :width => '260', :height => '180' }
+    .span5.pull-right.text-right.part1
+      .row.row-desktop
+        .page-header.clearfix
+          %p.lead.pull-right{:style => "margin-bottom: 0px;"} Drop the deetz!
+      .row.row-desktop
         = e.simple_fields_for :content do |c|
 
           - admin_groups = current_user.by_group_role('admin')
@@ -32,7 +37,13 @@
           = e.input_field :end_date, :as => :string, :id => 'end-date', :class => 'span6'
           = content_tag :span, nil, :class => "add-on" do
             = content_tag :i, nil, :class => "icon-calendar"
-      .span6.event-col
+  .row-fluid.row-desktop
+    .form-inputs
+      .span6.pull-left.part2
+        %p.lead What's this event about?
+        = e.simple_fields_for :content do |c|
+          = c.input :description, :label => false, :placeholder => "Description...", :wrapper => :no_controls, :input_html => { :class => 'span11', :rows => 5 }
+      .span6.event-col.pull-right.text-right.part3
         = e.input :start_time, :wrapper => :append_timepicker do
           = e.input_field :start_time, :as => :string, :id => 'start-time', :class => 'span6'
           = content_tag :span, nil, :class => "add-on" do
@@ -44,8 +55,7 @@
             = content_tag :i, nil, :class => "icon-time"
 
         = e.input :is_all_day, as: :bootswitch, :wrapper => :bootstrap_switch_small, :input_html => { :id => 'switch_data', :class => 'all_day' , :data => { 'on-label' => '<i class="icon-ok icon-white"></i>', 'off-label' => '<i class="icon-remove"></i>'}}
-        = e.simple_fields_for :content do |c|
-          = c.input :description, :input_html => { :class => 'input-block-level', :rows => 5 }
+
   .row-fluid.row-desktop
     .form-actions
       = e.button :submit, "Post Event", :class => 'btn btn-primary' 

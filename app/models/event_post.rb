@@ -9,6 +9,8 @@ class EventPost < ActiveRecord::Base
   accepts_nested_attributes_for :content
   accepts_nested_attributes_for :cosponsor
 
-  attr_accessible :location, :start_date, :end_date, :start_time, :end_time, :is_all_day, :content_attributes, :cosponsor_attributes
+  attr_accessible :photo, :location, :start_date, :end_date, :start_time, :end_time, :is_all_day, :content_attributes, :cosponsor_attributes
+
+  has_attached_file :photo, :styles => { :large => "390x270>", :medium => "260x180>", :thumb => "130x90>" }
 
 end
