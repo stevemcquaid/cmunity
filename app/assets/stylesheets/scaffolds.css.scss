@@ -22,11 +22,6 @@
 	display: none;
 }
 
-.tablet-post-nav li {
-
-}
-
-
 
 .mobile-post-nav-wide, .mobile-post-nav-long {
 	display: none;
@@ -43,6 +38,20 @@
     display: inline-block;
 }
 
+.auto-nav1, .auto-nav2, .auto-nav3 {
+	overflow:hidden;
+	width:100%;
+	margin: 0px;
+	li {
+		list-style-type:none;
+		float:left;
+		margin-right: 5px;
+		white-space:nowrap;
+		text-align:center !important;
+		
+	}
+	li.last { margin-right:0; float:right; }
+}
 
 
 
@@ -52,10 +61,14 @@
 	.desktop-post-nav {
 		display: none;
 	}
-	.tablet-post-nav {
-		display: block;
+
+	.sidebar-nav {
+		display: none;
 	}
 
+	.tablet-post-nav {
+		display: block;				
+	}
  }
  
 /* Landscape phones and down */

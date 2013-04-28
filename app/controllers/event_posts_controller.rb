@@ -43,13 +43,13 @@ class EventPostsController < ApplicationController
   # POST /events.json
   def create
     @event = EventPost.new(params[:event_post])
-    @event.content.media = @event
     @event.content.creator= current_user
+
     respond_to do |format|
       if @event.save
         track_activity @event
         format.html { redirect_to post_path(@event.content), notice: 'Event post was successfully created.' }
-        format.json { render json: @event, status: :created, location: @event }
+        format.json { render json: post_path(@event.content), status: :created, location: post_path(@event.content) }
       else
         format.html { render action: "new" }
         format.json { render json: @event.errors, status: :unprocessable_entity }

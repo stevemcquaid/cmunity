@@ -3,7 +3,7 @@
     Events
     %small Create a New Event
 
-= simple_form_for(@event, :url => events_path, :html => {:class => 'form-horizontal small-labels'}) do |e| 
+= simple_form_for(@event, :url => events_path, :html => {:class => 'form-horizontal small-labels', :multipart => true}) do |e| 
   = e.error_notification
 
   .row-fluid.row-desktop

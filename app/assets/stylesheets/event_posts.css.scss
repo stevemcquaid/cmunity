@@ -15,4 +15,11 @@
 	.part1, .part2, .part3, .photo_bin, .photo_well {
 		width: 100% !important;
 	}
+
+	.part2 {
+		text-align: right;
+	}
+}
+.datepicker-dropdown {
+	z-index: 110 !important;
 }
