@@ -1,6 +1,5 @@
 class EventPostsController < ApplicationController
-  # GET /events
-  # GET /events.json
+
   def index
     @events = EventPost.all
 
@@ -44,6 +43,9 @@ class EventPostsController < ApplicationController
   def create
     @event = EventPost.new(params[:event_post])
     @event.content.creator= current_user
+
+    @event.start_date = Date.strptime(params[:event_post][:start_date], "%m/%d/%Y")
+    @event.end_date = Date.strptime(params[:event_post][:end_date], "%m/%d/%Y")
 
     respond_to do |format|
       if @event.save

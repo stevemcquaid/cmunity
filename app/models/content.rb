@@ -46,6 +46,12 @@ class Content < ActiveRecord::Base
     end
   end
 
+  def type
+    type = self.mediable_type.clone
+    type.slice! "Post"
+    type
+  end
+
   def parent_group_id_exists
     return true if self.parent_group_id.nil?
     begin

@@ -16,6 +16,8 @@ gem 'sqlite3', '~> 1.3.7', :group => [:test, :development]
 gem 'nokogiri', '~> 1.5.9'
 gem 'ging-opengraph', '~> 0.0.5'
 
+gem 'chronic', '~> 0.9.1'
+
 group :development do
   gem 'better_errors', '~> 0.8.0'
   gem 'binding_of_caller', '~> 0.7.1'

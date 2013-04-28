@@ -1,0 +1,14 @@
+.page-header
+  %h1 
+    = content.title
+    %small= content.type
+
+= image_tag content.mediable.photo.url(:medium), :class => 'img-rounded'
+%ul 
+  %li= content.mediable.location
+  %li= content.mediable.start_date
+  %li= content.mediable.end_date
+  %li= content.mediable.start_time
+  %li= content.mediable.end_time
+  %li= content.mediable.is_all_day
+

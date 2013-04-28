@@ -10,47 +10,46 @@
     .span5.photo_bin
       = render :partial => "shared/file_upload", :locals => { :f => e, :attribute => 'photo', :width => '260', :height => '180' }
     .span5.pull-right.text-right.part1
-      .row.row-desktop
-        .page-header.clearfix
-          %p.lead.pull-right{:style => "margin-bottom: 0px;"} Drop the deetz!
-      .row.row-desktop
-        = e.simple_fields_for :content do |c|
+      .page-header.clearfix
+        %p.lead.pull-right{:style => "margin-bottom: 0px;"} Drop the deetz!
 
-          - admin_groups = current_user.by_group_role('admin')
-          - if !admin_groups.empty?
-            = c.input :post_as, collection: admin_groups, label_method: :name, value_method: :id, :input_html => { :class => 'selectpicker input-block-level' }
-          = c.input :title, :input_html => { :class => 'input-block-level' }
-          = c.input :is_private, as: :bootswitch, :label => 'Private?', :wrapper => :bootstrap_switch_small, :input_html => { :id => 'switch_data', :class => 'private', :data => { 'on-label' => '<i class="icon-ok icon-white"></i>', 'off-label' => '<i class="icon-remove"></i>'}}
-          - user_groups = current_user.groups
-          - if !user_groups.empty?
-            #group_section
-              = c.input :parent_group_id, collection: user_groups, label_method: :name, value_method: :id, :input_html => { :id => 'group_input', :class => 'selectpicker input-block-level' }, :label => "Post to Group"
+      = e.simple_fields_for :content do |c|
 
-        = e.input :location, :input_html => { :class => 'input-block-level' }
+        - admin_groups = current_user.by_group_role('admin')
+        - if !admin_groups.empty?
+          = c.input :post_as, collection: admin_groups, label_method: :name, value_method: :id, :input_html => { :class => 'selectpicker input-block-level' }
+        = c.input :title, :input_html => { :class => 'input-block-level' }
+        = c.input :is_private, as: :bootswitch, :label => 'Private?', :wrapper => :bootstrap_switch_small, :input_html => { :id => 'switch_data', :class => 'private', :data => { 'on-label' => '<i class="icon-ok icon-white"></i>', 'off-label' => '<i class="icon-remove"></i>'}}
+        - user_groups = current_user.groups
+        - if !user_groups.empty?
+          #group_section
+            = c.input :parent_group_id, collection: user_groups, label_method: :name, value_method: :id, :input_html => { :id => 'group_input', :class => 'selectpicker input-block-level' }, :label => "Post to Group"
 
-        = e.input :start_date, :wrapper => :append_datepicker_start do
-          = e.input_field :start_date, :as => :string, :id => 'start-date', :class => 'span6'
-          = content_tag :span, nil, :class => "add-on" do
-            = content_tag :i, nil, :class => "icon-calendar"
+      = e.input :location, :input_html => { :class => 'input-block-level' }
 
-        = e.input :end_date, :wrapper => :append_datepicker_end do
-          = e.input_field :end_date, :as => :string, :id => 'end-date', :class => 'span6'
-          = content_tag :span, nil, :class => "add-on" do
-            = content_tag :i, nil, :class => "icon-calendar"
+      = e.input :start_date, :wrapper => :append_datepicker_start do
+        = e.input_field :start_date, :as => :string, :id => 'start-date', :class => 'span6 append-resize'
+        = content_tag :span, nil, :class => "add-on" do
+          = content_tag :i, nil, :class => "icon-calendar"
+
+      = e.input :end_date, :wrapper => :append_datepicker_end do
+        = e.input_field :end_date, :as => :string, :id => 'end-date', :class => 'span6 append-resize'
+        = content_tag :span, nil, :class => "add-on" do
+          = content_tag :i, nil, :class => "icon-calendar"
   .row-fluid.row-desktop
     .form-inputs
       .span6.pull-left.part2
         %p.lead What's this event about?
         = e.simple_fields_for :content do |c|
           = c.input :description, :label => false, :placeholder => "Description...", :wrapper => :no_controls, :input_html => { :class => 'span11', :rows => 5 }
-      .span6.event-col.pull-right.text-right.part3
+      .span5.event-col.pull-right.text-right.part3
         = e.input :start_time, :wrapper => :append_timepicker do
-          = e.input_field :start_time, :as => :string, :id => 'start-time', :class => 'span6'
+          = e.input_field :start_time, :as => :string, :id => 'start-time', :class => 'span6 append-resize'
           = content_tag :span, nil, :class => "add-on" do
             = content_tag :i, nil, :class => "icon-time"
 
         = e.input :end_time, :wrapper => :append_timepicker do
-          = e.input_field :end_time, :as => :string, :id => 'end-time', :class => 'span6'
+          = e.input_field :end_time, :as => :string, :id => 'end-time', :class => 'span6 append-resize'
           = content_tag :span, nil, :class => "add-on" do
             = content_tag :i, nil, :class => "icon-time"
 

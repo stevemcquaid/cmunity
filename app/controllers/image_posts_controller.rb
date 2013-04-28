@@ -1,6 +1,7 @@
 class ImagePostsController < ApplicationController
-  # GET /images
-  # GET /images.json
+
+
+
   def index
     @images = ImagePost.all
 
