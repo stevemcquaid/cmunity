@@ -46,7 +46,7 @@
             <div class="container">
               <% if true  #commenting this sidebar out for now due to bugs%>
                 <% if user_signed_in? && params[:controller] != 'home' %>
-                  <div class="well sidebar-nav span3">
+                  <div class="well sidebar-nav span2">
                     <ul class="nav nav-list">
                       <div class="desktop-post-nav">
                       <li class="nav-header">Post:</li>
@@ -108,7 +108,7 @@
                   <%= render :partial => 'shared/flash', :locals => { :flash => flash } %>
                   <%= yield %>
                 <% else %>
-                  <div class="span8">
+                  <div class="span9">
                     <%= render :partial => 'shared/flash', :locals => { :flash => flash } %>
                     <%= yield %>
                   </div>

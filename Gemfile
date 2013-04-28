@@ -12,7 +12,9 @@ gem 'will_paginate-bootstrap'
 
 gem 'sqlite3', '~> 1.3.7', :group => [:test, :development]
 
-gem 'ging-opengraph'
+
+gem 'nokogiri', '~> 1.5.9'
+gem 'ging-opengraph', '~> 0.0.5'
 
 group :development do
   gem 'better_errors', '~> 0.8.0'
@@ -27,7 +29,7 @@ end
 
 group :test do
   gem 'shoulda', '~> 3.3.2'
-  gem "rspec", "~> 2.13.0"
+  gem 'rspec', '~> 2.13.0'
   gem 'rspec-rails'
   gem 'cucumber-rails', :require => false
    # database_cleaner is not required, but highly recommended

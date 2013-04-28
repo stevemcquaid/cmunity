@@ -3,8 +3,9 @@ class CreateVideoPosts < ActiveRecord::Migration
     create_table :video_posts do |t|
       t.string :video_url
       t.integer :length
-      t.integer :x_pixels
-      t.integer :y_pixels
+      t.integer :width
+      t.integer :height
+      t.text :embed_code
 
       t.timestamps
     end

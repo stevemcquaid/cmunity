@@ -87,11 +87,15 @@ class UrlPostsController < ApplicationController
   def fetch
     require 'opengraph'
 
-    data = OpenGraph.fetch(params[:url])
-
-    respond_to :json
-
-    respond_with { data: data }
+    url = params[:url].html_safe
+    @data = OpenGraph.fetch(url)
+    if @data == false
+      doc = Nokogiri::HTML(open(url))
+      @data.title = doc.css('title')
+    end
+    respond_to do |format|
+      format.json { render :json => @data }
+    end
   end
 
 end
