@@ -24,12 +24,12 @@
             #group_section
               %span.control-label Post to Group:
               = c.input :parent_group_id, collection: user_groups, label_method: :name, value_method: :id, :input_html => { :id => 'group_input', :class => 'selectpicker' }, :label => false
-      .row-fluid
-        %br
-        %h3.title
-        %p.desc
-        %img.preview_img
-        %small.site_url
+  .row-fluid
+    .well#fetch-data
+      %h3.title
+      %p.desc
+      %img.preview_img
+      %small.site_url
 
   .row-fluid
     .form-actions

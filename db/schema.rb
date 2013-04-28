@@ -92,8 +92,8 @@ ActiveRecord::Schema.define(:version => 20130427032530) do
 
   create_table "image_posts", :force => true do |t|
     t.string   "image_url"
-    t.integer  "x_pixels"
-    t.integer  "y_pixels"
+    t.integer  "width"
+    t.integer  "height"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -184,8 +184,9 @@ ActiveRecord::Schema.define(:version => 20130427032530) do
   create_table "video_posts", :force => true do |t|
     t.string   "video_url"
     t.integer  "length"
-    t.integer  "x_pixels"
-    t.integer  "y_pixels"
+    t.integer  "width"
+    t.integer  "height"
+    t.text     "embed_code"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

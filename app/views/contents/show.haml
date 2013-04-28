@@ -1,5 +1,10 @@
 - if @content.mediable_type == "TextPost"
+  = render :partial => "display/text", :locals => { :content => @content }
 - if @content.mediable_type == "UrlPost"
+  = render :partial => "display/url", :locals => { :content => @content }
 - if @content.mediable_type == "VideoPost"
+  = render :partial => "display/video", :locals => { :content => @content }
 - if @content.mediable_type == "ImagePost"
+  = render :partial => "display/image", :locals => { :content => @content }
 - if @content.mediable_type == "EventPost"
+  = render :partial => "display/event", :locals => { :content => @content }

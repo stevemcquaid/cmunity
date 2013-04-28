@@ -1,6 +1,5 @@
 class UrlPostsController < ApplicationController
-  # GET /urls
-  # GET /urls.json
+  
   def index
     @urls = UrlPost.all
 

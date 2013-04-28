@@ -1,6 +1,5 @@
 class VideoPostsController < ApplicationController
-  # GET /videos
-  # GET /videos.json
+
   def index
     @videos = VideoPost.all
 

@@ -21,6 +21,14 @@ chosenOne = User.create({
 	:password_confirmation => "12345678"
 	})
 
+chosenTwo = User.create({
+	:first_name => "Sean",
+	:last_name => "Hoffman",
+	:email => "IsRaz88@gmail.com",
+	:password => "testing1",
+	:password_confirmation => "testing1"
+	})
+
 
 5.times do
 	
@@ -56,8 +64,8 @@ chosenOne = User.create({
 				
 				imagepost = ImagePost.create({
 					:image_url => Faker::Internet.url,
-					:x_pixels => (360..1080),
-					:y_pixels => (240..720)
+					:width => (360..1080),
+					:height => (240..720)
 					})
 
 				subtype = imagepost
@@ -67,8 +75,8 @@ chosenOne = User.create({
 				videopost = VideoPost.create({
 					:video_url => Faker::Internet.url,
 					:length => (60..420),
-					:x_pixels => (360..1080),
-					:y_pixels => (240..720)
+					:width => (360..1080),
+					:height => (240..720)
 					})
 
 				subtype = videopost
