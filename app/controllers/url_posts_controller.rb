@@ -83,4 +83,15 @@ class UrlPostsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def fetch
+    require 'opengraph'
+
+    data = OpenGraph.fetch(params[:url])
+
+    respond_to :json
+
+    respond_with { data: data }
+  end
+
 end

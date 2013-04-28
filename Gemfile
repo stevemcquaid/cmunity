@@ -12,6 +12,8 @@ gem 'will_paginate-bootstrap'
 
 gem 'sqlite3', '~> 1.3.7', :group => [:test, :development]
 
+gem 'ging-opengraph'
+
 group :development do
   gem 'better_errors', '~> 0.8.0'
   gem 'binding_of_caller', '~> 0.7.1'
