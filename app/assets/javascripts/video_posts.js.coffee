@@ -12,26 +12,35 @@ $ ->
     else
       true
   $("#video-url-input").bind "input keyup", ->
-    $this = $(this);
-    $('p.desc').html('Loading....')
-    $('h3.title').html('')
-    $('p.desc').html('')
-    $('img.preview_img').attr('src', '')
-    $('small.site_url').html('')
-    input_url = $this.val()
-    if ValidURL(input_url)
-      delay (->
-        $.ajax(
-          type: "GET"
-          url: "/fetchvid"
-          data:
-            url: input_url
-        ).done (obj) ->
-          console.log obj
-          if obj == false
-            $('p.desc').html('Returned False')
-          $('h3.title').html(obj.title)
-          $('p.desc').html(obj.description)
-          $('img.preview_img').attr('src', obj.image)
-          $('small.site_url').html(obj.url)
-      ), 2000
+      $this = $(this);
+      $('#fetch-data-video').show() 
+      $('#fetch-data-video .row-fluid').hide()    
+      $('.loading').html('<img src="/assets/preloader.gif" />')
+      $('#fetch-data-video p.description').html('Loading....')
+      $('#fetch-data-video .title').html('')
+      $('#fetch-data-video p.description').html('')
+      $('#fetch-data-video .embed').html('')
+      $('#fetch-data-video small.site_url').html('')
+      input_url = $this.val()
+      if ValidURL(input_url)
+        delay (->
+          $.ajax(
+            type: "GET"
+            url: "/fetchvid"
+            data:
+              url: input_url
+          ).done (obj) ->
+            console.log obj
+            $('.loading').html('')
+            if obj == false
+              $('#fetch-data-video p.description').html('Returned False')
+            $('#fetch-data-video').show()
+            $('#fetch-data-video .row-fluid').show()      
+            $('#fetch-data-video h4.title').html(obj.title)
+            $('#title').val(obj.title)
+            $('#description').val(obj.description)
+            $('#embed_code').val(obj.embed)
+            $('#fetch-data-video p.description').html(obj.description)
+            $('#fetch-data-video .embed').html(obj.embed)
+            $('#fetch-data-video small.site_url').html(obj.url)
+        ), 2000

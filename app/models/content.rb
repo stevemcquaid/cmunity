@@ -20,7 +20,7 @@ class Content < ActiveRecord::Base
   scope :by_creator, lambda {|creator_id| where(:creator_id => creator_id) }
   
   #validates :description, :presence => true, :unless => :isTextPost? # Validates presence of description unless TextPost
-  validates :title, :presence => true, :length => { :in => 2..50 }
+  validates :title, :presence => true, :length => { :in => 2..100 }
   validates :creator_id, :presence => true
   #validates :parent_group_id, :allow_blank => true   # Can't validate only on allow blank
   #validates :mediable_type, :presence => true, :inclusion => { :in => ["TextPost", "ImagePost", "UrlPost", "VideoPost", "EventPost"] }
