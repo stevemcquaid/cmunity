@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130427032530) do
+ActiveRecord::Schema.define(:version => 20130429003638) do
 
   create_table "activities", :force => true do |t|
     t.integer  "owner_id"
@@ -45,7 +45,6 @@ ActiveRecord::Schema.define(:version => 20130427032530) do
     t.text     "description"
     t.integer  "creator_id"
     t.integer  "parent_group_id"
-    t.integer  "post_as"
     t.boolean  "is_private"
     t.integer  "mediable_id"
     t.string   "mediable_type"
@@ -64,10 +63,8 @@ ActiveRecord::Schema.define(:version => 20130427032530) do
 
   create_table "event_posts", :force => true do |t|
     t.string   "location"
-    t.date     "start_date"
-    t.date     "end_date"
-    t.time     "start_time"
-    t.time     "end_time"
+    t.datetime "start_datetime"
+    t.datetime "end_datetime"
     t.boolean  "is_all_day"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
@@ -92,8 +89,8 @@ ActiveRecord::Schema.define(:version => 20130427032530) do
 
   create_table "image_posts", :force => true do |t|
     t.string   "image_url"
-    t.integer  "width"
-    t.integer  "height"
+    t.integer  "x_pixels"
+    t.integer  "y_pixels"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -130,7 +127,7 @@ ActiveRecord::Schema.define(:version => 20130427032530) do
   add_index "roles", ["name"], :name => "index_roles_on_name"
 
   create_table "text_posts", :force => true do |t|
-    t.text     "text"
+    t.string   "text"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -167,6 +164,7 @@ ActiveRecord::Schema.define(:version => 20130427032530) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "cell"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true
@@ -184,9 +182,8 @@ ActiveRecord::Schema.define(:version => 20130427032530) do
   create_table "video_posts", :force => true do |t|
     t.string   "video_url"
     t.integer  "length"
-    t.integer  "width"
-    t.integer  "height"
-    t.text     "embed_code"
+    t.integer  "x_pixels"
+    t.integer  "y_pixels"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

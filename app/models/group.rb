@@ -21,7 +21,8 @@ class Group < ActiveRecord::Base
 
 
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>"}
-  
+  attr_accessible :name, :description, :users_to_message, :message
+  attr_reader :users_to_message, :message
   
   # Validations
   validates :name, :presence => true, :length => { :minimum => 2 }, :uniqueness => true
