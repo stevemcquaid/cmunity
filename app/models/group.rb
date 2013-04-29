@@ -24,23 +24,26 @@ class Group < ActiveRecord::Base
   attr_reader :users_to_message, :message
   
   # Validations
-  # validate :validate_message
-  validates :message, :presence => true, :length => { :minimum => 1 }
   validates :name, :presence => true, :length => { :minimum => 2 }, :uniqueness => true
   validates :description, :presence => true, :length => { :minimum => 5 }
   #validates_attachment :avatar, :presence => true, :content_type => { :content_type => "image/jpg" }, :size => { :in => 0..1000.kilobytes }
   #validates_with AttachmentPresenceValidator, :attributes => :avatar
   
-  # def validate_message
-  #   if !(message.length > 1 )
-  #     errors.add_to_base("Location is invalid")
-  #     false
-  #   end
-  # end
-  # 
-  # def message
-  #   @Vmessage = message
-  # end
+  def isMessageValid?(message)
+    if !(message.length > 1 )
+      self.errors.add(message, "can not be empty")
+    end
+    
+    return ( message.length > 1 )
+  end
+  
+  def isMemberValid?(members)
+    if members.nil?
+      return false
+    end
+    
+    return (members.size > 0)
+  end
   
   def find_admin
       gid = self.id

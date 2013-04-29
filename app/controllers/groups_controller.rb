@@ -40,30 +40,38 @@ class GroupsController < ApplicationController
   end
   
   def send_message
+    @group = Group.find(params[:group][:id])
+    
     members = params[:group]["users_to_message"]
     members.reject! { |m| m.empty? }
     message = params[:group]["message"]
     
-    if (message == "")
-      redirect_to groups_url, warning: 'Error'
+    logger.debug "Members: #{members}"
+    
+    if (@group.isMessageValid?(message) && @group.isMemberValid?(members))
+      members.each do |u|
+        user = User.find(u)
+        twilio(user.cell, message)
+      end
+      
+      
+      
+      redirect_to groups_url, notice: 'Message Sent.'
       return
+      
+    else
+      
+      if !(@group.isMemberValid?(message))
+        redirect_to group_path(@group), alert: "Please select members to send message"
+        return
+      end
+      
+      if !(@group.isMessageValid?(message))
+        redirect_to group_path(@group), alert: "Message must be at least 1 character"
+        return
+      end
+      
     end
-    
-    members.each do |u|
-      user = User.find(u)
-      twilio(user.cell, message)
-    end
-    
-    redirect_to groups_url, notice: 'Message Sent.'
-    
-    #@group = Group.find(params[:id])
-    
-    #Success
-    # respond_to do |format|
- #      format.html {redirect_to groups_url, notice: 'Message Sent.'}
- #      format.json { render json: @group }
- #    end
-    
   end
 
   def twilio(number_to_send_to, the_message)
