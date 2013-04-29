@@ -18,5 +18,5 @@
   %blockquote{:style => "margin: 10px 0;"}
     %p= content.description
   - if current_user == content.creator
-    = link_to "Destory", video_path
+    = link_to "Destory", video_path, :class => "btn btn-danger"
     = link_to "Edit", edit_video_path(content.mediable), :class => "btn"

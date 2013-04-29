@@ -155,30 +155,61 @@ Membership.create(:user_id => Steve.id, :group_id => Bhangra.id)
 Membership.create(:user_id => Arjun.id, :group_id => Bhangra.id)
 Membership.create(:user_id => Michelle.id, :group_id => Bhangra.id)
 
+
+role = Role.create(:name => "admin", :resource_id => Bhangra.id, :resource_type => "Group")
+userrole = UsersRole.create(:role_id => role.id, :user_id => Veda.id)
+
 Membership.create(:user_id => Olivia.id, :group_id => GlobalBusiness.id)
 Membership.create(:user_id => Tom.id, :group_id => GlobalBusiness.id)
 Membership.create(:user_id => Daniel.id, :group_id => GlobalBusiness.id)
+
+role = Role.create(:name => "admin", :resource_id => Bhangra.id, :resource_type => "Group")
+userrole = UsersRole.create(:role_id => role.id, :user_id => Veda.id)
 
 Membership.create(:user_id => Emily.id, :group_id => Theta.id)
 Membership.create(:user_id => Olivia.id, :group_id => Theta.id)
 Membership.create(:user_id => Stephany.id, :group_id => Theta.id)
 
+role = Role.create(:name => "admin", :resource_id => Theta.id, :resource_type => "Group")
+userrole = UsersRole.create(:role_id => role.id, :user_id => Emily.id)
+
 Membership.create(:user_id => Veda.id, :group_id => TOC.id)
 Membership.create(:user_id => Sean.id, :group_id => TOC.id)
+
+role = Role.create(:name => "admin", :resource_id => TOC.id, :resource_type => "Group")
+userrole = UsersRole.create(:role_id => role.id, :user_id => Veda.id)
 
 Membership.create(:user_id => Steve.id, :group_id => OM.id)
 Membership.create(:user_id => Sean.id, :group_id => OM.id)
 
+role = Role.create(:name => "admin", :resource_id => OM.id, :resource_type => "Group")
+userrole = UsersRole.create(:role_id => role.id, :user_id => Steve.id)
+
 Membership.create(:user_id => Michelle.id, :group_id => ASA.id)
 Membership.create(:user_id => Stephany.id, :group_id => ASA.id)
 
+role = Role.create(:name => "admin", :resource_id => ASA.id, :resource_type => "Group")
+userrole = UsersRole.create(:role_id => role.id, :user_id => Michelle.id)
+
 Membership.create(:user_id => Arjun.id, :group_id => StuCo.id)
+
+role = Role.create(:name => "admin", :resource_id => StuCo.id, :resource_type => "Group")
+userrole = UsersRole.create(:role_id => role.id, :user_id => Arjun.id)
 
 Membership.create(:user_id => Tom.id, :group_id => Senate.id)
 
+role = Role.create(:name => "admin", :resource_id => Senate.id, :resource_type => "Group")
+userrole = UsersRole.create(:role_id => role.id, :user_id => Tom.id)
+
 Membership.create(:user_id => Daniel.id, :group_id => TheTartan.id)
 
+role = Role.create(:name => "admin", :resource_id => TheTartan.id, :resource_type => "Group")
+userrole = UsersRole.create(:role_id => role.id, :user_id => Daniel.id)
+
 Membership.create(:user_id => Emily.id, :group_id => DS.id)
+
+role = Role.create(:name => "admin", :resource_id => DS.id, :resource_type => "Group")
+userrole = UsersRole.create(:role_id => role.id, :user_id => Emily.id)
 
 #Activity.create(:action => 'create', :trackable => membership, :owner => user)
 
@@ -186,108 +217,127 @@ Membership.create(:user_id => Emily.id, :group_id => DS.id)
 # Text Posts
 
 textpost1 = TextPost.create({
-					:creator => Steve.id,
-					:group => OM.id,
-					:is_private => false,
-					:title => "Need Utensils and Plates",
+					:content_attributes => {
+						:creator_id => Steve.id,
+						:parent_group_id => OM.id,
+						:is_private => false,
+						:title => "Need Utensils and Plates",
+					},
 					:text => "OM is hosting Holi and desperately needs utensils and plates for the event. 
 					If any organization has extra, please let us know if you are willing to contribute! We'd greatly appreciate it!"
 					})
 
 textpost2 = TextPost.create({
-					:creator => Olivia.id,
-					:group => Theta.id,
-					:is_private => false,
-					:title => "BBQ Shoutout",
+					:content_attributes => {
+						:creator_id => Olivia.id,
+						:parent_group_id => Theta.id,
+						:is_private => false,
+						:title => "BBQ Shoutout",
+					},
 					:text => "Thank you for coming out to the Theta BBQ this weekend! We hope you had fun!"
 					})
 
 textpost3 = TextPost.create({
-					:creator_id => Tom.id,
-					:parent_group_id => Senate.id,
-					:is_private => true,
-					:title => "Meeting Details",
+					:content_attributes => {	
+						:creator_id => Tom.id,
+						:parent_group_id => Senate.id,
+						:is_private => true,
+						:title => "Meeting Details",
+					},
 					:text => "The meeting location has been moved to the Alumni Lounge and the new time is at 7:00PM. Don't be late!"
 					})
 
 textpost4 = TextPost.create({
-					:creator_id => Michelle.id,
-					:parent_group_id => ASA.id,
-					:is_private => false,
-					:title => "Booth Pick Up Directions",
+					:content_attributes => {
+						:creator_id => Michelle.id,
+						:parent_group_id => ASA.id,
+						:is_private => false,
+						:title => "Booth Pick Up Directions",
+					},
 					:text => "Meet at the cages today at 4PM. We are going to the store and picking up paint and wood for the booth.
 					Mayur SASA is also tagging along so we can split costs for the zipcar and U-Haul!"
 					})
 
 textpost5 = TextPost.create({
-					:creator_id => Arjun.id,
-					:parent_group_id => Bhangra.id,
-					:is_private => false,
-					:title => "Healthy Eating Habits",
+					:content_attributes => {
+						:creator_id => Arjun.id,
+						:parent_group_id => Bhangra.id,
+						:is_private => false,
+						:title => "Healthy Eating Habits",
+					},
 					:text => "Eat only fruits and vegetables! Competition is next weekend! Just a few more days to go and then we'll let you eat cake :)"
 					})
 
 textpost6 = TextPost.create({
-					:creator_id => Daniel.id,
-					:parent_group_id => GlobalBusiness.id,
-					:is_private => false,
-					:title => "Krispy Kreme Donut Drop Off",
+					:content_attributes => {
+						:creator_id => Daniel.id,
+						:parent_group_id => GlobalBusiness.id,
+						:is_private => false,
+						:title => "Krispy Kreme Donut Drop Off",
+					},
 					:text => "Be another Homer Simpson! Eat donuts and buy them for a good cause!"
 					})
 
 textpost7 = TextPost.create({
-					:creator_id => Emily.id,
-					:parent_group_id => DS.id,
-					:is_private => false,
-					:title => "Costumes Needed",
+					:content_attributes => {
+						:creator_id => Emily.id,
+						:parent_group_id => DS.id,
+						:is_private => false,
+						:title => "Costumes Needed",
+					},
 					:text => "The DS semester show is coming up and we would love to use weird clothing that anyone would like to donate! It would be greatly appreciated!"
 					})
 
 textpost8 = TextPost.create({
-					:creator_id => Daniel.id,
-					:parent_group_id => TheTartan.id,
-					:is_private => false,
-					:title => "Photographers For This Weekend",
+					:content_attributes => {
+						:creator_id => Daniel.id,
+						:parent_group_id => TheTartan.id,
+						:is_private => false,
+						:title => "Photographers For This Weekend",
+					},
 					:text => "We need photographers to cover two events this weekend: Lunar Gala and the Mayur Show. Who's up for this?!"
 					})
+
+
 
 
 # Image Posts
 
 imagepost = ImagePost.create({
+
 					:image_url => Faker::Internet.url,
-					:x_pixels => (360..1080),
-					:y_pixels => (240..720)
+					:width => (360..1080),
+					:height => (240..720)
 					})
 
 imagepost = ImagePost.create({
 					:image_url => Faker::Internet.url,
-					:x_pixels => (360..1080),
-					:y_pixels => (240..720)
+					:width => (360..1080),
+					:height => (240..720)
 					})
 
 imagepost = ImagePost.create({
 					:image_url => Faker::Internet.url,
-					:x_pixels => (360..1080),
-					:y_pixels => (240..720)
+					:width => (360..1080),
+					:height => (240..720)
 					})
 
 imagepost = ImagePost.create({
 					:image_url => Faker::Internet.url,
-					:x_pixels => (360..1080),
-					:y_pixels => (240..720)
+					:width => (360..1080),
+					:height => (240..720)
 					})
 
 imagepost = ImagePost.create({
 					:image_url => Faker::Internet.url,
-					:x_pixels => (360..1080),
-					:y_pixels => (240..720)
+					:width => (360..1080),
+					:height => (240..720)
 					})
 
 imagepost = ImagePost.create({
 					:image_url => Faker::Internet.url,
-					:x_pixels => (360..1080),
-					:y_pixels => (240..720)
+					:width => (360..1080),
+					:height => (240..720)
 					})
 
 # Event Posts
@@ -296,107 +346,4 @@ imagepost = ImagePost.create({
 
 # URL Posts
 
-# 
-# 5.times do
-#   
-#   group = Group.create(:name => Populator.words(1..3).titleize)
-# 
-#   (5..10).each do
-#   
-#     user = User.create({
-#       :first_name => Faker::Name.first_name,
-#       :last_name => Faker::Name.last_name,
-#       :email => Faker::Internet.safe_email,
-#       :password => "password",
-#       :password_confirmation => "password"
-#       })
-#   
-#     membership = Membership.create(:user_id => user.id, :group_id => group.id)
-#     Activity.create(:action => 'create', :trackable => membership, :owner => user)
-#     
-#     5.times do
-# 
-#       type = ["UrlPost","TextPost","ImagePost", "VideoPost", "EventPost"].sample
-#       subtype = nil
-# 
-#       if type == "TextPost"
-#         
-#         textpost = TextPost.create({
-#           :text => Populator.paragraphs(1..3)
-#           })
-#         
-#         subtype = textpost
-#       
-#       elsif type == "ImagePost"
-#         
-#         imagepost = ImagePost.create({
-#           :image_url => Faker::Internet.url,
-#           :x_pixels => (360..1080),
-#           :y_pixels => (240..720)
-#           })
-# 
-#         subtype = imagepost
-# 
-#       elsif type == "VideoPost"
-# 
-#         videopost = VideoPost.create({
-#           :video_url => Faker::Internet.url,
-#           :length => (60..420),
-#           :x_pixels => (360..1080),
-#           :y_pixels => (240..720)
-#           })
-# 
-#         subtype = videopost
-# 
-#       elsif type == "EventPost"
-# 
-#         sdate = rand(2.months).ago
-#         w = rand(2..60)
-#         edate = sdate + w.days
-#         eventpost = EventPost.create({
-#           :location => Faker::Address.street_address,
-#           :start_date => sdate,
-#           :end_date => edate,
-#           :start_time => Time.now,
-#           :end_date => 2.hours.from_now,
-#           :is_all_day => [true, false].sample
-#           })
-#         subtype = eventpost
-# 
-#       elsif type == "UrlPost"
-# 
-#         urlpost = UrlPost.create({
-#           :url => Faker::Internet.url, 
-#           :domain_url => Faker::Internet.domain_name
-#           })
-#         subtype = urlpost
-# 
-#       end
-# 
-#       Activity.create(:action => 'create', :trackable => subtype, :owner => user)
-#       
-#       content = Content.create({
-#         :creator_id => user.id,
-#         :parent_group_id => group.id,
-#         :title => Populator.words(1..3).titleize,
-#         :mediable_id => subtype.id,
-#         :mediable_type => type,
-#         :is_private => [true, false].sample
-#         })
-# 
-#     end
-#   
-#   end
-# 
-#   role = Role.create(:name => "admin", :resource_id => group.id, :resource_type => "Group")
-#   roleuser = [1, 2, 3, 4, 5].sample
-#   userrole = UsersRole.create(:role_id => role.id, :user_id => roleuser)
-#   
-#   Activity.create(:action => 'create', :trackable => role, :owner_id => roleuser, :owner_type => "User")
-#   
-    permission = Permission.create(:creator_id => roleuser, :role_id => role.id, :subject_type => "Group", :subject_id => group.id, :action => "manage")
-#   group.update_attributes(:creator_id => roleuser)
-#   
-#   Activity.create(:action => 'create', :trackable => group, :owner_id => roleuser, :owner_type => "User")
-# 
-# end
+

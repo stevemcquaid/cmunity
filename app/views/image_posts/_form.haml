@@ -14,6 +14,7 @@
         - if !admin_groups.empty?
           = c.input :post_as, collection: admin_groups, label_method: :name, value_method: :id, :input_html => { :class => 'selectpicker' }
         = c.input :title
+        = c.input :description
         = c.input :is_private, as: :bootswitch, :label => 'Private?', :wrapper => :bootstrap_switch_small, :input_html => { :id => 'switch_data', :class => 'private', :data => {  'on-label' => '<i class="icon-ok icon-white"></i>', 'off-label' => '<i class="icon-remove"></i>'}}
         - user_groups = current_user.groups
         - if !user_groups.empty?
