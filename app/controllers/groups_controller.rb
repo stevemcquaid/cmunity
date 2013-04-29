@@ -44,20 +44,25 @@ class GroupsController < ApplicationController
     members.reject! { |m| m.empty? }
     message = params[:group]["message"]
     
-    members.each do |u|
-      user = User.find(u)
-      if message.nil?
-        twilio(user.cell, message)
-      else
-        redirect_to groups_path, notice: 'No message body was entered'
-      end
+    if (message == "")
+      redirect_to groups_url, warning: 'Error'
+      return
     end
     
-    #Success
-    respond_to do |format|
-      format.html { redirect_to groups_url, notice: 'Message Sent.' }#show
-      format.json { render json: @group }
+    members.each do |u|
+      user = User.find(u)
+      twilio(user.cell, message)
     end
+    
+    redirect_to groups_url, notice: 'Message Sent.'
+    
+    #@group = Group.find(params[:id])
+    
+    #Success
+    # respond_to do |format|
+ #      format.html {redirect_to groups_url, notice: 'Message Sent.'}
+ #      format.json { render json: @group }
+ #    end
     
   end
 
