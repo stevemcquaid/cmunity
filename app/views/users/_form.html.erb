@@ -20,6 +20,24 @@
       <%= f.text_field :email, :class => 'text_field' %>
     </div>
   </div>
+  <div class="control-group">
+    <%= f.label :cell, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.telephone_field :cell, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :password, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.password_field :password, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :password_confirmation, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.password_field :password_confirmation, :class => 'text_field' %>
+    </div>
+  </div>
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>

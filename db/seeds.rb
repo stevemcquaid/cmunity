@@ -17,6 +17,7 @@ chosenOne = User.create({
 	:first_name => "Yoda",
 	:last_name => "Baggins",
 	:email => "djstevemcquaid@gmail.com",
+  :cell => "4847278383",
 	:password => "12345678",
 	:password_confirmation => "12345678"
 	})
@@ -25,6 +26,7 @@ chosenTwo = User.create({
 	:first_name => "Sean",
 	:last_name => "Hoffman",
 	:email => "IsRaz88@gmail.com",
+  :cell => "5083617973",
 	:password => "testing1",
 	:password_confirmation => "testing1"
 	})
@@ -40,6 +42,7 @@ chosenTwo = User.create({
 			:first_name => Faker::Name.first_name,
 			:last_name => Faker::Name.last_name,
 			:email => Faker::Internet.safe_email,
+      :cell => Faker::PhoneNumber.cell,
 			:password => "password",
 			:password_confirmation => "password"
 			})

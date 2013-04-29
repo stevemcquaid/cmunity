@@ -1,3 +1,5 @@
+include ActionView::Helpers::NumberHelper
+
 class User < ActiveRecord::Base
   rolify
   # Include default devise modules. Others available are:
@@ -7,7 +9,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, :token_authenticatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me 
+  attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :cell
   
   has_many :contents, :foreign_key => 'creator_id'
   has_many :memberships
@@ -32,15 +34,26 @@ class User < ActiveRecord::Base
   # Validations
   # -----------------------------
   # make sure required fields are present
-  validates_presence_of :first_name, :last_name, :email
+  validates_presence_of :first_name, :last_name, :email, :cell
   validates_uniqueness_of :email, :allow_blank => true, :message => "must not be nil"
   validates_format_of :email, :with => /^[\w]([^@\s,;]+)@(([a-z0-9.-]+\.)+(com|edu|org|net|gov|mil|biz|info))$/i, :message => "is not a valid format", :allow_blank => false
   #need more validations when adding password + signed up, email validated, and authorized etc.
-  validates :password, :length => { :in => 6..20 }
-  
+  validates :password, :length => { :in => 6..20 }, :presence => true, :if => lambda { new_record? || !password.nil? }
+  validates :cell, :length => { :is => 10 } #before validation we gsub away all non-digits.
+
   #Validations for Avatar...need form
   #validates_attachment :avatar, :presence => true, :content_type => { :content_type => "image/jpg" }, :size => { :in => 0..1000.kilobytes }
   #validates_with AttachmentPresenceValidator, :attributes => :avatar
+  
+  before_validation do
+    self.cell = self.cell.gsub(/\D/, '') unless self.cell.nil?
+  end
+  
+  def formattedCellPhone
+    if !self.cell.nil?
+      number_to_phone(self.cell)
+    end
+  end
   
   def name
     first_name + " " + last_name
