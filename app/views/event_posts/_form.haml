@@ -41,6 +41,7 @@
         = e.input_field :end_date, :as => :string, :id => 'end-date', :class => 'span6 append-resize'
         = content_tag :span, nil, :class => "add-on" do
           = content_tag :i, nil, :class => "icon-calendar"
+
       = e.input :start_time, :wrapper => :append_timepicker do
         = e.input_field :start_time, :as => :string, :id => 'start-time', :class => 'span6 append-resize'
         = content_tag :span, nil, :class => "add-on" do
@@ -51,7 +52,7 @@
         = content_tag :span, nil, :class => "add-on" do
           = content_tag :i, nil, :class => "icon-time"
 
-      = e.input :is_all_day, as: :bootswitch, :wrapper => :bootstrap_switch_small, :input_html => { :id => 'switch_data', :class => 'all_day' , :data => { 'on-label' => '<i class="icon-ok icon-white"></i>', 'off-label' => '<i class="icon-remove"></i>'}}
+      = e.input :is_all_day, :label => "All Day", as: :bootswitch, :wrapper => :bootstrap_switch_small, :input_html => { :id => 'switch_data', :class => 'all_day' , :data => { 'on-label' => '<i class="icon-ok icon-white"></i>', 'off-label' => '<i class="icon-remove"></i>'}}
 
   .row-fluid.row-desktop
     .form-actions

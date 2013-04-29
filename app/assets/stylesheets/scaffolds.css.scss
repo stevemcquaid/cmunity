@@ -13,12 +13,25 @@
 	word-wrap:break-word;
 }
 
-input {
-    width: 100%;
+.dt-left > dt {
+	text-align:left;
 }
+
+#fetch-data-url, #fetch-data-video, #fetch-data-image {
+	display: none;
+}
+
+.loading {
+	text-align: center;
+}
+
+.fix_selects .bootstrap-select button{
+	width:200px;
+}
+
 .input-append {
     width: 100%;
-    input {
+    input#start-time, input#start-date, input#end-time, input#end-date {
     	width: 90% !important;
     }
 }

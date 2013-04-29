@@ -1,5 +1,15 @@
 .page-header
-  %h1 
+  %h3 
     = content.title
-    %small= content.type
-%p= content.mediable.url 
+    %small{:style => "display:block;"} 
+      #{content.is_private ? "Private" : "Public"} #{content.type.upcase} &middot; #{content.creator.name} 
+
+.row-fluid.text-center
+  %img.img-polaroid{:src => content.mediable.image_url, :style => "margin: 10px 0;" }
+.row-fluid
+  %i.icon-share
+  %small 
+    permalink:    
+    #{link_to content.mediable.url, content.mediable.url }
+  %blockquote{:style => "margin: 10px 0;"}
+    %p= content.description
