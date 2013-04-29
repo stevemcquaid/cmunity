@@ -1,5 +1,5 @@
 class Twilio < ActiveRecord::Base
-  
+  require 'twilio-ruby'
   def self.send_message(number_to_send_to, the_message)
     twilio_sid = "ACb18218cb24a64fe207de2f020d414ed7"
     twilio_token = "08faea04bc6260e3204e32c7898e5f4a"
