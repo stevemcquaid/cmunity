@@ -1,7 +1,6 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= Group.human_attribute_name(:id) %></th>
       <th><%= Group.human_attribute_name(:name) %></th>
       <th># of Members</th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
@@ -10,7 +9,6 @@
   <tbody>
     <% @myGroups.each do |group| %>
       <tr>
-        <td><%= link_to group.id, group_path(group) %></td>
         <td><%= link_to group.name, group_path(group) %></td>
 				<td><%= group.users.count %></td>
         <% if group.can_manage?(current_user) %>
