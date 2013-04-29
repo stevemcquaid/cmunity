@@ -12,6 +12,7 @@ gem 'will_paginate-bootstrap'
 
 gem 'sqlite3', '~> 1.3.7', :group => [:test, :development]
 
+gem 'twilio-ruby'
 
 gem 'nokogiri', '~> 1.5.9'
 gem 'ging-opengraph', '~> 0.0.5'

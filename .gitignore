@@ -17,3 +17,6 @@
 
 # Ignore all database files
 /config/database.yml
+
+#Ignore image uploads
+public/system/event_posts/photos/

@@ -20,6 +20,13 @@
   <% end %>
 </ul>
 
+<% if current_user && current_user.is_member?(@group) %>
+<hr/>
+	<h4>Message Members</h4>
+	<%= render :partial => 'group_message_user_select' %>
+<hr/>
+<% end %>
+
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")), groups_path, :class => 'btn'  %>
   

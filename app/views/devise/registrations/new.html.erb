@@ -11,6 +11,9 @@
 
   <div><%= f.label :email %>
   	<%= f.email_field :email%></div>
+		
+	<div><%= f.label :cell, :class => 'control-label' %>
+	  <%= f.telephone_field :cell, :class => 'text_field' %></div>
 
   <div><%= f.label :password %>
   	<%= f.password_field :password %></div>

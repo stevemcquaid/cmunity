@@ -38,7 +38,56 @@ class GroupsController < ApplicationController
       format.json { render json: @group }
     end
   end
+  
+  def send_message
+    @group = Group.find(params[:group][:id])
+    
+    members = params[:group]["users_to_message"]
+    members.reject! { |m| m.empty? }
+    message = params[:group]["message"]
+    
+    logger.debug "Members: #{members}"
+    
+    if (@group.isMessageValid?(message) && @group.isMemberValid?(members))
+      members.each do |u|
+        user = User.find(u)
+        twilio(user.cell, message)
+      end
+      
+      
+      
+      redirect_to groups_url, notice: 'Message Sent.'
+      return
+      
+    else
+      
+      if !(@group.isMemberValid?(message))
+        redirect_to group_path(@group), alert: "Please select members to send message"
+        return
+      end
+      
+      if !(@group.isMessageValid?(message))
+        redirect_to group_path(@group), alert: "Message must be at least 1 character"
+        return
+      end
+      
+    end
+  end
 
+  def twilio(number_to_send_to, the_message)
+    twilio_sid = "ACb18218cb24a64fe207de2f020d414ed7"
+    twilio_token = "08faea04bc6260e3204e32c7898e5f4a"
+    twilio_phone_number = "4128880020"
+ 
+    @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
+ 
+    @twilio_client.account.sms.messages.create(
+      :from => "+1#{twilio_phone_number}",
+      :to => number_to_send_to,
+      :body => the_message
+    )
+  end
+  
   # GET /groups/new
   # GET /groups/new.json
   def new
