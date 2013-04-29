@@ -10,34 +10,21 @@
     .form-inputs
       .span4.offset1
         = vid.input :video_url, :placeholder => "Enter Video URL...", :input_html => { :id => "video-url-input" }
-        = vid.input :embed_code, as: :hidden, :input_html => { :id => "embed_code"}
+        = vid.input :embed_code, as: :text, :input_html => { :id => "embed_code"}
       .span4.fix_selects
         = vid.simple_fields_for :content do |c|
 
           - admin_groups = current_user.by_group_role('admin')
           - if !admin_groups.empty?
             = c.input :post_as, collection: admin_groups, label_method: :name, value_method: :id, :input_html => { :class => 'selectpicker' }
-            = c.input :title, as: :hidden, :input_html => { :id => "title" }
-            = c.input :description, as: :hidden, :input_html => { :id => "description" }
+            = c.input :title, :input_html => { :id => "title" }
+            = c.input :description, :input_html => { :id => "description" }
           - user_groups = current_user.groups
           - if !user_groups.empty?
             = c.input :is_private, as: :bootswitch, :label => 'Private?', :wrapper => :bootstrap_switch_small, :input_html => { :id => 'switch_data', :class => 'private', :data => {  'on-label' => '<i class="icon-ok icon-white"></i>', 'off-label' => '<i class="icon-remove"></i>'}}
             #group_section
               %span.control-label Post to Group:
               = c.input :parent_group_id, collection: user_groups, label_method: :name, value_method: :id, :input_html => { :id => 'group_input', :class => 'selectpicker' }, :label => false
-
-
-  .row-fluid
-    .well#fetch-data-video
-      .loading
-      .row-fluid
-        .span6
-          .embed
-      .row-fluid
-        .span6
-          %h4.title.editable
-          %p.description.editable
-          %small.site_url
   .row-fluid
     .form-actions
       = vid.button :submit, "Post Video", :class => 'btn btn-primary'

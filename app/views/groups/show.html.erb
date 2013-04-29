@@ -30,7 +30,7 @@
   <%= link_to t('.back', :default => t("helpers.links.back")), groups_path, :class => 'btn'  %>
   
 
-	<% if current_user %>
+	<% if @group.can_manage?(current_user) %>
 		<%= link_to t('.edit', :default => t("helpers.links.edit")), edit_group_path(@group), :class => 'btn' %>
 	  <% if !current_user.is_member?(@group) %>  
 	    <%= link_to 'Join', memberships_path(:group_id => @group), :class => 'btn ', id: 'join-btn', :method => :post, remote: true %>

@@ -1,1 +1,59 @@
-= render :partial => 'form'
+.page-header
+  %h1 
+    Events
+    %small Create a New Event
+
+= simple_form_for(@event, :url => event_path, :html => {:class => 'form-horizontal small-labels', :multipart => true}) do |e| 
+  = e.error_notification
+
+  .row-fluid
+    .span6
+      .row-fluid{:style => "text-align:center;"}
+        = render :partial => "shared/file_upload", :locals => { :f => e, :attribute => 'photo', :width => '260', :height => '180' }
+      .row-fluid
+        %p.lead What's this event about?
+        = e.simple_fields_for :content do |c|
+          = c.input :description, :label => false, :placeholder => "Description...", :wrapper => :no_controls, :input_html => { :class => 'span11', :rows => 5 }
+    .span6.text-right#event-details
+      .page-header
+        %p.lead{:style => "margin-bottom: 0px"} Event Details
+
+      = e.simple_fields_for :content do |c|
+
+        - admin_groups = current_user.by_group_role('admin')
+        - if !admin_groups.empty?
+          = c.input :post_as, collection: admin_groups, label_method: :name, value_method: :id, :input_html => { :class => 'selectpicker input-block-level' }
+        = c.input :title, :input_html => { :class => 'input-block-level' }
+        = c.input :is_private, as: :bootswitch, :label => 'Private?', :wrapper => :bootstrap_switch_small, :input_html => { :id => 'switch_data', :class => 'private', :data => { 'on-label' => '<i class="icon-ok icon-white"></i>', 'off-label' => '<i class="icon-remove"></i>'}}
+        - user_groups = current_user.groups
+        - if !user_groups.empty?
+          #group_section
+            = c.input :parent_group_id, collection: user_groups, label_method: :name, value_method: :id, :input_html => { :id => 'group_input', :class => 'selectpicker input-block-level' }, :label => "Post to Group"
+
+      = e.input :location, :input_html => { :class => 'input-block-level' }
+
+      = e.input :start_date, :wrapper => :append_datepicker_start do
+        = e.input_field :start_date, :as => :string, :id => 'start-date', :class => 'span6 append-resize'
+        = content_tag :span, nil, :class => "add-on" do
+          = content_tag :i, nil, :class => "icon-calendar"
+
+      = e.input :end_date, :wrapper => :append_datepicker_end do
+        = e.input_field :end_date, :as => :string, :id => 'end-date', :class => 'span6 append-resize'
+        = content_tag :span, nil, :class => "add-on" do
+          = content_tag :i, nil, :class => "icon-calendar"
+
+      = e.input :start_time, :wrapper => :append_timepicker do
+        = e.input_field :start_time, :as => :string, :id => 'start-time', :class => 'span6 append-resize'
+        = content_tag :span, nil, :class => "add-on" do
+          = content_tag :i, nil, :class => "icon-time"
+
+      = e.input :end_time, :wrapper => :append_timepicker do
+        = e.input_field :end_time, :as => :string, :id => 'end-time', :class => 'span6 append-resize'
+        = content_tag :span, nil, :class => "add-on" do
+          = content_tag :i, nil, :class => "icon-time"
+
+      = e.input :is_all_day, :label => "All Day", as: :bootswitch, :wrapper => :bootstrap_switch_small, :input_html => { :id => 'switch_data', :class => 'all_day' , :data => { 'on-label' => '<i class="icon-ok icon-white"></i>', 'off-label' => '<i class="icon-remove"></i>'}}
+
+  .row-fluid.row-desktop
+    .form-actions
+      = e.button :submit, "Post Event", :class => 'btn btn-primary' 

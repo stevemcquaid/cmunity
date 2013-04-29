@@ -13,3 +13,6 @@
     #{link_to content.mediable.url, content.mediable.url }
   %blockquote{:style => "margin: 10px 0;"}
     %p= content.description
+  - if current_user == content.creator
+    = link_to "Destory", url_path
+    = link_to "Edit", edit_url_path(content.mediable), :class => "btn"

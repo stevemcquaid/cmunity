@@ -17,5 +17,6 @@
     #{link_to content.mediable.video_url, content.mediable.video_url }
   %blockquote{:style => "margin: 10px 0;"}
     %p= content.description
-
-  = link_to "Edit", edit_video_path(content.mediable), :class => "btn"
+  - if current_user == content.creator
+    = link_to "Destory", video_path
+    = link_to "Edit", edit_video_path(content.mediable), :class => "btn"

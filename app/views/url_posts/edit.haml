@@ -1,1 +1,32 @@
-= render :partial => 'form'
+.page-header
+  %h1 
+    URL
+    %small Share a link
+
+= simple_form_for(@url, :url => url_path) do |u| 
+  = render 'shared/error_messages', object: u.object
+
+  .row-fluid
+    .form-inputs
+      .span4.offset1
+        = u.input :url, :placeholder => "Enter URL...", :input_html => { :id => "url-input" }
+        = u.input :image_url, as: :string
+      .span4
+        = u.simple_fields_for :content do |c|
+          - admin_groups = current_user.by_group_role('admin')
+          - if !admin_groups.empty?
+            = c.input :post_as, collection: admin_groups, label_method: :name, value_method: :id, :input_html => { :class => 'selectpicker' }
+          = c.input :title :input_html => { :id => "title" }
+          = c.input :description, :input_html => { :id => "description" }
+          = c.input :is_private, as: :bootswitch, :label => 'Private?', :wrapper => :bootstrap_switch_small, :input_html => { :id => 'switch_data', :class => 'private', :data => {  'on-label' => '<i class="icon-ok icon-white"></i>', 'off-label' => '<i class="icon-remove"></i>'}}
+         
+          - user_groups = current_user.groups
+          - if !user_groups.empty?
+            #group_section
+              %span.control-label Post to Group:
+              = c.input :parent_group_id, collection: user_groups, label_method: :name, value_method: :id, :input_html => { :id => 'group_input', :class => 'selectpicker' }, :label => false
+        = u.input :image_url, as: :hidden, :input_html => { :id => "image_url" } 
+
+  .row-fluid
+    .form-actions
+      = u.button :submit, "Post URL", :class => 'btn btn-primary'

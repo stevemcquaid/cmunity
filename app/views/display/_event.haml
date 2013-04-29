@@ -24,4 +24,6 @@
   = content.mediable.location
   %br
   %strong.text-success= content.mediable.is_all_day ? "This is an all day event" : ""
-
+  - if current_user == content.creator
+    = link_to "Destory", event_path
+    = link_to "Edit", edit_event_path(content.mediable), :class => "btn"

@@ -2,4 +2,8 @@
   %h1 
     = content.title
     %small= content.type
-%p= content.mediable.text 
+%p= content.mediable.text
+- if current_user == content.creator
+  = link_to "Destory", text_path
+  = link_to "Edit", edit_text_path(content.mediable), :class => "btn"
+

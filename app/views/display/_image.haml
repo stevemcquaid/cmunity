@@ -3,3 +3,6 @@
     = content.title
     %small= content.type
 %p= content.mediable.image_url 
+- if current_user == content.creator
+  = link_to "Destory", image_path
+  = link_to "Edit", edit_image_path(content.mediable), :class => "btn"
