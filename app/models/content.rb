@@ -17,6 +17,7 @@ class Content < ActiveRecord::Base
   scope :events, where{ mediable_type.eq 'EventPost' }
   scope :by_group, lambda {|group_id| where(:parent_group_id => group_id) }  
   scope :by_creator, lambda {|creator_id| where(:creator_id => creator_id) }
+  scope :user_can_view, lambda {|creator_id| where( member_approved?(current_user) && ) } 
   
   #validates :description, :presence => true, :unless => :isTextPost? # Validates presence of description unless TextPost
   validates :title, :presence => true, :length => { :in => 2..100 }

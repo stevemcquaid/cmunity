@@ -51,7 +51,7 @@ class GroupsController < ApplicationController
     if (@group.isMessageValid?(message) && @group.isMemberValid?(members))
       members.each do |u|
         user = User.find(u)
-        self.twilio(user.cell, message)
+        self.twilio(user.cell, message) unless user.cell.nil?
       end
       
       
