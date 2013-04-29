@@ -1,5 +1,5 @@
 class VideoPostsController < ApplicationController
-
+  include AutoHtml
   def index
     @videos = VideoPost.all
 
@@ -62,7 +62,7 @@ class VideoPostsController < ApplicationController
     respond_to do |format|
       if @video.update_attributes(params[:video_post])
         track_activity @video
-        format.html { redirect_to @video, notice: 'Video post was successfully updated.' }
+        format.html { redirect_to post_path(@video.content), notice: "#{@video.content.title} was successfully updated." }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -83,14 +83,16 @@ class VideoPostsController < ApplicationController
     end
   end
 
-  def fetchvid
+  def fetch
     require 'opengraph'
-
     url = params[:url].html_safe
     @data = OpenGraph.fetch(url)
+    if @data.type == "video"
+      embed = auto_html(@data.url) { youtube(:width => 650, :height => 370) }
+      @data.embed = embed
+    end
     if @data == false
-      doc = Nokogiri::HTML(open(url))
-      @data.title = doc.css('title')
+      false
     end
     respond_to do |format|
       format.json { render :json => @data }

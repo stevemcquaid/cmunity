@@ -4,7 +4,7 @@
     %small Share a link
 
 = simple_form_for(@url, :url => urls_path) do |u| 
-  = u.error_notification
+  = render 'shared/error_messages', object: u.object
 
   .row-fluid
     .form-inputs
@@ -16,7 +16,8 @@
           - admin_groups = current_user.by_group_role('admin')
           - if !admin_groups.empty?
             = c.input :post_as, collection: admin_groups, label_method: :name, value_method: :id, :input_html => { :class => 'selectpicker' }
-          = c.input :title, as: :hidden
+          = c.input :title, as: :hidden, :input_html => { :id => "title" }
+          = c.input :description, as: :hidden, :input_html => { :id => "description" }
           = c.input :is_private, as: :bootswitch, :label => 'Private?', :wrapper => :bootstrap_switch_small, :input_html => { :id => 'switch_data', :class => 'private', :data => {  'on-label' => '<i class="icon-ok icon-white"></i>', 'off-label' => '<i class="icon-remove"></i>'}}
          
           - user_groups = current_user.groups
@@ -24,12 +25,18 @@
             #group_section
               %span.control-label Post to Group:
               = c.input :parent_group_id, collection: user_groups, label_method: :name, value_method: :id, :input_html => { :id => 'group_input', :class => 'selectpicker' }, :label => false
+        = u.input :image_url, as: :hidden, :input_html => { :id => "image_url" } 
   .row-fluid
-    .well#fetch-data
-      %h3.title
-      %p.desc
-      %img.preview_img
-      %small.site_url
+    .well#fetch-data-url
+      .loading
+      .row-fluid
+        .span6
+          %img.preview_img.img-polaroid
+        .span6
+          %h4.title.editable
+          %p.description.editable
+          %small.site_url
+
 
   .row-fluid
     .form-actions

@@ -4,8 +4,7 @@
 </div>
 
 <h4>Description</h4>
-<p><% @group.description %></p>
-<p>Description doesn't work at the moment. Remove when bug fixed.</p>
+<p><%= @group.description %></p>
 
 
 <% if current_user && current_user.is_member?(@group) %>

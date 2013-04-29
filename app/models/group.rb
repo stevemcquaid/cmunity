@@ -2,6 +2,7 @@ class Group < ActiveRecord::Base
 
   resourcify
   has_many :contents, :foreign_key => 'parent_group_id'
+  has_many :contents, :foreign_key => 'post_as'
   has_many :memberships, :dependent => :destroy
   has_many :users, :through => :memberships
   has_many :roles, :as => :resource

@@ -16,6 +16,7 @@ gem 'twilio-ruby'
 
 gem 'nokogiri', '~> 1.5.9'
 gem 'ging-opengraph', '~> 0.0.5'
+gem 'auto_html', '~> 1.6.0'
 
 gem 'chronic', '~> 0.9.1'
 
