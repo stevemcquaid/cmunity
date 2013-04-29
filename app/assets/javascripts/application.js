@@ -18,6 +18,7 @@
 //= require bootstrap-timepicker
 //= require bootstrap-switch
 //= require bootstrap-select
+//= require jquery.fittext
 //= require jquery.liveurl
 //= require editable
 //= require_tree .

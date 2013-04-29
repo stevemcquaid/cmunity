@@ -1,0 +1,7 @@
+.tablet-post-nav
+  %ul.auto-nav1.clearfix
+    %li= link_to '<i class="icon-pencil"></i> Text'.html_safe, new_text_path, :class => "btn"
+    %li= link_to '<i class="icon-calendar"></i> Event'.html_safe, new_event_path, :class => "btn"
+    %li= link_to '<i class="icon-camera"></i> Image'.html_safe, new_image_path, :class => "btn"
+    %li= link_to '<i class="icon-film"></i> Video'.html_safe, new_video_path, :class => "btn"
+    %li.last= link_to '<i class="icon-search"></i> URL'.html_safe, new_url_path, :class => "btn"

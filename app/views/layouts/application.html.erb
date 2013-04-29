@@ -43,76 +43,22 @@
                 </div>
               </div><!-- /navbar-inner -->
             </div>
-            <div class="container">
-              <% if true  #commenting this sidebar out for now due to bugs%>
-                <% if user_signed_in? && params[:controller] != 'home' %>
-                  <div class="well sidebar-nav span2">
-                    <ul class="nav nav-list">
-                      <div class="desktop-post-nav">
-                      <li class="nav-header">Post:</li>
-                        <li><%= link_to '<i class="icon-pencil"></i> A Text'.html_safe, new_text_path %></li>
-                        <li><%= link_to '<i class="icon-calendar"></i> An Event'.html_safe, new_event_path %></li>
-                        <li><%= link_to '<i class="icon-camera"></i> An Image'.html_safe, new_image_path %></li>
-                        <li><%= link_to '<i class="icon-film"></i> A Video'.html_safe, new_video_path %></li>
-                        <li><%= link_to '<i class="icon-search"></i> A URL'.html_safe, new_url_path %></li>
-                      </div>
-                    </ul>
-                  </div><!--/.well -->
-                  <div class ="tablet-post-nav">
-                    <ul class ="auto-nav1 clearfix">
-                        <li><%= link_to '<i class="icon-pencil"></i> Text'.html_safe, new_text_path, :class => "btn" %></li>
-                        <li><%= link_to '<i class="icon-calendar"></i> Event'.html_safe, new_event_path, :class => "btn" %></li>
-                        <li><%= link_to '<i class="icon-camera"></i> Image'.html_safe, new_image_path, :class => "btn" %></li>
-                        <li><%= link_to '<i class="icon-film"></i> Video'.html_safe, new_video_path, :class => "btn" %></li>
-                        <li class="last"><%= link_to '<i class="icon-search"></i> URL'.html_safe, new_url_path, :class => "btn" %></li>
-                    </ul>
-                  </div>
-                  <div class="mobile-post-nav-wide">
-                    <ul class="auto-nav2 clearfix">
-                        <li><%= link_to '<i class="icon-pencil"></i>'.html_safe, new_text_path, :class => "btn btn-large" %></li>
-                        <li><%= link_to '<i class="icon-calendar"></i>'.html_safe, new_text_path, :class => "btn btn-large" %></li>
-                        <li><%= link_to '<i class="icon-camera"></i>'.html_safe, new_text_path, :class => "btn btn-large" %></li>
-                        <li><%= link_to '<i class="icon-film"></i>'.html_safe, new_text_path, :class => "btn btn-large" %></li>
-                        <li><%= link_to '<i class="icon-search"></i>'.html_safe, new_text_path, :class => "btn btn-large" %></li>
-                    </ul>
-                  </div>
-                  <div class="mobile-post-nav-long">
-                    <ul class="auto-nav3 clearfix">
-                        <li><%= link_to '<i class="icon-pencil"></i>'.html_safe, new_text_path, :class => "btn" %></li>
-                        <li><%= link_to '<i class="icon-calendar"></i>'.html_safe, new_text_path, :class => "btn" %></li>
-                        <li><%= link_to '<i class="icon-camera"></i>'.html_safe, new_text_path, :class => "btn" %></li>
-                        <li><%= link_to '<i class="icon-film"></i>'.html_safe, new_text_path, :class => "btn" %></li>
-                        <li><%= link_to '<i class="icon-search"></i>'.html_safe, new_text_path, :class => "btn" %></li>
-                    </ul>
-                  </div>
-
-                <% elsif false %>
-                  <div class="well sidebar-nav">
-                    <ul class="nav nav-list">
-                      <li class="nav-header">Development Sidebar</li>
-                      <li><%= link_to "Contents", contents_path  %></li>
-                      <li><%= link_to "Event_Posts", event_posts_path  %></li>
-                      <li><%= link_to "Groups", groups_path  %></li>
-                      <li><%= link_to "Home", root_path  %></li>
-                      <li><%= link_to "Image_Posts", image_posts_path  %></li>
-                      <li><%= link_to "Text_Posts", text_posts_path  %></li>
-                      <li><%= link_to "URL_Posts", url_posts_path  %></li>
-                      <li><%= link_to "Users", users_path  %></li>
-                      <li><%= link_to "User_Groups", user_groups_path  %></li>
-                      <li><%= link_to "Video_Posts", video_posts_path %></li>
-                    </ul>
-                  </div><!--/.well -->
-                <% end %>
+            <div class="container">    
+              <% if user_signed_in? && params[:controller] != 'home' %>
+                <%= render :partial => "shared/desktop_nav" %>
+                <%= render :partial => "shared/tablet_nav" %>
+                <%= render :partial => "shared/mobile_nav_wide" %>
+                <%= render :partial => "shared/mobile_nav_long" %>
               <% end %>
-                <% if params[:controller] == "home" %>
+              <% if params[:controller] == "home" %>
+                <%= render :partial => 'shared/flash', :locals => { :flash => flash } %>
+                <%= yield %>
+              <% else %>
+                <div class="span9">
                   <%= render :partial => 'shared/flash', :locals => { :flash => flash } %>
                   <%= yield %>
-                <% else %>
-                  <div class="span9">
-                    <%= render :partial => 'shared/flash', :locals => { :flash => flash } %>
-                    <%= yield %>
-                  </div>
-                <% end %>
+                </div>
+              <% end %>
             </br>
             <% if false %>
               <footer>

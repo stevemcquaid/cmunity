@@ -1,0 +1,9 @@
+.well.sidebar-nav.span2
+  %ul.nav.nav-list
+    .desktop-post-nav
+      %li.nav-header Post:
+      %li= link_to '<i class="icon-pencil"></i> A Text'.html_safe, new_text_path
+      %li= link_to '<i class="icon-calendar"></i> An Event'.html_safe, new_event_path
+      %li= link_to '<i class="icon-camera"></i> An Image'.html_safe, new_image_path
+      %li= link_to '<i class="icon-film"></i> A Video'.html_safe, new_video_path
+      %li= link_to '<i class="icon-search"></i> A URL'.html_safe, new_url_path

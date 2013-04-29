@@ -6,12 +6,17 @@
 = simple_form_for(@event, :url => events_path, :html => {:class => 'form-horizontal small-labels', :multipart => true}) do |e| 
   = e.error_notification
 
-  .row-fluid.row-desktop
-    .span5.photo_bin
-      = render :partial => "shared/file_upload", :locals => { :f => e, :attribute => 'photo', :width => '260', :height => '180' }
-    .span5.pull-right.text-right.part1
-      .page-header.clearfix
-        %p.lead.pull-right{:style => "margin-bottom: 0px;"} Drop the deetz!
+  .row-fluid
+    .span6
+      .row-fluid{:style => "text-align:center;"}
+        = render :partial => "shared/file_upload", :locals => { :f => e, :attribute => 'photo', :width => '260', :height => '180' }
+      .row-fluid
+        %p.lead What's this event about?
+        = e.simple_fields_for :content do |c|
+          = c.input :description, :label => false, :placeholder => "Description...", :wrapper => :no_controls, :input_html => { :class => 'span11', :rows => 5 }
+    .span6.text-right#event-details
+      .page-header
+        %p.lead{:style => "margin-bottom: 0px"} Event Details
 
       = e.simple_fields_for :content do |c|
 
@@ -36,24 +41,17 @@
         = e.input_field :end_date, :as => :string, :id => 'end-date', :class => 'span6 append-resize'
         = content_tag :span, nil, :class => "add-on" do
           = content_tag :i, nil, :class => "icon-calendar"
-  .row-fluid.row-desktop
-    .form-inputs
-      .span6.pull-left.part2
-        %p.lead What's this event about?
-        = e.simple_fields_for :content do |c|
-          = c.input :description, :label => false, :placeholder => "Description...", :wrapper => :no_controls, :input_html => { :class => 'span11', :rows => 5 }
-      .span5.event-col.pull-right.text-right.part3
-        = e.input :start_time, :wrapper => :append_timepicker do
-          = e.input_field :start_time, :as => :string, :id => 'start-time', :class => 'span6 append-resize'
-          = content_tag :span, nil, :class => "add-on" do
-            = content_tag :i, nil, :class => "icon-time"
+      = e.input :start_time, :wrapper => :append_timepicker do
+        = e.input_field :start_time, :as => :string, :id => 'start-time', :class => 'span6 append-resize'
+        = content_tag :span, nil, :class => "add-on" do
+          = content_tag :i, nil, :class => "icon-time"
 
-        = e.input :end_time, :wrapper => :append_timepicker do
-          = e.input_field :end_time, :as => :string, :id => 'end-time', :class => 'span6 append-resize'
-          = content_tag :span, nil, :class => "add-on" do
-            = content_tag :i, nil, :class => "icon-time"
+      = e.input :end_time, :wrapper => :append_timepicker do
+        = e.input_field :end_time, :as => :string, :id => 'end-time', :class => 'span6 append-resize'
+        = content_tag :span, nil, :class => "add-on" do
+          = content_tag :i, nil, :class => "icon-time"
 
-        = e.input :is_all_day, as: :bootswitch, :wrapper => :bootstrap_switch_small, :input_html => { :id => 'switch_data', :class => 'all_day' , :data => { 'on-label' => '<i class="icon-ok icon-white"></i>', 'off-label' => '<i class="icon-remove"></i>'}}
+      = e.input :is_all_day, as: :bootswitch, :wrapper => :bootstrap_switch_small, :input_html => { :id => 'switch_data', :class => 'all_day' , :data => { 'on-label' => '<i class="icon-ok icon-white"></i>', 'off-label' => '<i class="icon-remove"></i>'}}
 
   .row-fluid.row-desktop
     .form-actions

@@ -9,6 +9,19 @@
 	margin: 40px 0;
 }
 
+.page-header {
+	word-wrap:break-word;
+}
+
+input {
+    width: 100%;
+}
+.input-append {
+    width: 100%;
+    input {
+    	width: 90% !important;
+    }
+}
 
 #index_top{
 	margin-bottom: 80px;
@@ -53,8 +66,18 @@
 	li.last { margin-right:0; float:right; }
 }
 
+.no-bottom {
+	margin-bottom:0px;
+	padding-bottom:0px;
+}
 
+.no-bottom-padding {
+	padding-bottom:0px;
+}
 
+.no-bottom-margin {
+	margin-bottom:0px;
+}
 
 /* Landscape phone to portrait tablet */
 @media (max-width: 767px) { 

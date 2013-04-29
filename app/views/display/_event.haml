@@ -1,14 +1,25 @@
-.page-header
-  %h1 
-    = content.title
-    %small= content.type
+.span5
+  .page-header.no-bottom-padding
+    %h3.no-bottom-margin 
+      = content.title
+      %small= content.type
+  %p.text-info #{content.mediable.start_date.strftime('%B %-d, %Y')} at #{content.mediable.start_time.strftime('%l:%M %P')}
+  %dl.dl-horizontal
+    %dt Location
+    %dd= content.mediable.location
+    %dt Description
+    %dd= content.description
 
-= image_tag content.mediable.photo.url(:medium), :class => 'img-rounded'
-%ul 
-  %li= content.mediable.location
-  %li= content.mediable.start_date
-  %li= content.mediable.end_date
-  %li= content.mediable.start_time
-  %li= content.mediable.end_time
-  %li= content.mediable.is_all_day
+
+.span3.well{:style => "text-align:center;"}
+  = image_tag content.mediable.photo.url(:medium), :class => 'img-rounded'
+  %br
+  %strong Posted: #{time_ago_in_words(content.created_at)} by #{content.creator.name}
+  %ul 
+    %li= content.mediable.location
+    %li= content.mediable.start_date
+    %li= content.mediable.end_date
+    %li= content.mediable.start_time
+    %li= content.mediable.end_time
+    %li= content.mediable.is_all_day
 

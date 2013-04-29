@@ -11,15 +11,37 @@
 
 
 @media (max-width: 1200px) { 
-
-	.part1, .part2, .part3, .photo_bin, .photo_well {
-		width: 100% !important;
-	}
-
-	.part2 {
-		text-align: right;
-	}
+  #event-details .control-group label {
+    float: right;
+    text-align:left;
+    padding-left: 30px;
+  }
+  #event-details .control-group .controls {
+    width: 210px;
+    float: right;
+    margin:0px !important;
+  }
 }
+@media (max-width: 980px) { 
+  #event-details .control-group label {
+      display: block;
+      width: 100%;
+      text-align: right;
+  }
+  #event-details .has-switch label {
+    width: 34%;
+  }
+}
+  @media (max-width: 767px) {
+    #event-details .control-group .controls {
+      width: 100%;
+    }
+    #event-details .input-append input {
+      width: 96% !important;
+    }
+}
+
+
 .datepicker-dropdown {
 	z-index: 110 !important;
 }
