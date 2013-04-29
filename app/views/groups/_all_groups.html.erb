@@ -1,7 +1,6 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= Group.human_attribute_name(:id) %></th>
       <th><%= Group.human_attribute_name(:name) %></th>
       <th>Admin</th>
       <th># of Members</th>
@@ -11,7 +10,6 @@
   <tbody>
     <% @groups.each do |group| %>
       <tr>
-        <td><%= link_to group.id, group_path(group) %></td>
         <td><%= link_to group.name, group_path(group) %></td>
         <td><%= link_to group.find_admin.name, user_path(group.find_admin) unless group.find_admin.nil? %></td>
         <td><%= group.users.count %></td>
