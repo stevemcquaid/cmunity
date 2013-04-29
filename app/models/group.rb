@@ -19,18 +19,28 @@ class Group < ActiveRecord::Base
   # has_many :url_posts, :through => :contents, :source => :mediable, :source_type => "UrlPost"
   # has_many :video_posts, :through => :contents, :source => :mediable, :source_type => "VideoPost"
 
-
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>"}
   attr_accessible :name, :description, :users_to_message, :message
   attr_reader :users_to_message, :message
   
   # Validations
+  validate :validate_message
+  validates :Vmessage, :presence => true, :length => { :minimum => 2 }
   validates :name, :presence => true, :length => { :minimum => 2 }, :uniqueness => true
   validates :description, :presence => true, :length => { :minimum => 5 }
   #validates_attachment :avatar, :presence => true, :content_type => { :content_type => "image/jpg" }, :size => { :in => 0..1000.kilobytes }
   #validates_with AttachmentPresenceValidator, :attributes => :avatar
-
-
+  
+  def validate_message
+    if !(message.length > 1 )
+      errors.add_to_base("Location is invalid")
+      false
+    end
+  end
+  
+  def message=
+    @Vmessage = message
+  end
   
   def find_admin
       gid = self.id

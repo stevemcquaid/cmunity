@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(:version => 20130429003638) do
     t.text     "description"
     t.integer  "creator_id"
     t.integer  "parent_group_id"
+    t.integer  "post_as"
     t.boolean  "is_private"
     t.integer  "mediable_id"
     t.string   "mediable_type"
@@ -63,8 +64,10 @@ ActiveRecord::Schema.define(:version => 20130429003638) do
 
   create_table "event_posts", :force => true do |t|
     t.string   "location"
-    t.datetime "start_datetime"
-    t.datetime "end_datetime"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.time     "start_time"
+    t.time     "end_time"
     t.boolean  "is_all_day"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
@@ -89,8 +92,8 @@ ActiveRecord::Schema.define(:version => 20130429003638) do
 
   create_table "image_posts", :force => true do |t|
     t.string   "image_url"
-    t.integer  "x_pixels"
-    t.integer  "y_pixels"
+    t.integer  "width"
+    t.integer  "height"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -127,7 +130,7 @@ ActiveRecord::Schema.define(:version => 20130429003638) do
   add_index "roles", ["name"], :name => "index_roles_on_name"
 
   create_table "text_posts", :force => true do |t|
-    t.string   "text"
+    t.text     "text"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -182,8 +185,9 @@ ActiveRecord::Schema.define(:version => 20130429003638) do
   create_table "video_posts", :force => true do |t|
     t.string   "video_url"
     t.integer  "length"
-    t.integer  "x_pixels"
-    t.integer  "y_pixels"
+    t.integer  "width"
+    t.integer  "height"
+    t.text     "embed_code"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
