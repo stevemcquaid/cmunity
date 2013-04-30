@@ -15,7 +15,7 @@
         <br />
         <small>
           <%= content.creator.name if content.creator_group.nil? %>
-          <%= content.creator_group if !content.creator_group.nil? %>
+          <%= content.creator_group.name if !content.creator_group.nil? %>
         </small>
       </p>
     </div>
